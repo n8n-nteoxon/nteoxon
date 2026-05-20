@@ -1966,10 +1966,27 @@ function handleSubmit(btn) {
 
   let W, H, raf;
   let stars = [];
+  let shooters = [];
   const mouse = { x: -9999, y: -9999 };
 
   // Rotation matrix components updated once per frame
   let cosR, sinR;
+
+  function mkShooter() {
+    const angle = (Math.random() * 30 + 15) * (Math.PI / 180); // 15–45° downward
+    const speed = 12 + Math.random() * 10;
+    return {
+      x:      Math.random() * W,
+      y:      -20,
+      vx:     Math.cos(angle) * speed,
+      vy:     Math.sin(angle) * speed,
+      len:    80 + Math.random() * 120,
+      alpha:  0,
+      phase:  'in',   // 'in' | 'hold' | 'out'
+      life:   0,
+      maxLife: 40 + Math.random() * 30,
+    };
+  }
 
   function mkStar(x, y) {
     const speed = STAR_SPEED * (0.15 + Math.random() * 0.35);
@@ -1987,11 +2004,14 @@ function handleSubmit(btn) {
     };
   }
 
+  let nextShooter = 0;
+
   function initStars() {
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
     const count = Math.round((W * H / 3500) * DENSITY);
     stars = Array.from({ length: count }, () => mkStar());
+    shooters = [];
     // Precompute rotation matrix for this frame rate target
     const angle = ROT_SPEED * 0.0008;
     cosR = Math.cos(angle);
@@ -2003,6 +2023,53 @@ function handleSubmit(btn) {
     ctx.clearRect(0, 0, W, H);
     const t = ts * 0.001;
     const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+
+    // ── Shooting stars ──
+    if (ts > nextShooter) {
+      shooters.push(mkShooter());
+      nextShooter = ts + 2500 + Math.random() * 3500; // every 2.5–6s
+    }
+    for (let i = shooters.length - 1; i >= 0; i--) {
+      const sh = shooters[i];
+      sh.x += sh.vx; sh.y += sh.vy; sh.life++;
+
+      // fade in / hold / fade out
+      if (sh.life < 8)            sh.alpha = sh.life / 8;
+      else if (sh.life > sh.maxLife - 10) sh.alpha = Math.max(0, (sh.maxLife - sh.life) / 10);
+      else                        sh.alpha = 1;
+
+      if (sh.life >= sh.maxLife || sh.y > H + 40) { shooters.splice(i, 1); continue; }
+
+      const tailX = sh.x - Math.cos((15 + 30) * Math.PI / 180) * sh.len;
+      const tailY = sh.y - Math.sin((15 + 30) * Math.PI / 180) * sh.len;
+
+      const grad = ctx.createLinearGradient(tailX, tailY, sh.x, sh.y);
+      if (isDark) {
+        grad.addColorStop(0, `rgba(255,255,255,0)`);
+        grad.addColorStop(1, `rgba(255,255,255,${sh.alpha * 0.9})`);
+      } else {
+        grad.addColorStop(0, `rgba(61,69,170,0)`);
+        grad.addColorStop(1, `rgba(61,69,170,${sh.alpha * 0.7})`);
+      }
+
+      ctx.save();
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur  = 6;
+      ctx.shadowColor = isDark ? 'rgba(255,255,255,0.6)' : 'rgba(61,69,170,0.5)';
+      ctx.strokeStyle = grad;
+      ctx.lineWidth   = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(tailX, tailY);
+      ctx.lineTo(sh.x, sh.y);
+      ctx.stroke();
+      // bright head dot
+      ctx.globalAlpha = sh.alpha;
+      ctx.fillStyle   = isDark ? '#ffffff' : '#3d45aa';
+      ctx.beginPath();
+      ctx.arc(sh.x, sh.y, 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
 
     for (const s of stars) {
       // Apply slow galaxy rotation to each star's drift velocity
