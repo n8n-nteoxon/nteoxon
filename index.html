@@ -1961,7 +1961,7 @@ function handleSubmit(btn) {
   const TWINKLE    = 0.3;
   const ROT_SPEED  = 0.1;   // galaxy-wide curl per frame (radians * scale)
   const REPULSION  = 2;
-  const STAR_SPEED = 0.5;   // base drift speed in px/frame
+  const STAR_SPEED = 0.9;   // base drift speed in px/frame
   const DENSITY    = 1;
 
   let W, H, raf;
@@ -1980,7 +1980,7 @@ function handleSubmit(btn) {
       vx: Math.cos(dir) * speed,
       vy: Math.sin(dir) * speed,
       rx: 0, ry: 0,           // repulsion velocity
-      size:   0.4 + Math.random() * 1.6,
+      size:   1.2 + Math.random() * 2.8,
       bright: 180 + Math.random() * 75,
       tSpeed: 0.5 + Math.random() * 1.5,
       tPhase: Math.random() * Math.PI * 2,
