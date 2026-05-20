@@ -968,10 +968,96 @@ input[type="range"].roi-range::-moz-range-thumb {
   pointer-events: none;
 }
 /* Strip solid section backgrounds so galaxy shows through */
-#services, #tools, #works, #certifications, #contact,
+#services, #tools, #works, #portfolio, #certifications, #contact,
 #trade-offer, #process, #roi-calc, footer {
   background: transparent !important;
 }
+
+/* ══ PORTFOLIO ══ */
+#portfolio { padding: 8rem 0; }
+
+.portfolio-tabs {
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.5rem; margin-bottom: 3rem;
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 999px; padding: 6px; width: fit-content; margin-left: auto; margin-right: auto;
+}
+.ptab-btn {
+  display: flex; align-items: center; gap: 0.55rem;
+  padding: 0.65rem 1.6rem; border-radius: 999px;
+  border: none; cursor: pointer; font-family: var(--mono);
+  font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted2); background: transparent;
+  transition: all 0.22s ease; white-space: nowrap;
+}
+.ptab-btn:hover { color: var(--heading); background: var(--card-hover); }
+.ptab-btn.active { background: var(--cyan); color: #fff; box-shadow: 0 4px 20px rgba(61,69,170,0.45); }
+.ptab-logo { width: 18px; height: 18px; object-fit: contain; border-radius: 3px; }
+
+.portfolio-pane { display: none; }
+.portfolio-pane.active { display: block; }
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 1000px) { .portfolio-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .portfolio-grid { grid-template-columns: 1fr; } }
+
+.pcard {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  transition: all 0.3s ease; display: flex; flex-direction: column;
+}
+.pcard:hover { border-color: rgba(61,69,170,0.5); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(61,69,170,0.15); }
+
+.pcard-thumb {
+  position: relative; cursor: zoom-in; overflow: hidden;
+  aspect-ratio: 16/9; background: var(--bg3);
+}
+.pcard-thumb img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.45s ease;
+}
+.pcard:hover .pcard-thumb img { transform: scale(1.04); }
+.pcard-thumb-overlay {
+  position: absolute; inset: 0;
+  background: rgba(7,11,15,0.72); backdrop-filter: blur(2px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.25s ease;
+}
+.pcard-thumb:hover .pcard-thumb-overlay { opacity: 1; }
+.pcard-zoom-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; color: #fff;
+}
+
+.pcard-body { padding: 1.25rem 1.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 0.6rem; }
+.pcard-title { font-family: var(--logo-font); font-size: 1rem; font-weight: 700; color: var(--heading); letter-spacing: -0.01em; line-height: 1.3; }
+.pcard-desc { font-size: 0.85rem; color: var(--muted2); line-height: 1.7; flex: 1; }
+.pcard-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem; }
+
+/* Project lightbox (reuses same structure as cert lightbox) */
+#proj-lightbox {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.94); z-index: 1001;
+  align-items: center; justify-content: center; cursor: zoom-out;
+}
+#proj-lightbox.open { display: flex; }
+#proj-lightbox img {
+  max-width: 94vw; max-height: 92vh;
+  border-radius: 10px; box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+  pointer-events: none;
+}
+.proj-lightbox-close {
+  position: absolute; top: 1.5rem; right: 1.75rem;
+  font-size: 1.8rem; color: rgba(255,255,255,0.6); cursor: pointer;
+  line-height: 1; transition: color 0.2s; background: none; border: none;
+}
+.proj-lightbox-close:hover { color: #fff; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
@@ -987,6 +1073,7 @@ input[type="range"].roi-range::-moz-range-thumb {
     <a href="#tools" class="pill-nav__item">Tools</a>
     <a href="#experience" class="pill-nav__item">Experience</a>
     <a href="#works" class="pill-nav__item">Works</a>
+    <a href="#portfolio" class="pill-nav__item">Portfolio</a>
     <a href="#testimonials" class="pill-nav__item">Testimonials</a>
     <a href="#certifications" class="pill-nav__item">Certifications</a>
   </div>
@@ -1313,6 +1400,193 @@ input[type="range"].roi-range::-moz-range-thumb {
     </div>
   </div>
 </section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-num">Portfolio</div>
+      <h2 class="section-title">Automation Projects</h2>
+      <p class="section-sub">Real workflows built across Zapier, Make.com, and n8n — organized by platform. Click any image to view the full blueprint.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="portfolio-tabs fade-up">
+      <button class="ptab-btn active" onclick="switchTab('make')">
+        <img class="ptab-logo" src="https://cdn.simpleicons.org/make" alt="" onerror="this.style.display='none'">
+        Make.com
+      </button>
+      <button class="ptab-btn" onclick="switchTab('n8n')">
+        <img class="ptab-logo" src="https://cdn.simpleicons.org/n8n" alt="" onerror="this.style.display='none'">
+        n8n
+      </button>
+      <button class="ptab-btn" onclick="switchTab('zapier')">
+        <img class="ptab-logo" src="https://cdn.simpleicons.org/zapier" alt="" onerror="this.style.display='none'">
+        Zapier
+      </button>
+    </div>
+
+    <!-- Make.com pane -->
+    <div class="portfolio-pane active" id="pane-make">
+      <div class="portfolio-grid fade-up">
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Inventory Order Management - Make.png')">
+            <img src="projects/Make/Inventory Order Management - Make.png" alt="Inventory and Order Management Agent" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Inventory & Order Management Agent</div>
+            <p class="pcard-desc">Chat directly with your inventory via Slack to update stock or create orders. Bridges the gap between team communication and logistics spreadsheets in real-time.</p>
+            <div class="pcard-tags"><span class="tag">Slack</span><span class="tag">Make AI Agents</span><span class="tag">Google Sheets</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Invoice Extractor Agent - Make.png')">
+            <img src="projects/Make/Invoice Extractor Agent - Make.png" alt="Invoice Extractor Agent" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Invoice Extractor Agent</div>
+            <p class="pcard-desc">Automatically watches Gmail for incoming invoices, pulls key fields using AI, and logs structured data directly into Google Sheets — zero manual entry.</p>
+            <div class="pcard-tags"><span class="tag">Gmail</span><span class="tag">Make AI Agents</span><span class="tag">Google Sheets</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Receipt Extractor Agent - Make.png')">
+            <img src="projects/Make/Receipt Extractor Agent - Make.png" alt="Receipt Extractor Agent" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Receipt Extractor Agent</div>
+            <p class="pcard-desc">Monitors Gmail for receipt emails, intelligently parses attachments using AI, and organizes extracted data into structured spreadsheet records automatically.</p>
+            <div class="pcard-tags"><span class="tag">Gmail</span><span class="tag">Make AI Agents</span><span class="tag">Google Sheets</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Slack Sales Outreach Agent - Make.png')">
+            <img src="projects/Make/Slack Sales Outreach Agent - Make.png" alt="Sales Outreach Agent" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Sales Outreach Agent</div>
+            <p class="pcard-desc">Researches new leads and drafts personalized email replies automatically. Checks 7-day calendar availability to propose meeting times — so no opportunity slips through.</p>
+            <div class="pcard-tags"><span class="tag">Make AI Agents</span><span class="tag">Gmail</span><span class="tag">Google Calendar</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Xero-Asana-Googlesheet Integration.png')">
+            <img src="projects/Make/Xero-Asana-Googlesheet Integration.png" alt="Xero Report Delivery to Asana" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Automating Xero Report Delivery to Asana</div>
+            <p class="pcard-desc">Pulls financial data from Xero, processes it via Google Sheets, then delivers formatted reports as Asana task attachments on a schedule — eliminating manual reporting overhead entirely.</p>
+            <div class="pcard-tags"><span class="tag">Xero</span><span class="tag">Asana</span><span class="tag">Google Sheets</span><span class="tag">Make.com</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- n8n pane -->
+    <div class="portfolio-pane" id="pane-n8n">
+      <div class="portfolio-grid fade-up">
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/AI Facebook Agent.png')">
+            <img src="projects/N8n/AI Facebook Agent.png" alt="AI Facebook Agent" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">AI Facebook Agent</div>
+            <p class="pcard-desc">An AI-powered agent that monitors Facebook pages for messages and comments, then responds intelligently — keeping your social presence active and leads engaged around the clock.</p>
+            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">Facebook API</span><span class="tag">AI Agent</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/ASMR Video Creator.png')">
+            <img src="projects/N8n/ASMR Video Creator.png" alt="ASMR Video Creator" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">ASMR Video Creator</div>
+            <p class="pcard-desc">Automated content pipeline that generates, assembles, and exports ASMR-style videos end-to-end — from concept to ready-to-publish video without manual production steps.</p>
+            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">AI Generation</span><span class="tag">Content Automation</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/RAG Workflow For Company Documents stored in Google Drive.png')">
+            <img src="projects/N8n/RAG Workflow For Company Documents stored in Google Drive.png" alt="RAG Workflow for Company Documents" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">RAG Workflow for Company Docs</div>
+            <p class="pcard-desc">Retrieval-Augmented Generation system that lets teams ask natural-language questions about their Google Drive documents — turning a passive file store into an intelligent knowledge base.</p>
+            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">RAG</span><span class="tag">Google Drive</span><span class="tag">LLM</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Zapier pane -->
+    <div class="portfolio-pane" id="pane-zapier">
+      <div class="portfolio-grid fade-up">
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/Zapier/AI Content Repurposing - Zapier.png')">
+            <img src="projects/Zapier/AI Content Repurposing - Zapier.png" alt="AI Content Repurposing" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">AI Content Repurposing</div>
+            <p class="pcard-desc">Takes a single piece of content and automatically reformats it for multiple channels — blog posts become tweets, LinkedIn posts, and email newsletters without lifting a finger.</p>
+            <div class="pcard-tags"><span class="tag">Zapier</span><span class="tag">AI</span><span class="tag">Content Strategy</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/Zapier/Asana CRM Lead Engagement- Zapier.png')">
+            <img src="projects/Zapier/Asana CRM Lead Engagement- Zapier.png" alt="Asana CRM Lead Engagement" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Asana CRM Lead Engagement</div>
+            <p class="pcard-desc">Bridges your CRM and Asana so that new leads automatically create tasks, trigger follow-up sequences, and update deal stages — keeping your pipeline moving without manual input.</p>
+            <div class="pcard-tags"><span class="tag">Zapier</span><span class="tag">Asana</span><span class="tag">CRM</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/Zapier/Automated Leads Enrichment - Zapier.png')">
+            <img src="projects/Zapier/Automated Leads Enrichment - Zapier.png" alt="Automated Leads Enrichment" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">Automated Leads Enrichment</div>
+            <p class="pcard-desc">Automatically enriches incoming leads with company data, social profiles, and contact details — giving your sales team the full picture before they ever make the first call.</p>
+            <div class="pcard-tags"><span class="tag">Zapier</span><span class="tag">Lead Enrichment</span><span class="tag">Sales Automation</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECT LIGHTBOX -->
+<div id="proj-lightbox" onclick="closeProjLightbox()">
+  <button class="proj-lightbox-close" onclick="closeProjLightbox()" aria-label="Close">×</button>
+  <img id="proj-lightbox-img" src="" alt="Project screenshot">
+</div>
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
@@ -1708,6 +1982,29 @@ input[type="range"].roi-range::-moz-range-thumb {
 </footer>
 
 <script>
+/* ── Portfolio tab switching ── */
+function switchTab(tool) {
+  document.querySelectorAll('.ptab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.portfolio-pane').forEach(p => p.classList.remove('active'));
+  document.querySelector(`[onclick="switchTab('${tool}')"]`).classList.add('active');
+  document.getElementById('pane-' + tool).classList.add('active');
+}
+
+/* ── Project lightbox ── */
+function openProjLightbox(src) {
+  const lb = document.getElementById('proj-lightbox');
+  document.getElementById('proj-lightbox-img').src = src;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeProjLightbox() {
+  document.getElementById('proj-lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeProjLightbox(); closeCertLightbox(); }
+});
+
 const root = document.documentElement;
 
 function toggleTheme() {
