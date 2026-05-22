@@ -1,0 +1,131 @@
+{
+  "name": "Facebook AI Receptionist (OpenAI)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fb-receptionist",
+        "responseMode": "onReceived"
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extract sender id and message text from Facebook Messenger webhook payload\nconst body = $json;\nlet senderId = '';\nlet messageText = '';\nif (body.entry && body.entry[0] && body.entry[0].messaging && body.entry[0].messaging[0]) {\n  const msg = body.entry[0].messaging[0];\n  senderId = msg.sender && msg.sender.id;\n  if (msg.message && msg.message.text) messageText = msg.message.text;\n  else if (msg.message && msg.message.attachments && msg.message.attachments[0]) messageText = msg.message.attachments[0].payload && msg.message.attachments[0].payload.url || '';\n}\nreturn [{ json: { senderId, messageText } }];"
+      },
+      "name": "ExtractMessage",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "operation": "create",
+        "model": "gpt-3.5-turbo",
+        "additionalFields": {
+          "temperature": 0.25
+        },
+        "messages": [
+          {
+            "role": "system",
+            "content": "You are a friendly, concise Facebook page receptionist. Greet the user, ask clarifying questions if needed, and provide short helpful answers. If the user asks for contact or scheduling, politely collect name and email and ask for permission to connect them to a human. Keep replies under 120 characters for chat messages."
+          },
+          {
+            "role": "user",
+            "content": "={{$json[\"messageText\"]}}"
+          }
+        ]
+      },
+      "name": "OpenAI",
+      "type": "n8n-nodes-base.openai",
+      "typeVersion": 1,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Build Facebook Send API body using OpenAI reply\nconst senderId = $json.senderId || $json[\"senderId\"];\nlet aiReply = '';
+
+if (items[0].json.choices && items[0].json.choices[0] && items[0].json.choices[0].message) {
+  aiReply = items[0].json.choices[0].message.content;
+} else if (items[0].json.text) {
+  aiReply = items[0].json.text;
+} else if (items[0].json.output && items[0].json.output[0] && items[0].json.output[0].text) {
+  aiReply = items[0].json.output[0].text;
+}
+
+return [{ json: { recipient: { id: senderId }, message: { text: aiReply } } }];"
+      },
+      "name": "PrepareFBMessage",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/v12.0/<PAGE_ID>/messages?access_token=<PAGE_ACCESS_TOKEN>",
+        "options": {},
+        "responseFormat": "json",
+        "jsonParameters": true,
+        "bodyParametersJson": "={{$json}}",
+        "sendBinaryData": false,
+        "headerParametersJson": "={\n  \"Content-Type\": \"application/json\"\n}"
+      },
+      "name": "SendToFacebook",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [1200, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "ExtractMessage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ExtractMessage": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "PrepareFBMessage",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PrepareFBMessage": {
+      "main": [
+        [
+          {
+            "node": "SendToFacebook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {}
+}

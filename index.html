@@ -557,10 +557,25 @@ footer {
   border-radius: var(--radius-lg); overflow: hidden;
   border: 1px solid var(--border); cursor: zoom-in; position: relative;
   transition: all 0.3s ease; background: var(--bg3);
+  display: flex; flex-direction: column;
 }
 .cert-card:hover { border-color: rgba(61,69,170,0.5); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(61,69,170,0.18); }
-.cert-card img { width: 100%; display: block; transition: transform 0.4s ease; }
+.cert-card img { width: 100%; display: block; transition: transform 0.4s ease; flex: 1; }
 .cert-card:hover img { transform: scale(1.03); }
+.cert-card-caption {
+  padding: 0.65rem 0.9rem 0.6rem;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 0.5rem;
+  order: -1;
+}
+.cert-caption-icon { font-size: 1rem; flex-shrink: 0; line-height: 1; }
+.cert-caption-title {
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.04em;
+  color: var(--muted2); line-height: 1.35; font-weight: 500;
+}
+[data-theme="dark"] .cert-card-caption { background: rgba(22,38,62,0.96); border-bottom-color: rgba(255,255,255,0.08); }
+[data-theme="light"] .cert-card-caption { background: #ffffff; border-bottom-color: rgba(0,0,0,0.07); }
 .cert-card-overlay {
   position: absolute; inset: 0;
   background: rgba(9,10,28,0.78); backdrop-filter: blur(2px);
@@ -1856,51 +1871,63 @@ input[type="range"].roi-range::-moz-range-thumb {
       <div class="certs-loop-track">
         <!-- original set -->
         <div class="cert-card" onclick="openCertLightbox('Certificates/N8N Cert.png')">
+          <div class="cert-card-caption"><span class="cert-caption-icon">🤖</span><span class="cert-caption-title">AI Automation with n8n</span></div>
           <img src="Certificates/N8N Cert.png" alt="AI Automation with n8n Certificate" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>🤖</span>AI Automation with n8n<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Zapier Cert.png')">
+          <div class="cert-card-caption"><span class="cert-caption-icon">⚡</span><span class="cert-caption-title">No Code Automation with Zapier</span></div>
           <img src="Certificates/Zapier Cert.png" alt="No Code Automation with Zapier Certificate" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>⚡</span>No Code Automation with Zapier<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Make Cert.png')">
+          <div class="cert-card-caption"><span class="cert-caption-icon">🔗</span><span class="cert-caption-title">No Code Automation with Make.com</span></div>
           <img src="Certificates/Make Cert.png" alt="No Code Automation with Make.com Certificate" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>🔗</span>No Code Automation with Make.com<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Prompt Engineering Cert.png')">
+          <div class="cert-card-caption"><span class="cert-caption-icon">🧠</span><span class="cert-caption-title">Prompt Engineering</span></div>
           <img src="Certificates/Prompt Engineering Cert.png" alt="Prompt Engineering Certificate" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>🧠</span>Prompt Engineering<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Highlevel Cert.png')">
+          <div class="cert-card-caption"><span class="cert-caption-icon">📊</span><span class="cert-caption-title">HighLevel CRM Full Training</span></div>
           <img src="Certificates/Highlevel Cert.png" alt="HighLevel CRM Certificate" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>📊</span>HighLevel CRM Full Training<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Wordpress Cert.png')">
+          <div class="cert-card-caption"><span class="cert-caption-icon">🏗</span><span class="cert-caption-title">WordPress Web Page Building</span></div>
           <img src="Certificates/Wordpress Cert.png" alt="WordPress Web Page Building Certificate" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>🏗</span>WordPress Web Page Building<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <!-- duplicate set for seamless loop -->
         <div class="cert-card" onclick="openCertLightbox('Certificates/N8N Cert.png')" aria-hidden="true">
+          <div class="cert-card-caption"><span class="cert-caption-icon">🤖</span><span class="cert-caption-title">AI Automation with n8n</span></div>
           <img src="Certificates/N8N Cert.png" alt="" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>🤖</span>AI Automation with n8n<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Zapier Cert.png')" aria-hidden="true">
+          <div class="cert-card-caption"><span class="cert-caption-icon">⚡</span><span class="cert-caption-title">No Code Automation with Zapier</span></div>
           <img src="Certificates/Zapier Cert.png" alt="" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>⚡</span>No Code Automation with Zapier<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Make Cert.png')" aria-hidden="true">
+          <div class="cert-card-caption"><span class="cert-caption-icon">🔗</span><span class="cert-caption-title">No Code Automation with Make.com</span></div>
           <img src="Certificates/Make Cert.png" alt="" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>🔗</span>No Code Automation with Make.com<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Prompt Engineering Cert.png')" aria-hidden="true">
+          <div class="cert-card-caption"><span class="cert-caption-icon">🧠</span><span class="cert-caption-title">Prompt Engineering</span></div>
           <img src="Certificates/Prompt Engineering Cert.png" alt="" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>🧠</span>Prompt Engineering<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Highlevel Cert.png')" aria-hidden="true">
+          <div class="cert-card-caption"><span class="cert-caption-icon">📊</span><span class="cert-caption-title">HighLevel CRM Full Training</span></div>
           <img src="Certificates/Highlevel Cert.png" alt="" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>📊</span>HighLevel CRM Full Training<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
         <div class="cert-card" onclick="openCertLightbox('Certificates/Wordpress Cert.png')" aria-hidden="true">
+          <div class="cert-card-caption"><span class="cert-caption-icon">🏗</span><span class="cert-caption-title">WordPress Web Page Building</span></div>
           <img src="Certificates/Wordpress Cert.png" alt="" loading="eager">
           <div class="cert-card-overlay"><div class="cert-card-label"><span>🏗</span>WordPress Web Page Building<br>Technical Virtual Assistants PH · 2026</div></div>
         </div>
