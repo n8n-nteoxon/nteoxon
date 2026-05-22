@@ -557,6 +557,7 @@ footer {
 .certs-loop-track {
   display: flex; gap: 1.25rem; width: max-content;
   animation: certs-scroll 30s linear infinite;
+  will-change: transform;
 }
 .certs-loop-track:hover { animation-play-state: paused; }
 @keyframes certs-scroll {
@@ -623,7 +624,7 @@ footer {
 #tools { padding: 8rem 0; background: var(--bg2); transition: background 0.35s ease; overflow: hidden; }
 #tools .container { padding-bottom: 0; }
 .tools-track-wrap { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 3rem; padding-bottom: 0.5rem; }
-.tools-track { display: flex; gap: 1.1rem; width: max-content; animation: toolsScroll 28s linear infinite; }
+.tools-track { display: flex; gap: 1.1rem; width: max-content; animation: toolsScroll 28s linear infinite; will-change: transform; }
 .tools-track.reverse { animation-direction: reverse; animation-name: toolsScrollTriple; }
 .tools-track:hover { animation-play-state: paused; }
 @keyframes toolsScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -922,7 +923,14 @@ input[type="range"].roi-range::-moz-range-thumb {
 @media (prefers-reduced-motion: reduce) {
   .fade-up { transition: none; opacity: 1; transform: none; will-change: auto; }
   .fade-up.visible { opacity: 1; transform: none; }
-  .testimonials-track, .certs-loop-track, .tools-scroll-row { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  .testimonials-track, .certs-loop-track, .tools-track { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* On touch devices: keep marquees running (no stuck-hover pause) */
+@media (hover: none) {
+  .testimonials-track:hover,
+  .certs-loop-track:hover,
+  .tools-track:hover { animation-play-state: running; }
 }
 
 /* ══ RESPONSIVE ══ */
@@ -2299,15 +2307,17 @@ function handleSubmit(btn) {
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
-  // Matches the component props
+  const isMobile   = window.innerWidth <= 900 || navigator.maxTouchPoints > 0;
   const GLOW       = 0.28;
   const TWINKLE    = 0.3;
-  const ROT_SPEED  = 0.1;   // galaxy-wide curl per frame (radians * scale)
-  const REPULSION  = 2;
-  const STAR_SPEED = 0.9;   // base drift speed in px/frame
-  const DENSITY    = 1;
+  const ROT_SPEED  = 0.1;
+  const REPULSION  = isMobile ? 0 : 2;   // skip mouse repulsion on touch
+  const STAR_SPEED = 0.9;
+  const DENSITY    = isMobile ? 0.4 : 1; // fewer stars on mobile
+  const FRAME_MS   = isMobile ? 1000 / 30 : 1000 / 60; // 30 fps mobile, 60 fps desktop
 
   let W, H, raf;
+  let lastFrameTs = 0;
   let stars = [];
   let shooters = [];
   const mouse = { x: -9999, y: -9999 };
@@ -2363,6 +2373,8 @@ function handleSubmit(btn) {
 
   function draw(ts) {
     raf = requestAnimationFrame(draw);
+    if (ts - lastFrameTs < FRAME_MS) return; // FPS cap
+    lastFrameTs = ts;
     ctx.clearRect(0, 0, W, H);
     const t = ts * 0.001;
     const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
@@ -2475,6 +2487,10 @@ function handleSubmit(btn) {
   window.addEventListener('mousemove',  e  => { mouse.x = e.clientX; mouse.y = e.clientY; });
   window.addEventListener('mouseleave', () => { mouse.x = -9999;     mouse.y = -9999; });
   window.addEventListener('resize',     () => { cancelAnimationFrame(raf); initStars(); raf = requestAnimationFrame(draw); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { cancelAnimationFrame(raf); raf = null; }
+    else { lastFrameTs = 0; raf = requestAnimationFrame(draw); }
+  });
 
   initStars();
   raf = requestAnimationFrame(draw);
@@ -2484,6 +2500,9 @@ function handleSubmit(btn) {
 /* ── ElectricBorder for experience cards ── */
 (function () {
   'use strict';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var isMobileEB = window.innerWidth <= 900 || navigator.maxTouchPoints > 0;
+  if (isMobileEB) return; // skip on mobile/tablet to protect GPU budget
 
   function electricBorder(canvas, opts) {
     var color       = opts.color     || '#7df9ff';
@@ -2530,11 +2549,12 @@ function handleSubmit(btn) {
     }
 
     var prevTs = 0;
+    var rafEB;
     function frame(ts) {
       var dt = Math.min((ts - prevTs) / 16.667, 3);
       prevTs = ts;
       measure();
-      if (!w || !h) { requestAnimationFrame(frame); return; }
+      if (!w || !h) { rafEB = requestAnimationFrame(frame); return; }
 
       ctx.clearRect(0, 0, w, h);
       t += speed * dt;
@@ -2563,11 +2583,16 @@ function handleSubmit(btn) {
       ctx.globalAlpha = 1;
       ctx.shadowBlur  = 0;
 
-      requestAnimationFrame(frame);
+      rafEB = requestAnimationFrame(frame);
     }
 
     measure();
-    requestAnimationFrame(frame);
+    rafEB = requestAnimationFrame(frame);
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) cancelAnimationFrame(rafEB);
+      else rafEB = requestAnimationFrame(frame);
+    });
   }
 
   document.querySelectorAll('.timeline-content').forEach(function (el) {
