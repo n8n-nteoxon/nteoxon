@@ -1114,24 +1114,38 @@ input[type="range"].roi-range::-moz-range-thumb {
 /* ══ CONTACT FORM SECTION ══ */
 .contact-form-section {
   margin-top: 0;
-  border: 1px solid var(--border2);
-  border-radius: var(--radius-lg);
+  border: none;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  border-radius: 0;
   overflow: hidden;
 }
 .contact-form-header-inner {
   padding: 1.5rem 2rem 1.25rem;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
+.contact-form-header-inner .calendly-header-label { color: var(--cyan); }
 .contact-form-header-title {
   font-family: var(--logo-font); font-size: 1.25rem;
-  font-weight: 700; color: var(--heading);
+  font-weight: 700; color: #0d1520;
   letter-spacing: -0.01em; line-height: 1.25;
 }
 .contact-form-header-title span { color: var(--cyan); }
-.contact-form-body {
-  background: var(--bg2);
-  padding: 2rem;
+.contact-form-body { background: #ffffff; padding: 2rem; }
+.contact-form-section label { color: #374151 !important; }
+.contact-form-section input,
+.contact-form-section textarea {
+  background: #f0f4f8 !important;
+  border-color: rgba(0,0,0,0.12) !important;
+  color: #1a2535 !important;
+}
+.contact-form-section input::placeholder,
+.contact-form-section textarea::placeholder { color: #8a9db0 !important; }
+.contact-form-section input:focus,
+.contact-form-section textarea:focus {
+  border-color: var(--cyan) !important;
+  box-shadow: 0 0 0 3px rgba(61,69,170,0.10) !important;
 }
 .btn-submit {
   padding: 1rem 2.5rem;
@@ -1144,11 +1158,23 @@ input[type="range"].roi-range::-moz-range-thumb {
   box-shadow: 0 4px 20px rgba(61,69,170,0.45);
   margin-top: 0.25rem;
 }
-.btn-submit:hover { background: #5a63d0; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(61,69,170,0.6); }
+.btn-submit:hover:not(.btn-locked) { background: #5a63d0; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(61,69,170,0.6); }
 .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+.btn-submit.btn-locked {
+  background: #9ca3af; cursor: not-allowed;
+  box-shadow: none; transform: none; opacity: 0.85;
+}
+.calendly-required-notice {
+  display: none;
+  background: #fff8e6; border: 1px solid #f59e0b;
+  border-radius: 8px; padding: 0.75rem 1rem;
+  font-size: 0.82rem; color: #92400e; line-height: 1.5;
+  margin-top: 0.5rem;
+}
+.calendly-required-notice.show { display: block; }
 .form-success-msg {
   display: none; text-align: center; padding: 2rem 1rem;
-  color: #4ade80; font-family: var(--mono); font-size: 0.88rem;
+  color: #16a34a; font-family: var(--mono); font-size: 0.88rem;
   letter-spacing: 0.05em; line-height: 1.7;
 }
 </style>
@@ -2053,7 +2079,8 @@ input[type="range"].roi-range::-moz-range-thumb {
                 <label for="cf-automate">What do you want to automate? <span style="color:var(--muted);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
                 <textarea id="cf-automate" name="automate" placeholder="Lead follow-up, appointment booking..." style="min-height:120px"></textarea>
               </div>
-              <button type="submit" class="btn-submit">Send Message →</button>
+              <div class="calendly-required-notice" id="calendlyNotice">⚠ Please select a date and time in the calendar below before sending your message.</div>
+              <button type="submit" class="btn-submit btn-locked">Send Message →</button>
             </form>
             <div class="form-success-msg" id="formSuccess">✓ Message sent! I'll get back to you within 24 hours.</div>
           </div>
@@ -2074,14 +2101,33 @@ input[type="range"].roi-range::-moz-range-thumb {
 </footer>
 
 <script>
-/* ── Contact form submission ── */
+/* ── Contact form with Calendly date-selection gate ── */
 (function () {
+  let dateTimeSelected = false;
   const form = document.getElementById('contactForm');
   if (!form) return;
+  const btn = form.querySelector('.btn-submit');
+  const successEl = document.getElementById('formSuccess');
+  const notice = document.getElementById('calendlyNotice');
+
+  /* Unlock button when Calendly date+time is picked */
+  window.addEventListener('message', function (e) {
+    if (e.data && e.data.event === 'calendly.date_and_time_selected') {
+      dateTimeSelected = true;
+      btn.classList.remove('btn-locked');
+      if (notice) notice.classList.remove('show');
+    }
+  });
+
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    const btn = form.querySelector('.btn-submit');
-    const successEl = document.getElementById('formSuccess');
+    if (!dateTimeSelected) {
+      if (notice) {
+        notice.classList.add('show');
+        notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      return;
+    }
     btn.textContent = 'Sending…';
     btn.disabled = true;
     try {
