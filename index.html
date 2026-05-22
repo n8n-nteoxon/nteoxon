@@ -488,6 +488,16 @@ section { position: relative; z-index: 2; }
 .contact-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; transition: all 0.2s; }
 .contact-item:hover { border-color: var(--cyan); background: var(--cyan-dim); transform: translateX(6px); }
 .contact-item-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--cyan-soft); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+
+[data-theme="dark"] .contact-item {
+  background: #16263c;
+}
+[data-theme="dark"] .contact-item:hover {
+  background: #1c3050;
+}
+[data-theme="dark"] .contact-item-icon {
+  background: #1e3a5f;
+}
 .contact-item-label { font-family: var(--mono); font-size: 0.64rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
 .contact-item-value { font-size: 0.9rem; color: var(--text); }
 
