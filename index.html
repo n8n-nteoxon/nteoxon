@@ -1111,9 +1111,16 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 .proj-lightbox-close:hover { color: #fff; }
 
+/* ══ CONTACT RIGHT COLUMN ══ */
+.contact-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 /* ══ CONTACT FORM SECTION ══ */
 .contact-form-section {
-  margin-top: 2.5rem;
+  margin-top: 0;
   border: 1px solid var(--border2);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -2021,44 +2028,46 @@ input[type="range"].roi-range::-moz-range-thumb {
           </a>
         </div>
       </div>
-      <div class="calendly-wrapper">
-        <div class="calendly-header">
-          <div class="calendly-header-label">// Schedule a Call</div>
-          <div class="calendly-header-title">Book your <span>FREE</span> 30-Min Discovery Call</div>
+      <div class="contact-right-col">
+        <div class="calendly-wrapper">
+          <div class="calendly-header">
+            <div class="calendly-header-label">// Schedule a Call</div>
+            <div class="calendly-header-title">Book your <span>FREE</span> 30-Min Discovery Call</div>
+          </div>
+          <div class="calendly-inline-widget" data-url="https://calendly.com/teoxon0207/30min?hide_gdpr_banner=1&hide_event_type_details=1&primary_color=3d45aa" style="min-width:280px;height:570px;"></div>
         </div>
-        <div class="calendly-inline-widget" data-url="https://calendly.com/teoxon0207/30min?hide_gdpr_banner=1&hide_event_type_details=1&primary_color=3d45aa" style="min-width:280px;height:570px;"></div>
-      </div>
-    </div>
 
-    <!-- CONTACT FORM -->
-    <div class="contact-form-section fade-up">
-      <div class="contact-form-header-inner">
-        <div class="calendly-header-label">// Get In Touch</div>
-        <div class="contact-form-header-title">Tell me what you want to <span>automate</span></div>
-      </div>
-      <div class="contact-form-body">
-        <form id="contactForm" class="contact-form" action="https://formspree.io/f/xpwrlnjv" method="POST">
-          <div class="form-group">
-            <label for="cf-name">Full name</label>
-            <input type="text" id="cf-name" name="name" placeholder="Jane Doe" required>
+        <!-- CONTACT FORM -->
+        <div class="contact-form-section fade-up">
+          <div class="contact-form-header-inner">
+            <div class="calendly-header-label">// Get In Touch</div>
+            <div class="contact-form-header-title">Tell me what you want to <span>automate</span></div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="cf-email">Email</label>
-              <input type="email" id="cf-email" name="email" placeholder="jane@company.com" required>
-            </div>
-            <div class="form-group">
-              <label for="cf-company">Company</label>
-              <input type="text" id="cf-company" name="company" placeholder="Acme Inc.">
-            </div>
+          <div class="contact-form-body">
+            <form id="contactForm" class="contact-form" action="https://formspree.io/f/xpwrlnjv" method="POST">
+              <div class="form-group">
+                <label for="cf-name">Full name</label>
+                <input type="text" id="cf-name" name="name" placeholder="Jane Doe" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cf-email">Email</label>
+                  <input type="email" id="cf-email" name="email" placeholder="jane@company.com" required>
+                </div>
+                <div class="form-group">
+                  <label for="cf-company">Company</label>
+                  <input type="text" id="cf-company" name="company" placeholder="Acme Inc.">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cf-automate">What do you want to automate? <span style="color:var(--muted);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+                <textarea id="cf-automate" name="automate" placeholder="Lead follow-up, appointment booking..." style="min-height:120px"></textarea>
+              </div>
+              <button type="submit" class="btn-submit">Send Message →</button>
+            </form>
+            <div class="form-success-msg" id="formSuccess">✓ Message sent! I'll get back to you within 24 hours.</div>
           </div>
-          <div class="form-group">
-            <label for="cf-automate">What do you want to automate? <span style="color:var(--muted);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
-            <textarea id="cf-automate" name="automate" placeholder="Lead follow-up, appointment booking..." style="min-height:120px"></textarea>
-          </div>
-          <button type="submit" class="btn-submit">Send Message →</button>
-        </form>
-        <div class="form-success-msg" id="formSuccess">✓ Message sent! I'll get back to you within 24 hours.</div>
+        </div>
       </div>
     </div>
 
