@@ -887,8 +887,14 @@ input[type="range"].roi-range::-moz-range-thumb {
 .roi-cta-btn:hover { background: #5a63d0; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(61,69,170,0.65); }
 
 /* ══ ANIMATIONS ══ */
-.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up { opacity: 0; transform: translate3d(0, 28px, 0); transition: opacity 0.7s ease, transform 0.7s ease; will-change: transform, opacity; }
+.fade-up.visible { opacity: 1; transform: translate3d(0, 0, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { transition: none; opacity: 1; transform: none; will-change: auto; }
+  .fade-up.visible { opacity: 1; transform: none; }
+  .testimonials-track, .certs-loop-track, .tools-scroll-row { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
 
 /* ══ RESPONSIVE ══ */
 @media (max-width: 900px) {
@@ -1967,15 +1973,27 @@ function toggleTheme() {
 })();
 
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.08 });
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+      setTimeout(() => { e.target.style.willChange = 'auto'; }, 750);
+    }
+  });
+}, { threshold: 0.15 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+let _navRaf = false;
 window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  const mob = window.innerWidth <= 900;
-  nav.style.padding = mob ? '1.2rem 1.5rem' : (window.scrollY > 50 ? '0.85rem 4rem' : '1.2rem 4rem');
-});
+  if (_navRaf) return;
+  _navRaf = true;
+  requestAnimationFrame(() => {
+    const nav = document.getElementById('navbar');
+    const mob = window.innerWidth <= 900;
+    nav.style.padding = mob ? '1.2rem 1.5rem' : (window.scrollY > 50 ? '0.85rem 4rem' : '1.2rem 4rem');
+    _navRaf = false;
+  });
+}, { passive: true });
 
 function toggleMenu() {
   const nav = document.getElementById('pillNav');
@@ -2196,12 +2214,13 @@ function handleSubmit(btn) {
 <script>
 // Galaxy background animation
 (function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const canvas = document.getElementById('galaxyCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
   // Matches the component props
-  const GLOW       = 0.3;
+  const GLOW       = 0.2;
   const TWINKLE    = 0.3;
   const ROT_SPEED  = 0.1;   // galaxy-wide curl per frame (radians * scale)
   const REPULSION  = 2;
@@ -2253,7 +2272,7 @@ function handleSubmit(btn) {
   function initStars() {
     W = canvas.width  = window.innerWidth;
     H = canvas.height = window.innerHeight;
-    const count = Math.round((W * H / 3500) * DENSITY);
+    const count = Math.round((W * H / 4500) * DENSITY);
     stars = Array.from({ length: count }, () => mkStar());
     shooters = [];
     // Precompute rotation matrix for this frame rate target
@@ -2355,9 +2374,14 @@ function handleSubmit(btn) {
         color = `rgb(${b},${Math.round(b * 1.06)},${Math.round(b * 1.65 + 28)})`;
       }
 
+      const blur = s.size * 6 * GLOW;
       ctx.globalAlpha = alpha;
-      ctx.shadowBlur  = s.size * 6 * GLOW;
-      ctx.shadowColor = color;
+      if (blur > 0.8) {
+        ctx.shadowBlur  = blur;
+        ctx.shadowColor = color;
+      } else {
+        ctx.shadowBlur = 0;
+      }
       ctx.fillStyle   = color;
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
@@ -2393,7 +2417,7 @@ function handleSubmit(btn) {
     var lastW = -1, lastH = -1;
     var t = Math.random();
     var trail = [];
-    var TRAIL = 110;
+    var TRAIL = 55;
 
     function measure() {
       var dpr    = window.devicePixelRatio || 1;
@@ -2499,21 +2523,13 @@ function handleSubmit(btn) {
   window.addEventListener('resize', resize);
 
   var sparks = [];
-
-  window.addEventListener('click', function (e) {
-    for (var i = 0; i < SPARK_COUNT; i++) {
-      sparks.push({
-        x: e.clientX,
-        y: e.clientY,
-        angle: (i / SPARK_COUNT) * Math.PI * 2,
-        born: performance.now(),
-      });
-    }
-  });
+  var _sparkRunning = false;
 
   function animate(now) {
     ctx.clearRect(0, 0, W, H);
     sparks = sparks.filter(function (s) { return now - s.born < DURATION; });
+
+    if (sparks.length === 0) { _sparkRunning = false; return; }
 
     sparks.forEach(function (s) {
       var t  = (now - s.born) / DURATION;
@@ -2533,7 +2549,17 @@ function handleSubmit(btn) {
     requestAnimationFrame(animate);
   }
 
-  requestAnimationFrame(animate);
+  window.addEventListener('click', function (e) {
+    for (var i = 0; i < SPARK_COUNT; i++) {
+      sparks.push({
+        x: e.clientX,
+        y: e.clientY,
+        angle: (i / SPARK_COUNT) * Math.PI * 2,
+        born: performance.now(),
+      });
+    }
+    if (!_sparkRunning) { _sparkRunning = true; requestAnimationFrame(animate); }
+  });
 })();
 </script>
 </body>
