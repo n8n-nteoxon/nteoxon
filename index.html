@@ -25,7 +25,7 @@
   --mono:      'DM Mono', monospace;
   --radius:    12px;
   --radius-lg: 20px;
-  --trans:     all 0.28s cubic-bezier(.4,0,.2,1);
+  --trans:     background 0.28s cubic-bezier(.4,0,.2,1), border-color 0.28s cubic-bezier(.4,0,.2,1), color 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1), transform 0.28s cubic-bezier(.4,0,.2,1), opacity 0.28s cubic-bezier(.4,0,.2,1);
 }
 
 [data-theme="dark"] {
@@ -80,7 +80,9 @@ body::after {
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 60px 60px;
-  pointer-events: none; z-index: 1; opacity: 0.5;
+  pointer-events: none; z-index: 1; opacity: 0.4;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* ══ NAV ══ */
@@ -89,7 +91,8 @@ nav {
   z-index: 100;
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.2rem 4rem;
-  backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   background: var(--nav-bg);
   border-bottom: 1px solid var(--border);
   transition: var(--trans);
@@ -229,6 +232,7 @@ section { position: relative; z-index: 2; }
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 28px;
   background: rgba(15,27,39,0.06);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   box-shadow: 0 30px 90px rgba(0,0,0,0.15);
 }
@@ -247,7 +251,8 @@ section { position: relative; z-index: 2; }
   border: 1px solid rgba(255,255,255,0.55); padding: 0.4rem 1.1rem;
   border-radius: 20px; display: inline-flex; align-items: center;
   gap: 0.5rem; margin-bottom: 1.5rem;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   background: rgba(255,255,255,0.12);
   text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
@@ -296,7 +301,8 @@ section { position: relative; z-index: 2; }
   font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.05em;
   cursor: pointer; text-decoration: none; transition: var(--trans);
   display: inline-flex; align-items: center; gap: 0.5rem;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 .btn-ghost:hover { border-color: rgba(255,255,255,0.95); color: #ffffff; background: rgba(255,255,255,0.18); transform: translateY(-2px); }
 
@@ -427,7 +433,7 @@ section { position: relative; z-index: 2; }
 .work-card {
   background: var(--bg3); border: 1px solid var(--border);
   border-radius: var(--radius-lg); overflow: hidden;
-  transition: all 0.3s ease; cursor: pointer; text-decoration: none; display: block;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; cursor: pointer; text-decoration: none; display: block;
 }
 .work-card:hover { border-color: rgba(61,69,170,0.5); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(61,69,170,0.15), 0 4px 20px rgba(0,0,0,0.2); }
 .work-thumb { height: 220px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
@@ -485,7 +491,7 @@ section { position: relative; z-index: 2; }
 .contact-big-text span { color: var(--cyan); }
 .contact-desc { font-size: 1.05rem; color: var(--text); line-height: 1.75; max-width: 560px; }
 .contact-items { display: flex; flex-direction: column; gap: 1rem; }
-.contact-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; transition: all 0.2s; }
+.contact-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.25rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; transition: transform 0.2s, border-color 0.2s, background 0.2s; }
 .contact-item:hover { border-color: var(--cyan); background: var(--cyan-dim); transform: translateX(6px); }
 .contact-item-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--cyan-soft); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
 
@@ -568,7 +574,7 @@ footer {
   flex: 0 0 380px; width: 380px;
   border-radius: var(--radius-lg); overflow: hidden;
   border: 1px solid var(--border); cursor: zoom-in; position: relative;
-  transition: all 0.3s ease; background: var(--bg3);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; background: var(--bg3);
   display: flex; flex-direction: column;
 }
 .cert-card:hover { border-color: rgba(61,69,170,0.5); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(61,69,170,0.18); }
@@ -590,7 +596,7 @@ footer {
 [data-theme="light"] .cert-card-caption { background: #ffffff; }
 .cert-card-overlay {
   position: absolute; inset: 0;
-  background: rgba(9,10,28,0.78); backdrop-filter: blur(2px);
+  background: rgba(9,10,28,0.78);
   display: flex; align-items: center; justify-content: center;
   opacity: 0; transition: opacity 0.3s ease;
 }
@@ -663,11 +669,10 @@ footer {
   align-items: center;
 }
 .trade-card {
-  background: rgba(255,255,255,0.04);
+  background: var(--card-bg);
   border: 1px solid var(--border2);
   border-radius: var(--radius-lg);
   padding: 2.5rem 2rem;
-  backdrop-filter: blur(16px);
 }
 .trade-card-label {
   font-family: var(--mono);
@@ -742,7 +747,7 @@ footer {
   border-radius: var(--radius-lg);
   padding: 2rem 1.5rem;
   position: relative;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   overflow: hidden;
 }
 .process-card::before {
@@ -795,11 +800,10 @@ footer {
   align-items: start;
 }
 .roi-inputs {
-  background: rgba(255,255,255,0.04);
+  background: var(--card-bg);
   border: 1px solid var(--border2);
   border-radius: var(--radius-lg);
   padding: 2.5rem;
-  backdrop-filter: blur(16px);
 }
 .roi-slider-group { margin-bottom: 2.25rem; }
 .roi-slider-group:last-of-type { margin-bottom: 0; }
@@ -874,11 +878,10 @@ input[type="range"].roi-range::-moz-range-thumb {
   text-transform: uppercase; color: rgba(255,255,255,0.75); margin-top: 0.35rem;
 }
 .roi-savings-card {
-  background: rgba(255,255,255,0.04);
+  background: var(--card-bg);
   border: 1px solid var(--border2);
   border-radius: var(--radius-lg);
   padding: 2rem;
-  backdrop-filter: blur(16px);
 }
 .roi-savings-header {
   font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em;
@@ -915,6 +918,19 @@ input[type="range"].roi-range::-moz-range-thumb {
   box-shadow: 0 4px 24px rgba(61,69,170,0.45);
 }
 .roi-cta-btn:hover { background: #5a63d0; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(61,69,170,0.65); }
+
+/* ══ PERFORMANCE ══ */
+/* Skip rendering of below-fold sections until they scroll into view */
+#services, #tools, #experience, #portfolio, #testimonials,
+#certifications, #trade-offer, #process, #roi-calc {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 600px;
+}
+/* Promote canvas to own compositor layer */
+#galaxyCanvas, .exp-elec-canvas {
+  will-change: transform;
+  transform: translateZ(0);
+}
 
 /* ══ ANIMATIONS ══ */
 .fade-up { opacity: 0; transform: translate3d(0, 28px, 0); transition: opacity 0.7s ease, transform 0.7s ease; will-change: transform, opacity; }
@@ -2330,13 +2346,12 @@ function handleSubmit(btn) {
   const ctx = canvas.getContext('2d');
 
   const isMobile   = window.innerWidth <= 900 || navigator.maxTouchPoints > 0;
-  const GLOW       = 0.28;
   const TWINKLE    = 0.3;
   const ROT_SPEED  = 0.1;
   const REPULSION  = isMobile ? 0 : 2;   // skip mouse repulsion on touch
   const STAR_SPEED = 0.9;
-  const DENSITY    = isMobile ? 0.4 : 1; // fewer stars on mobile
-  const FRAME_MS   = isMobile ? 1000 / 30 : 1000 / 60; // 30 fps mobile, 60 fps desktop
+  const DENSITY    = isMobile ? 0.18 : 0.55; // reduced for performance
+  const FRAME_MS   = isMobile ? 1000 / 24 : 1000 / 50; // capped fps for smoothness
 
   let W, H, raf;
   let lastFrameTs = 0;
@@ -2417,35 +2432,33 @@ function handleSubmit(btn) {
 
       if (sh.life >= sh.maxLife || sh.y > H + 40) { shooters.splice(i, 1); continue; }
 
-      const tailX = sh.x - Math.cos((15 + 30) * Math.PI / 180) * sh.len;
-      const tailY = sh.y - Math.sin((15 + 30) * Math.PI / 180) * sh.len;
+      const SHOOT_ANGLE = (45) * Math.PI / 180;
+      const tailX = sh.x - Math.cos(SHOOT_ANGLE) * sh.len;
+      const tailY = sh.y - Math.sin(SHOOT_ANGLE) * sh.len;
 
-      const grad = ctx.createLinearGradient(tailX, tailY, sh.x, sh.y);
-      if (isDark) {
-        grad.addColorStop(0, `rgba(255,255,255,0)`);
-        grad.addColorStop(1, `rgba(255,255,255,${sh.alpha * 0.9})`);
-      } else {
-        grad.addColorStop(0, `rgba(61,69,170,0)`);
-        grad.addColorStop(1, `rgba(61,69,170,${sh.alpha * 0.7})`);
+      // Draw tail as fading line segments (no gradient object creation)
+      const segs = 6;
+      const dx = (sh.x - tailX) / segs;
+      const dy = (sh.y - tailY) / segs;
+      ctx.lineWidth = 1.5;
+      ctx.lineCap   = 'round';
+      ctx.shadowBlur = 0;
+      for (let j = 0; j < segs; j++) {
+        const a = (j / segs) * sh.alpha * (isDark ? 0.85 : 0.65);
+        ctx.globalAlpha = a;
+        ctx.strokeStyle = isDark ? '#ffffff' : '#3d45aa';
+        ctx.beginPath();
+        ctx.moveTo(tailX + dx * j,       tailY + dy * j);
+        ctx.lineTo(tailX + dx * (j + 1), tailY + dy * (j + 1));
+        ctx.stroke();
       }
-
-      ctx.save();
-      ctx.globalAlpha = 1;
-      ctx.shadowBlur  = 6;
-      ctx.shadowColor = isDark ? 'rgba(255,255,255,0.6)' : 'rgba(61,69,170,0.5)';
-      ctx.strokeStyle = grad;
-      ctx.lineWidth   = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(tailX, tailY);
-      ctx.lineTo(sh.x, sh.y);
-      ctx.stroke();
       // bright head dot
+      ctx.shadowBlur = 0;
       ctx.globalAlpha = sh.alpha;
       ctx.fillStyle   = isDark ? '#ffffff' : '#3d45aa';
       ctx.beginPath();
       ctx.arc(sh.x, sh.y, 2, 0, Math.PI * 2);
       ctx.fill();
-      ctx.restore();
     }
 
     for (const s of stars) {
@@ -2479,27 +2492,31 @@ function handleSubmit(btn) {
         0.55 + Math.sin(t * s.tSpeed + s.tPhase) * TWINKLE * 0.45);
 
       // Theme-aware colour — grayscale (saturation 0)
-      let color;
       if (isDark) {
         const b = Math.round(s.bright);
-        color = `rgb(${b},${b},${b})`;
+        s._color = `rgb(${b},${b},${b})`;
       } else {
         const b = Math.round((255 - s.bright) * 0.38);
-        color = `rgb(${b},${Math.round(b * 1.06)},${Math.round(b * 1.65 + 28)})`;
+        s._color = `rgb(${b},${Math.round(b * 1.06)},${Math.round(b * 1.65 + 28)})`;
       }
+      s._alpha = alpha;
+    }
 
-      const blur = s.size * 6 * GLOW;
-      ctx.globalAlpha = alpha;
-      if (blur > 0.8) {
-        ctx.shadowBlur  = blur;
-        ctx.shadowColor = color;
-      } else {
-        ctx.shadowBlur = 0;
-      }
-      ctx.fillStyle   = color;
+    // Draw all stars without shadowBlur (GPU-composited path)
+    ctx.shadowBlur = 0;
+    for (const s of stars) {
+      ctx.globalAlpha = s._alpha;
+      ctx.fillStyle   = s._color;
       ctx.beginPath();
       ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
       ctx.fill();
+      // Fake soft glow for large stars using a bigger low-alpha circle
+      if (s.size > 2.4) {
+        ctx.globalAlpha = s._alpha * 0.10;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size * 3.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
 
     ctx.globalAlpha = 1;
@@ -2538,7 +2555,7 @@ function handleSubmit(btn) {
     var lastW = -1, lastH = -1;
     var t = Math.random();
     var trail = [];
-    var TRAIL = 55;
+    var TRAIL = 22;
 
     function measure() {
       var dpr    = window.devicePixelRatio || 1;
@@ -2588,18 +2605,24 @@ function handleSubmit(btn) {
       });
       if (trail.length > TRAIL) trail.shift();
 
+      var shadowThreshold = Math.floor(trail.length * 0.65);
+      ctx.shadowBlur  = 0;
+      ctx.lineCap     = 'round';
+      ctx.strokeStyle = color;
       for (var i = 1; i < trail.length; i++) {
         var a  = i / trail.length;
         var a2 = a * a;
+        ctx.globalAlpha = a2;
+        ctx.lineWidth   = thickness * (0.4 + 0.6 * a);
+        if (i >= shadowThreshold) {
+          ctx.shadowColor = color;
+          ctx.shadowBlur  = 8 * a;
+        } else {
+          ctx.shadowBlur  = 0;
+        }
         ctx.beginPath();
         ctx.moveTo(trail[i - 1].x, trail[i - 1].y);
         ctx.lineTo(trail[i].x,     trail[i].y);
-        ctx.globalAlpha  = a2;
-        ctx.strokeStyle  = color;
-        ctx.lineWidth    = thickness * (0.4 + 0.6 * a);
-        ctx.lineCap      = 'round';
-        ctx.shadowColor  = color;
-        ctx.shadowBlur   = 10 + 8 * a;
         ctx.stroke();
       }
       ctx.globalAlpha = 1;
