@@ -343,6 +343,42 @@ section { position: relative; z-index: 2; }
 .service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .tag { font-family: var(--mono); font-size: 0.64rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border2); border-radius: 4px; color: var(--muted2); letter-spacing: 0.05em; }
 
+/* ══ FLOWING MENU (SERVICES) ══ */
+.flowing-menu { overflow: hidden; border-top: 1px solid rgba(255,255,255,0.12); }
+.fm-item { position: relative; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.fm-content {
+  display: flex; align-items: center; gap: 1.75rem;
+  padding: 1.75rem 2rem;
+  position: relative; z-index: 1;
+  transition: opacity 0.25s ease;
+}
+.fm-item:hover .fm-content { opacity: 0; }
+.fm-icon-box {
+  width: 52px; height: 52px; flex-shrink: 0;
+  border-radius: 10px; background: var(--cyan-dim);
+  border: 1px solid rgba(0,212,232,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+}
+.fm-meta { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; min-width: 0; }
+.fm-num { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; }
+.fm-title { font-family: var(--logo-font); font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 800; color: var(--heading); letter-spacing: -0.01em; }
+.fm-tags-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.1rem; }
+.fm-tag { font-family: var(--mono); font-size: 0.6rem; padding: 0.2rem 0.6rem; border: 1px solid var(--border2); border-radius: 4px; color: var(--muted2); letter-spacing: 0.05em; }
+.fm-marquee-wrap {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; overflow: hidden;
+  opacity: 0; transition: opacity 0.25s ease;
+  background: #ffffff; pointer-events: none;
+}
+.fm-item:hover .fm-marquee-wrap { opacity: 1; }
+.fm-marquee { display: flex; white-space: nowrap; will-change: transform; animation: fm-scroll 15s linear infinite; }
+.fm-marquee span {
+  font-family: var(--logo-font); font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 900; color: #120F17; letter-spacing: -0.02em;
+  padding-right: 3rem;
+}
+@keyframes fm-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
 /* ══ EXPERIENCE ══ */
 #experience { padding: 8rem 0; transition: background 0.35s ease; }
 .exp-layout { display: grid; grid-template-columns: 300px 1fr; gap: 5rem; align-items: start; }
@@ -1207,49 +1243,80 @@ input[type="range"].roi-range::-moz-range-thumb {
       <h2 class="section-title">What I Bring to the Table</h2>
       <p class="section-sub">End-to-end automation engineering, AI integration, and full stack development — delivered remotely with precision.</p>
     </div>
-    <div class="services-grid fade-up">
-      <div class="service-card">
-        <div class="service-icon">🤖</div>
-        <div class="service-num">// 01</div>
-        <div class="service-name">AI & ML Engineering</div>
-        <p class="service-desc">Designing and deploying AI-driven tools and machine learning pipelines that enhance operational intelligence and automate complex decision-making.</p>
-        <div class="service-tags"><span class="tag">NLP</span><span class="tag">Prompt Engineering</span><span class="tag">AI Integration</span><span class="tag">LLM APIs</span></div>
+    <div class="flowing-menu fade-up">
+
+      <div class="fm-item">
+        <div class="fm-content">
+          <div class="fm-icon-box">🤖</div>
+          <div class="fm-meta">
+            <span class="fm-num">// 01</span>
+            <span class="fm-title">AI & ML Engineering</span>
+            <div class="fm-tags-row"><span class="fm-tag">NLP</span><span class="fm-tag">Prompt Engineering</span><span class="fm-tag">AI Integration</span><span class="fm-tag">LLM APIs</span></div>
+          </div>
+        </div>
+        <div class="fm-marquee-wrap" aria-hidden="true"><div class="fm-marquee"><span>AI & ML Engineering &nbsp;✦&nbsp; AI & ML Engineering &nbsp;✦&nbsp; AI & ML Engineering &nbsp;✦&nbsp; AI & ML Engineering &nbsp;✦&nbsp; AI & ML Engineering &nbsp;✦&nbsp; </span><span>AI & ML Engineering &nbsp;✦&nbsp; AI & ML Engineering &nbsp;✦&nbsp; AI & ML Engineering &nbsp;✦&nbsp; AI & ML Engineering &nbsp;✦&nbsp; AI & ML Engineering &nbsp;✦&nbsp; </span></div></div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">⚡</div>
-        <div class="service-num">// 02</div>
-        <div class="service-name">Workflow Automation</div>
-        <p class="service-desc">Building robust, no-downtime automation pipelines using Zapier, Make.com, and custom scripts — reducing manual intervention and boosting throughput.</p>
-        <div class="service-tags"><span class="tag">Zapier</span><span class="tag">Make.com</span><span class="tag">HighLevel</span><span class="tag">n8n</span></div>
+
+      <div class="fm-item">
+        <div class="fm-content">
+          <div class="fm-icon-box">⚡</div>
+          <div class="fm-meta">
+            <span class="fm-num">// 02</span>
+            <span class="fm-title">Workflow Automation</span>
+            <div class="fm-tags-row"><span class="fm-tag">Zapier</span><span class="fm-tag">Make.com</span><span class="fm-tag">HighLevel</span><span class="fm-tag">n8n</span></div>
+          </div>
+        </div>
+        <div class="fm-marquee-wrap" aria-hidden="true"><div class="fm-marquee"><span>Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; </span><span>Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; Workflow Automation &nbsp;✦&nbsp; </span></div></div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔗</div>
-        <div class="service-num">// 03</div>
-        <div class="service-name">API & System Integration</div>
-        <p class="service-desc">Seamlessly connecting disparate systems through RESTful APIs, webhooks, and middleware architectures to create unified data flows and automated triggers.</p>
-        <div class="service-tags"><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">OAuth</span><span class="tag">GraphQL</span></div>
+
+      <div class="fm-item">
+        <div class="fm-content">
+          <div class="fm-icon-box">🔗</div>
+          <div class="fm-meta">
+            <span class="fm-num">// 03</span>
+            <span class="fm-title">API & System Integration</span>
+            <div class="fm-tags-row"><span class="fm-tag">REST APIs</span><span class="fm-tag">Webhooks</span><span class="fm-tag">OAuth</span><span class="fm-tag">GraphQL</span></div>
+          </div>
+        </div>
+        <div class="fm-marquee-wrap" aria-hidden="true"><div class="fm-marquee"><span>API & System Integration &nbsp;✦&nbsp; API & System Integration &nbsp;✦&nbsp; API & System Integration &nbsp;✦&nbsp; API & System Integration &nbsp;✦&nbsp; API & System Integration &nbsp;✦&nbsp; </span><span>API & System Integration &nbsp;✦&nbsp; API & System Integration &nbsp;✦&nbsp; API & System Integration &nbsp;✦&nbsp; API & System Integration &nbsp;✦&nbsp; API & System Integration &nbsp;✦&nbsp; </span></div></div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🤝</div>
-        <div class="service-num">// 04</div>
-        <div class="service-name">CRM Automation</div>
-        <p class="service-desc">Designing and implementing intelligent CRM workflows that automate lead management, follow-ups, pipeline updates, and customer communications — turning your CRM into a hands-free revenue engine.</p>
-        <div class="service-tags"><span class="tag">HubSpot</span><span class="tag">HighLevel</span><span class="tag">Salesforce</span><span class="tag">Pipedrive</span></div>
+
+      <div class="fm-item">
+        <div class="fm-content">
+          <div class="fm-icon-box">🤝</div>
+          <div class="fm-meta">
+            <span class="fm-num">// 04</span>
+            <span class="fm-title">CRM Automation</span>
+            <div class="fm-tags-row"><span class="fm-tag">HubSpot</span><span class="fm-tag">HighLevel</span><span class="fm-tag">Salesforce</span><span class="fm-tag">Pipedrive</span></div>
+          </div>
+        </div>
+        <div class="fm-marquee-wrap" aria-hidden="true"><div class="fm-marquee"><span>CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; </span><span>CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; CRM Automation &nbsp;✦&nbsp; </span></div></div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">📊</div>
-        <div class="service-num">// 05</div>
-        <div class="service-name">Process Optimization</div>
-        <p class="service-desc">Analyzing existing workflows, identifying bottlenecks, and engineering leaner processes — translating operational improvements into measurable ROI.</p>
-        <div class="service-tags"><span class="tag">Data Analysis</span><span class="tag">Process Mapping</span><span class="tag">Scripting</span><span class="tag">Monitoring</span></div>
+
+      <div class="fm-item">
+        <div class="fm-content">
+          <div class="fm-icon-box">📊</div>
+          <div class="fm-meta">
+            <span class="fm-num">// 05</span>
+            <span class="fm-title">Process Optimization</span>
+            <div class="fm-tags-row"><span class="fm-tag">Data Analysis</span><span class="fm-tag">Process Mapping</span><span class="fm-tag">Scripting</span><span class="fm-tag">Monitoring</span></div>
+          </div>
+        </div>
+        <div class="fm-marquee-wrap" aria-hidden="true"><div class="fm-marquee"><span>Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; </span><span>Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; Process Optimization &nbsp;✦&nbsp; </span></div></div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🌐</div>
-        <div class="service-num">// 06</div>
-        <div class="service-name">Funnels, Websites & Landing Pages</div>
-        <p class="service-desc">Crafting high-converting sales funnels, branded websites, and targeted landing pages that capture leads, nurture prospects, and drive measurable results — built for speed, clarity, and conversion.</p>
-        <div class="service-tags"><span class="tag">HighLevel</span><span class="tag">Webflow</span><span class="tag">WordPress</span><span class="tag">Framer</span></div>
+
+      <div class="fm-item">
+        <div class="fm-content">
+          <div class="fm-icon-box">🌐</div>
+          <div class="fm-meta">
+            <span class="fm-num">// 06</span>
+            <span class="fm-title">Funnels, Websites & Landing Pages</span>
+            <div class="fm-tags-row"><span class="fm-tag">HighLevel</span><span class="fm-tag">Webflow</span><span class="fm-tag">WordPress</span><span class="fm-tag">Framer</span></div>
+          </div>
+        </div>
+        <div class="fm-marquee-wrap" aria-hidden="true"><div class="fm-marquee"><span>Funnels, Websites & Landing Pages &nbsp;✦&nbsp; Funnels, Websites & Landing Pages &nbsp;✦&nbsp; Funnels, Websites & Landing Pages &nbsp;✦&nbsp; Funnels, Websites & Landing Pages &nbsp;✦&nbsp; </span><span>Funnels, Websites & Landing Pages &nbsp;✦&nbsp; Funnels, Websites & Landing Pages &nbsp;✦&nbsp; Funnels, Websites & Landing Pages &nbsp;✦&nbsp; Funnels, Websites & Landing Pages &nbsp;✦&nbsp; </span></div></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -2307,7 +2374,7 @@ function handleSubmit(btn) {
     'input[type="range"]', 'select',
     '.btn-primary', '.btn-ghost', '.nav-cta',
     '.theme-toggle', '.hamburger',
-    '.work-card', '.service-card', '.cert-card', '.process-card',
+    '.work-card', '.service-card', '.cert-card', '.process-card', '.fm-item',
     '.slider-dot', '[onclick]'
   ].join(', ');
 
@@ -2709,6 +2776,21 @@ function handleSubmit(btn) {
       });
     }
     if (!_sparkRunning) { _sparkRunning = true; requestAnimationFrame(animate); }
+  });
+})();
+</script>
+<script>
+/* Flowing Menu — direction-aware marquee */
+(function () {
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.fm-item').forEach(function (item) {
+      var marquee = item.querySelector('.fm-marquee');
+      item.addEventListener('mouseenter', function (e) {
+        var rect = item.getBoundingClientRect();
+        var fromRight = (e.clientX - rect.left) / rect.width > 0.5;
+        marquee.style.animationDirection = fromRight ? 'reverse' : 'normal';
+      });
+    });
   });
 })();
 </script>
