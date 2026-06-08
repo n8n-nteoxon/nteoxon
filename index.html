@@ -344,38 +344,26 @@ section { position: relative; z-index: 2; }
 .tag { font-family: var(--mono); font-size: 0.64rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border2); border-radius: 4px; color: var(--muted2); letter-spacing: 0.05em; }
 
 /* ══ FLOWING MENU (SERVICES) ══ */
-.flowing-menu { overflow: hidden; border-top: 1px solid #ffffff; }
-.fm-item { position: relative; overflow: hidden; border-bottom: 1px solid #ffffff; background: #120F17; }
+.flowing-menu { overflow: hidden; border-top: 1px solid var(--border); }
+.fm-item { position: relative; overflow: hidden; border-bottom: 1px solid var(--border); transition: background 0.25s; }
+.fm-item:hover { background: var(--card-hover); }
 .fm-content {
   display: flex; align-items: center; gap: 1.75rem;
   padding: 1.75rem 2rem;
   position: relative; z-index: 1;
-  transition: opacity 0.4s ease;
 }
 .fm-icon-box {
   width: 52px; height: 52px; flex-shrink: 0;
-  border-radius: 10px; background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px; background: var(--cyan-dim);
+  border: 1px solid rgba(0,212,232,0.2);
   display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
 }
 .fm-meta { display: flex; flex-direction: column; gap: 0.3rem; flex: 1; min-width: 0; }
-.fm-num { font-family: var(--mono); font-size: 0.62rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; }
-.fm-title { font-family: var(--logo-font); font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 800; color: #ffffff; letter-spacing: -0.01em; }
+.fm-num { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; }
+.fm-title { font-family: var(--logo-font); font-size: clamp(1.1rem, 2.2vw, 1.5rem); font-weight: 800; color: var(--heading); letter-spacing: -0.01em; }
 .fm-tags-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.1rem; }
-.fm-tag { font-family: var(--mono); font-size: 0.6rem; padding: 0.2rem 0.6rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px; color: rgba(255,255,255,0.6); letter-spacing: 0.05em; }
-.fm-marquee-wrap {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; overflow: hidden;
-  background: #ffffff; pointer-events: none;
-  transform: translateY(-100%);
-}
-.fm-marquee { display: flex; white-space: nowrap; will-change: transform; animation: fm-scroll 15s linear infinite; }
-.fm-marquee span {
-  font-family: var(--logo-font); font-size: clamp(1.6rem, 4vw, 2.8rem);
-  font-weight: 900; color: #120F17; letter-spacing: -0.02em;
-  padding-right: 3rem;
-}
-@keyframes fm-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.fm-tag { font-family: var(--mono); font-size: 0.6rem; padding: 0.2rem 0.6rem; border: 1px solid var(--border2); border-radius: 4px; color: var(--muted2); letter-spacing: 0.05em; }
+.fm-marquee-wrap { display: none; }
 
 /* ══ EXPERIENCE ══ */
 #experience { padding: 8rem 0; transition: background 0.35s ease; }
@@ -2774,37 +2762,6 @@ function handleSubmit(btn) {
       });
     }
     if (!_sparkRunning) { _sparkRunning = true; requestAnimationFrame(animate); }
-  });
-})();
-</script>
-<script>
-/* Flowing Menu — directional slide animation */
-(function () {
-  document.querySelectorAll('.fm-item').forEach(function (item) {
-    var wrap    = item.querySelector('.fm-marquee-wrap');
-    var content = item.querySelector('.fm-content');
-
-    function getDir(e) {
-      var rect = item.getBoundingClientRect();
-      return (e.clientY - rect.top) < rect.height / 2 ? -1 : 1;
-    }
-
-    item.addEventListener('mouseenter', function (e) {
-      var dir = getDir(e);
-      wrap.style.transition = 'none';
-      wrap.style.transform  = 'translateY(' + (dir * 100) + '%)';
-      wrap.offsetHeight; // force reflow so the no-transition position sticks
-      wrap.style.transition = 'transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)';
-      wrap.style.transform  = 'translateY(0)';
-      content.style.opacity = '0';
-    });
-
-    item.addEventListener('mouseleave', function (e) {
-      var dir = getDir(e);
-      wrap.style.transition = 'transform 0.5s cubic-bezier(0.76, 0, 0.24, 1)';
-      wrap.style.transform  = 'translateY(' + (dir * 100) + '%)';
-      content.style.opacity = '1';
-    });
   });
 })();
 </script>
