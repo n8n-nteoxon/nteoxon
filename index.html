@@ -394,6 +394,104 @@ section { position: relative; z-index: 2; }
   color: rgba(61, 69, 170, 0.9);
 }
 
+/* ══ EXPERIENCE GLOW ANIMATION ══ */
+@property --exp-hue   { syntax: "<number>"; inherits: true;  initial-value: 0;    }
+@property --exp-bg-x  { syntax: "<number>"; inherits: false; initial-value: 0;    }
+@property --exp-bg-y  { syntax: "<number>"; inherits: false; initial-value: 0;    }
+@property --exp-rot   { syntax: "<number>"; inherits: false; initial-value: -70;  }
+@property --exp-gty   { syntax: "<number>"; inherits: true;  initial-value: -65;  }
+@property --exp-gblur { syntax: "<number>"; inherits: true;  initial-value: 6;    }
+@property --exp-gscl  { syntax: "<number>"; inherits: true;  initial-value: 1.5;  }
+@property --exp-gopa  { syntax: "<number>"; inherits: true;  initial-value: 1;    }
+@property --exp-grad  { syntax: "<number>"; inherits: true;  initial-value: 100;  }
+
+.exp-glow-wrap {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  border-radius: 18px;
+  --exp-spd: 4s;
+}
+
+.exp-glow-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  z-index: 0;
+  background: radial-gradient(
+    30% 30% at calc(var(--exp-bg-x) * 1%) calc(var(--exp-bg-y) * 1%),
+    hsl(calc(var(--exp-hue) * 1deg) 100% 88%) 0%,
+    hsl(calc(var(--exp-hue) * 1deg) 100% 65%) 28%,
+    hsl(calc(var(--exp-hue) * 1deg) 100% 45%) 48%,
+    transparent 72%
+  );
+  animation: exp-hue-cycle var(--exp-spd) linear infinite,
+             exp-bg-rotate  var(--exp-spd) linear infinite;
+}
+
+.exp-glow-wrap > .timeline-content { position: relative; z-index: 1; }
+
+.exp-glow-dot {
+  position: absolute;
+  width: 60px; height: 60px;
+  top: 50%; left: 50%;
+  margin: -30px 0 0 -30px;
+  border-radius: calc(var(--exp-grad) * 10vw);
+  animation: exp-orbit var(--exp-spd) linear infinite;
+  transform: rotateZ(calc(var(--exp-rot) * 1deg));
+  transform-origin: center;
+  pointer-events: none;
+  z-index: 3;
+  --exp-gty:   -65;
+  --exp-gblur: 6;
+  --exp-gscl:  1.5;
+  --exp-gopa:  1;
+  --exp-grad:  100;
+}
+
+.exp-glow-dot::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 130%; height: 130%;
+  top: -15%; left: -15%;
+  border-radius: calc(var(--exp-grad) * 10vw);
+  background: hsl(calc(var(--exp-hue) * 1deg) 100% 60%);
+  filter: blur(calc(var(--exp-gblur) * 10px));
+  transform: scaleY(calc(var(--exp-gscl) / 1.1))
+             scaleX(calc(var(--exp-gscl) * 1.2))
+             translateY(calc(var(--exp-gty) * 1%));
+  opacity: var(--exp-gopa);
+  animation: exp-hue-cycle var(--exp-spd) linear infinite;
+  z-index: -1;
+}
+
+@keyframes exp-hue-cycle {
+  0%   { --exp-hue: 0;   }
+  100% { --exp-hue: 360; }
+}
+@keyframes exp-bg-rotate {
+  0%   { --exp-bg-x: 0;   --exp-bg-y: 0;   }
+  25%  { --exp-bg-x: 100; --exp-bg-y: 0;   }
+  50%  { --exp-bg-x: 100; --exp-bg-y: 100; }
+  75%  { --exp-bg-x: 0;   --exp-bg-y: 100; }
+  100% { --exp-bg-x: 0;   --exp-bg-y: 0;   }
+}
+@keyframes exp-orbit {
+  from { --exp-rot: -70;  }
+  to   { --exp-rot: 290;  }
+}
+
+/* Stagger each card so hues are offset */
+.timeline-item:nth-child(2) .exp-glow-wrap::before,
+.timeline-item:nth-child(2) .exp-glow-dot,
+.timeline-item:nth-child(2) .exp-glow-dot::after { animation-delay: -1.33s; }
+
+.timeline-item:nth-child(3) .exp-glow-wrap::before,
+.timeline-item:nth-child(3) .exp-glow-dot,
+.timeline-item:nth-child(3) .exp-glow-dot::after { animation-delay: -2.67s; }
+
 /* ══ WORKS ══ */
 #works { padding: 8rem 0; background: var(--bg2); transition: background 0.35s ease; }
 .works-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
@@ -1540,15 +1638,18 @@ input[type="range"].roi-range::-moz-range-thumb {
             <div class="timeline-dot"></div>
             <div class="timeline-line tl-line-right"></div>
           </div>
-          <div class="timeline-content">
-            <div class="exp-date">2026 — Present</div>
-            <div class="exp-role">AI Automation Specialist</div>
-            <div class="exp-company">Freelance · Remote</div>
-            <ul class="exp-achievements">
-              <li>Designed and implemented AI-powered workflow automations using APIs and no-code/low-code platforms to reduce manual tasks and optimize business processes.</li>
-              <li>Built AI chatbots, lead generation systems, and automated reporting solutions integrated with CRM and cloud-based applications.</li>
-              <li>Analyzed client workflows to identify automation opportunities, delivering customized strategies that improve efficiency and cut costs.</li>
-            </ul>
+          <div class="exp-glow-wrap">
+            <span class="exp-glow-dot"></span>
+            <div class="timeline-content">
+              <div class="exp-date">2026 — Present</div>
+              <div class="exp-role">AI Automation Specialist</div>
+              <div class="exp-company">Freelance · Remote</div>
+              <ul class="exp-achievements">
+                <li>Designed and implemented AI-powered workflow automations using APIs and no-code/low-code platforms to reduce manual tasks and optimize business processes.</li>
+                <li>Built AI chatbots, lead generation systems, and automated reporting solutions integrated with CRM and cloud-based applications.</li>
+                <li>Analyzed client workflows to identify automation opportunities, delivering customized strategies that improve efficiency and cut costs.</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="timeline-item">
@@ -1557,15 +1658,18 @@ input[type="range"].roi-range::-moz-range-thumb {
             <div class="timeline-dot"></div>
             <div class="timeline-line tl-line-right"></div>
           </div>
-          <div class="timeline-content">
-            <div class="exp-date">2022 — 2026</div>
-            <div class="exp-role">Structured Cabling / Project Manager</div>
-            <div class="exp-company">Equalynx Network Co.</div>
-            <ul class="exp-achievements">
-              <li>Managed end-to-end structured cabling projects for commercial and enterprise networks, covering data, voice, fiber optic, and CCTV systems.</li>
-              <li>Coordinated clients, contractors, and technical teams to ensure on-time delivery, quality standards, and site safety compliance.</li>
-              <li>Conducted site inspections, troubleshooting, and QA for all network cabling installations with full project documentation.</li>
-            </ul>
+          <div class="exp-glow-wrap">
+            <span class="exp-glow-dot"></span>
+            <div class="timeline-content">
+              <div class="exp-date">2022 — 2026</div>
+              <div class="exp-role">Structured Cabling / Project Manager</div>
+              <div class="exp-company">Equalynx Network Co.</div>
+              <ul class="exp-achievements">
+                <li>Managed end-to-end structured cabling projects for commercial and enterprise networks, covering data, voice, fiber optic, and CCTV systems.</li>
+                <li>Coordinated clients, contractors, and technical teams to ensure on-time delivery, quality standards, and site safety compliance.</li>
+                <li>Conducted site inspections, troubleshooting, and QA for all network cabling installations with full project documentation.</li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="timeline-item">
@@ -1574,15 +1678,18 @@ input[type="range"].roi-range::-moz-range-thumb {
             <div class="timeline-dot"></div>
             <div class="timeline-line tl-line-right"></div>
           </div>
-          <div class="timeline-content">
-            <div class="exp-date">2017 — Present</div>
-            <div class="exp-role">Project Manager</div>
-            <div class="exp-company">GR Teoxon Construction</div>
-            <ul class="exp-achievements">
-              <li>Managed full-cycle HVAC projects from planning and design through installation, testing, commissioning, and turnover.</li>
-              <li>Supervised on-site contractors and technical teams, coordinating with clients and suppliers to meet quality, safety, and specification standards.</li>
-              <li>Performed troubleshooting, preventive maintenance, and system optimization for commercial and industrial HVAC systems.</li>
-            </ul>
+          <div class="exp-glow-wrap">
+            <span class="exp-glow-dot"></span>
+            <div class="timeline-content">
+              <div class="exp-date">2017 — Present</div>
+              <div class="exp-role">Project Manager</div>
+              <div class="exp-company">GR Teoxon Construction</div>
+              <ul class="exp-achievements">
+                <li>Managed full-cycle HVAC projects from planning and design through installation, testing, commissioning, and turnover.</li>
+                <li>Supervised on-site contractors and technical teams, coordinating with clients and suppliers to meet quality, safety, and specification standards.</li>
+                <li>Performed troubleshooting, preventive maintenance, and system optimization for commercial and industrial HVAC systems.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
