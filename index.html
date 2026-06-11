@@ -1220,72 +1220,106 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 .proj-lightbox-close:hover { color: #fff; }
 
-/* ══ SERVICES (ScrollStack) ══ */
-#services { padding: 8rem 0; position: relative; overflow: hidden; }
-#services-matrix-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+/* ══ SERVICES (Scroll Expansion Hero) ══ */
+#services { position: relative; height: calc(6 * 120vh); }
+.services-sticky {
+  position: sticky; top: 0;
+  height: 100dvh; overflow: hidden;
+  background: #07101a;
+}
+.srv-slide {
+  position: absolute; inset: 0;
   pointer-events: none;
-  z-index: 0;
-  opacity: 0.13;
+  transition: opacity 0.22s ease;
 }
-#services .container { position: relative; z-index: 1; }
-.sstack-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; }
-.sstack-item:nth-child(1) { z-index: 1; }
-.sstack-item:nth-child(2) { z-index: 2; }
-.sstack-item:nth-child(3) { z-index: 3; }
-.sstack-item:nth-child(4) { z-index: 4; }
-.sstack-item:nth-child(5) { z-index: 5; }
-.sstack-item:nth-child(6) { z-index: 6; }
-.sstack-item {
-  background: var(--bg3);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius-lg);
-  padding: 2rem 2.5rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  position: relative;
-  overflow: hidden;
+.srv-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  will-change: opacity;
 }
-.sstack-item:hover { border-color: rgba(61,69,170,0.5); }
-.sstack-item::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--cyan), var(--accent2));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.3s ease;
+.srv-frame {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 16px; overflow: hidden;
+  will-change: width, height;
+  box-shadow: 0 8px 70px rgba(0,0,0,0.55);
+  transition: none;
 }
-.sstack-item:hover::before { transform: scaleX(1); }
-.sstack-icon {
-  width: 52px; height: 52px; border-radius: 12px;
-  background: var(--cyan-dim); border: 1px solid rgba(61,69,170,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; flex-shrink: 0;
+.srv-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.srv-veil {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.45);
+  will-change: opacity; pointer-events: none;
 }
-.sstack-content { flex: 1; }
-.sstack-num { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-.sstack-name { font-family: var(--logo-font); font-size: 1.35rem; font-weight: 800; color: var(--heading); margin-bottom: 0.65rem; letter-spacing: -0.01em; line-height: 1.3; }
-.sstack-desc { font-size: 0.95rem; color: var(--text); line-height: 1.75; margin-bottom: 1.25rem; max-width: 700px; }
-.sstack-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.sstack-end { height: 1px; pointer-events: none; }
-[data-theme="dark"] .sstack-item {
-  background: rgba(22,38,62,0.96);
-  border-color: rgba(61,69,170,0.18);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+.srv-hl {
+  position: absolute; top: 50%; left: 0; right: 0;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0.25rem; pointer-events: none; z-index: 20; text-align: center;
 }
-[data-theme="light"] .sstack-item {
-  background: rgba(255,255,255,0.97);
-  border-color: rgba(61,69,170,0.22);
-  box-shadow: 0 6px 32px rgba(61,69,170,0.12);
+.srv-kicker {
+  font-family: var(--mono); font-size: 0.72rem;
+  color: rgba(180,190,255,0.8); letter-spacing: 0.2em;
+  padding: 0.28rem 0.75rem;
+  background: rgba(61,69,170,0.22);
+  border: 1px solid rgba(61,69,170,0.4); border-radius: 20px;
+  margin-bottom: 0.4rem; will-change: transform, opacity;
 }
-@media (max-width: 600px) {
-  #services { padding: 5rem 0; }
-  .sstack-item { padding: 1.5rem; gap: 1.25rem; }
-  .sstack-icon { width: 42px; height: 42px; font-size: 1.1rem; }
+.srv-word-a, .srv-word-b {
+  font-family: var(--logo-font);
+  font-size: clamp(1.9rem, 4.5vw, 3.8rem);
+  font-weight: 800; color: #e8eaf6;
+  line-height: 1.15; will-change: transform;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.55);
+  white-space: nowrap;
+}
+.srv-cue {
+  font-size: 0.74rem; color: rgba(200,210,240,0.5);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  will-change: transform, opacity; margin-top: 0.8rem;
+}
+.srv-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 3.5rem 5vw 3rem;
+  background: linear-gradient(to top, rgba(0,0,8,0.88) 0%, rgba(0,0,0,0.18) 65%, transparent 100%);
+  will-change: opacity; opacity: 0; z-index: 25; pointer-events: none;
+}
+.srv-info-num {
+  font-family: var(--mono); font-size: 0.62rem;
+  color: rgba(100,120,255,0.85); letter-spacing: 0.18em; margin-bottom: 0.45rem;
+}
+.srv-info-name {
+  font-family: var(--logo-font); font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  font-weight: 800; color: #fff; margin-bottom: 0.55rem; line-height: 1.28;
+}
+.srv-info-desc {
+  font-size: 0.9rem; color: rgba(218,228,250,0.78);
+  max-width: 560px; line-height: 1.78; margin-bottom: 1rem;
+}
+.srv-info-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.srv-info-tags .tag {
+  display: inline-block; padding: 0.2rem 0.6rem;
+  background: rgba(61,69,170,0.22); border: 1px solid rgba(61,69,170,0.38);
+  border-radius: 20px; font-size: 0.7rem; color: rgba(200,215,255,0.82);
+  font-family: var(--mono); letter-spacing: 0.05em;
+}
+.srv-dots {
+  position: absolute; right: 1.4rem; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 0.5rem;
+  z-index: 40; pointer-events: none;
+}
+.srv-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,0.22);
+  transition: background 0.3s, transform 0.3s;
+}
+.srv-dot.is-active { background: rgba(100,120,255,0.9); transform: scale(1.8); }
+@media (max-width: 768px) {
+  #services { height: calc(6 * 150vh); }
+  .srv-info { padding: 2.5rem 1.5rem 2rem; }
+  .srv-dots { display: none; }
+  .srv-word-a, .srv-word-b { white-space: normal; text-align: center; font-size: clamp(1.6rem, 6vw, 2.6rem); }
 }
 
 </style>
@@ -1371,70 +1405,144 @@ input[type="range"].roi-range::-moz-range-thumb {
 
 <!-- SERVICES -->
 <section id="services">
-  <canvas id="services-matrix-canvas" aria-hidden="true"></canvas>
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-num">Services</div>
-      <h2 class="section-title">What I Bring to the Table</h2>
-      <p class="section-sub">End-to-end automation engineering, AI integration, and full stack development — delivered remotely with precision.</p>
+  <div class="services-sticky" id="srv-sticky">
+
+    <!-- Progress indicator dots -->
+    <div class="srv-dots" id="srv-dots">
+      <div class="srv-dot is-active" data-srv="0"></div>
+      <div class="srv-dot" data-srv="1"></div>
+      <div class="srv-dot" data-srv="2"></div>
+      <div class="srv-dot" data-srv="3"></div>
+      <div class="srv-dot" data-srv="4"></div>
+      <div class="srv-dot" data-srv="5"></div>
     </div>
-    <div class="sstack-wrapper">
-      <div class="sstack-item">
-        <div class="sstack-icon">🤖</div>
-        <div class="sstack-content">
-          <div class="sstack-num">// 01</div>
-          <div class="sstack-name">AI &amp; ML Engineering</div>
-          <p class="sstack-desc">Designing and deploying AI-driven tools and machine learning pipelines that enhance operational intelligence and automate complex decision-making.</p>
-          <div class="sstack-tags"><span class="tag">NLP</span><span class="tag">Prompt Engineering</span><span class="tag">AI Integration</span><span class="tag">LLM APIs</span></div>
-        </div>
+
+    <!-- 01 · AI & ML Engineering -->
+    <div class="srv-slide" id="srv-0">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-0">
+        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80&auto=format&fit=crop" alt="AI & ML Engineering" loading="lazy">
+        <div class="srv-veil"></div>
       </div>
-      <div class="sstack-item">
-        <div class="sstack-icon">⚡</div>
-        <div class="sstack-content">
-          <div class="sstack-num">// 02</div>
-          <div class="sstack-name">Workflow Automation</div>
-          <p class="sstack-desc">Building robust, no-downtime automation pipelines using Zapier, Make.com, and custom scripts — reducing manual intervention and boosting throughput.</p>
-          <div class="sstack-tags"><span class="tag">Zapier</span><span class="tag">Make.com</span><span class="tag">HighLevel</span><span class="tag">n8n</span></div>
-        </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 01</div>
+        <div class="srv-word-a">AI</div>
+        <div class="srv-word-b">&amp; ML Engineering</div>
+        <div class="srv-cue">Scroll to expand</div>
       </div>
-      <div class="sstack-item">
-        <div class="sstack-icon">🔗</div>
-        <div class="sstack-content">
-          <div class="sstack-num">// 03</div>
-          <div class="sstack-name">API &amp; System Integration</div>
-          <p class="sstack-desc">Seamlessly connecting disparate systems through RESTful APIs, webhooks, and middleware architectures to create unified data flows and automated triggers.</p>
-          <div class="sstack-tags"><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">OAuth</span><span class="tag">GraphQL</span></div>
-        </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 01 — AI &amp; ML Engineering</div>
+        <div class="srv-info-name">Operational Intelligence,<br>Automated.</div>
+        <p class="srv-info-desc">Designing and deploying AI-driven tools and machine learning pipelines that enhance operational intelligence and automate complex decision-making.</p>
+        <div class="srv-info-tags"><span class="tag">NLP</span><span class="tag">Prompt Engineering</span><span class="tag">AI Integration</span><span class="tag">LLM APIs</span></div>
       </div>
-      <div class="sstack-item">
-        <div class="sstack-icon">🤝</div>
-        <div class="sstack-content">
-          <div class="sstack-num">// 04</div>
-          <div class="sstack-name">CRM Automation</div>
-          <p class="sstack-desc">Designing and implementing intelligent CRM workflows that automate lead management, follow-ups, pipeline updates, and customer communications — turning your CRM into a hands-free revenue engine.</p>
-          <div class="sstack-tags"><span class="tag">HubSpot</span><span class="tag">HighLevel</span><span class="tag">Salesforce</span><span class="tag">Pipedrive</span></div>
-        </div>
-      </div>
-      <div class="sstack-item">
-        <div class="sstack-icon">📊</div>
-        <div class="sstack-content">
-          <div class="sstack-num">// 05</div>
-          <div class="sstack-name">Process Optimization</div>
-          <p class="sstack-desc">Analyzing existing workflows, identifying bottlenecks, and engineering leaner processes — translating operational improvements into measurable ROI.</p>
-          <div class="sstack-tags"><span class="tag">Data Analysis</span><span class="tag">Process Mapping</span><span class="tag">Scripting</span><span class="tag">Monitoring</span></div>
-        </div>
-      </div>
-      <div class="sstack-item">
-        <div class="sstack-icon">🌐</div>
-        <div class="sstack-content">
-          <div class="sstack-num">// 06</div>
-          <div class="sstack-name">Funnels, Websites &amp; Landing Pages</div>
-          <p class="sstack-desc">Crafting high-converting sales funnels, branded websites, and targeted landing pages that capture leads, nurture prospects, and drive measurable results — built for speed, clarity, and conversion.</p>
-          <div class="sstack-tags"><span class="tag">HighLevel</span><span class="tag">Webflow</span><span class="tag">WordPress</span><span class="tag">Framer</span></div>
-        </div>
-      </div>
-      <div class="sstack-end"></div>
     </div>
+
+    <!-- 02 · Workflow Automation -->
+    <div class="srv-slide" id="srv-1">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-1">
+        <img src="https://images.unsplash.com/photo-1518432031352-d6fc5734c3d3?w=1200&q=80&auto=format&fit=crop" alt="Workflow Automation" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 02</div>
+        <div class="srv-word-a">Workflow</div>
+        <div class="srv-word-b">Automation</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 02 — Workflow Automation</div>
+        <div class="srv-info-name">Zero Downtime.<br>Maximum Throughput.</div>
+        <p class="srv-info-desc">Building robust, no-downtime automation pipelines using Zapier, Make.com, and custom scripts — reducing manual intervention and boosting throughput.</p>
+        <div class="srv-info-tags"><span class="tag">Zapier</span><span class="tag">Make.com</span><span class="tag">HighLevel</span><span class="tag">n8n</span></div>
+      </div>
+    </div>
+
+    <!-- 03 · API & System Integration -->
+    <div class="srv-slide" id="srv-2">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-2">
+        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=80&auto=format&fit=crop" alt="API & System Integration" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 03</div>
+        <div class="srv-word-a">API</div>
+        <div class="srv-word-b">&amp; System Integration</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 03 — API &amp; System Integration</div>
+        <div class="srv-info-name">Every System,<br>Connected Seamlessly.</div>
+        <p class="srv-info-desc">Seamlessly connecting disparate systems through RESTful APIs, webhooks, and middleware architectures to create unified data flows and automated triggers.</p>
+        <div class="srv-info-tags"><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">OAuth</span><span class="tag">GraphQL</span></div>
+      </div>
+    </div>
+
+    <!-- 04 · CRM Automation -->
+    <div class="srv-slide" id="srv-3">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-3">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80&auto=format&fit=crop" alt="CRM Automation" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 04</div>
+        <div class="srv-word-a">CRM</div>
+        <div class="srv-word-b">Automation</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 04 — CRM Automation</div>
+        <div class="srv-info-name">Hands-Free<br>Revenue Engine.</div>
+        <p class="srv-info-desc">Designing and implementing intelligent CRM workflows that automate lead management, follow-ups, pipeline updates, and customer communications — turning your CRM into a hands-free revenue engine.</p>
+        <div class="srv-info-tags"><span class="tag">HubSpot</span><span class="tag">HighLevel</span><span class="tag">Salesforce</span><span class="tag">Pipedrive</span></div>
+      </div>
+    </div>
+
+    <!-- 05 · Process Optimization -->
+    <div class="srv-slide" id="srv-4">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-4">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&auto=format&fit=crop" alt="Process Optimization" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 05</div>
+        <div class="srv-word-a">Process</div>
+        <div class="srv-word-b">Optimization</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 05 — Process Optimization</div>
+        <div class="srv-info-name">Leaner Workflows.<br>Measurable ROI.</div>
+        <p class="srv-info-desc">Analyzing existing workflows, identifying bottlenecks, and engineering leaner processes — translating operational improvements into measurable ROI.</p>
+        <div class="srv-info-tags"><span class="tag">Data Analysis</span><span class="tag">Process Mapping</span><span class="tag">Scripting</span><span class="tag">Monitoring</span></div>
+      </div>
+    </div>
+
+    <!-- 06 · Funnels, Websites & Landing Pages -->
+    <div class="srv-slide" id="srv-5">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-5">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop" alt="Funnels, Websites & Landing Pages" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 06</div>
+        <div class="srv-word-a">Funnels,</div>
+        <div class="srv-word-b">Websites &amp; Landing Pages</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 06 — Funnels, Websites &amp; Landing Pages</div>
+        <div class="srv-info-name">Built to Convert.<br>Designed to Impress.</div>
+        <p class="srv-info-desc">Crafting high-converting sales funnels, branded websites, and targeted landing pages that capture leads, nurture prospects, and drive measurable results — built for speed, clarity, and conversion.</p>
+        <div class="srv-info-tags"><span class="tag">HighLevel</span><span class="tag">Webflow</span><span class="tag">WordPress</span><span class="tag">Framer</span></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2881,72 +2989,94 @@ function handleSubmit(btn) {
   update();
 })();
 
-// ══ SERVICES MATRIX RAIN ══
+// ══ SERVICES SCROLL EXPANSION ══
 (function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var canvas = document.getElementById('services-matrix-canvas');
   var section = document.getElementById('services');
-  if (!canvas || !section) return;
+  if (!section) return;
 
-  var ctx = canvas.getContext('2d');
-  var CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン01アカサ10ABCDEF';
-  var FONT_SIZE = 14;
-  var FPS_MS = 1000 / 20;
-  var drops = [];
-  var rafId = null;
-  var lastTs = 0;
-  var running = false;
+  var TOTAL = 6;
+  var isMobile = window.innerWidth < 768;
 
-  function resize() {
-    canvas.width  = section.offsetWidth;
-    canvas.height = section.offsetHeight;
-    var cols = Math.floor(canvas.width / FONT_SIZE);
-    drops = Array.from({ length: cols }, function () { return Math.floor(Math.random() * -80); });
-  }
-
-  function draw(ts) {
-    rafId = requestAnimationFrame(draw);
-    if (ts - lastTs < FPS_MS) return;
-    lastTs = ts;
-
-    ctx.fillStyle = 'rgba(0,0,0,0.06)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = FONT_SIZE + 'px monospace';
-
-    for (var i = 0; i < drops.length; i++) {
-      var char = CHARS[Math.floor(Math.random() * CHARS.length)];
-      var y = drops[i] * FONT_SIZE;
-      // bright white head, green body
-      ctx.fillStyle = drops[i] >= 0 && drops[i] < 3 ? '#ccffcc' : '#00e535';
-      if (y >= 0 && y < canvas.height) {
-        ctx.fillText(char, i * FONT_SIZE, y);
-      }
-      if (y > canvas.height && Math.random() > 0.975) {
-        drops[i] = Math.floor(Math.random() * -40);
-      }
-      drops[i]++;
-    }
-  }
-
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting && !running) {
-        resize();
-        running = true;
-        lastTs = 0;
-        rafId = requestAnimationFrame(draw);
-      } else if (!entry.isIntersecting && running) {
-        cancelAnimationFrame(rafId);
-        running = false;
-      }
+  // Cache DOM references per slide
+  var slides = [];
+  for (var i = 0; i < TOTAL; i++) {
+    var el = document.getElementById('srv-' + i);
+    if (!el) continue;
+    slides.push({
+      el:     el,
+      frame:  document.getElementById('srv-frame-' + i),
+      bg:     el.querySelector('.srv-bg'),
+      veil:   el.querySelector('.srv-veil'),
+      wordA:  el.querySelector('.srv-word-a'),
+      wordB:  el.querySelector('.srv-word-b'),
+      kicker: el.querySelector('.srv-kicker'),
+      cue:    el.querySelector('.srv-cue'),
+      info:   el.querySelector('.srv-info')
     });
-  }, { threshold: 0 });
+  }
+  var dots = document.querySelectorAll('#srv-dots .srv-dot');
 
-  io.observe(section);
+  function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
 
-  window.addEventListener('resize', function () {
-    if (running) { cancelAnimationFrame(rafId); resize(); rafId = requestAnimationFrame(draw); }
-  });
+  function render() {
+    isMobile = window.innerWidth < 768;
+    var BASE_W = 280, BASE_H = 370;
+    var MAX_W  = isMobile ? 680 : 1260;
+    var MAX_H  = isMobile ? 200 : 410;
+
+    var sTop  = section.getBoundingClientRect().top + window.scrollY;
+    var vh    = window.innerHeight;
+    var range = section.offsetHeight - vh;          // total scrollable distance
+    var per   = range / TOTAL;                      // distance allocated per slide
+    var scrolled = clamp(window.scrollY - sTop, 0, range);
+
+    var idx = clamp(Math.floor(scrolled / per), 0, TOTAL - 1);
+    var p   = clamp((scrolled - idx * per) / per, 0, 1);
+
+    // Dimensions
+    var mw = clamp(BASE_W + p * MAX_W, BASE_W, window.innerWidth  * 0.99);
+    var mh = clamp(BASE_H + p * MAX_H, BASE_H, vh * 0.95);
+    var tx = p * (isMobile ? 32 : 50); // vw shift
+
+    slides.forEach(function (s, i) {
+      if (i !== idx) {
+        s.el.style.opacity = '0';
+        return;
+      }
+      s.el.style.opacity = '1';
+
+      // background fades out as image expands
+      s.bg.style.opacity = String(clamp(1 - p, 0, 1));
+
+      // expanding image frame
+      s.frame.style.width  = mw + 'px';
+      s.frame.style.height = mh + 'px';
+
+      // dark overlay on the image dims slightly
+      s.veil.style.opacity = String(clamp(0.65 - p * 0.55, 0.1, 0.65));
+
+      // headline text splits outward
+      s.kicker.style.transform = 'translateX(-' + tx + 'vw)';
+      s.kicker.style.opacity   = String(clamp(1 - p * 2, 0, 1));
+      s.wordA.style.transform  = 'translateX(-' + tx + 'vw)';
+      s.wordB.style.transform  = 'translateX('  + tx + 'vw)';
+      s.cue.style.transform    = 'translateX('  + tx + 'vw)';
+      s.cue.style.opacity      = String(clamp(1 - p * 3, 0, 1));
+
+      // service details fade in at the bottom once nearly expanded
+      var infoP = p > 0.86 ? (p - 0.86) / 0.14 : 0;
+      s.info.style.opacity = String(clamp(infoP, 0, 1));
+    });
+
+    // progress dots
+    dots.forEach(function (d, i) {
+      d.classList.toggle('is-active', i === idx);
+    });
+  }
+
+  window.addEventListener('scroll', render, { passive: true });
+  window.addEventListener('resize', render);
+  render();
 })();
 
 // ══ CLICK SPARK ══
