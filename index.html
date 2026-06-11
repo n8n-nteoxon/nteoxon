@@ -2429,6 +2429,7 @@ input[type="range"].roi-range::-moz-range-thumb {
                 <div class="roi-workflow-option" onclick="selectWorkflow(this,'Unified social media &amp; ads system',7,30)">Connect my social media and ads into one unified system</div>
                 <div class="roi-workflow-option" onclick="selectWorkflow(this,'Website &amp; funnel build/redesign',6,40)">Build or redesign my website and funnel pages</div>
                 <div class="roi-workflow-option" onclick="selectWorkflow(this,'Non-native app integration via Webhook',4,40)">Integrate non-native app via Webhook</div>
+                <div class="roi-workflow-option" onclick="selectWorkflowOther(this)">Others (set sliders manually)</div>
               </div>
             </div>
           </div>
@@ -3068,6 +3069,16 @@ function selectWorkflow(el, label, hours, rate) {
   document.getElementById('roi-workflow-dropdown').classList.remove('open');
 
   updateROI();
+}
+
+function selectWorkflowOther(el) {
+  const triggerText = document.getElementById('roi-workflow-trigger-text');
+  triggerText.textContent = 'Others';
+  triggerText.classList.add('selected');
+  document.querySelectorAll('.roi-workflow-option').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('roi-workflow-trigger').classList.remove('open');
+  document.getElementById('roi-workflow-dropdown').classList.remove('open');
 }
 
 document.addEventListener('click', function(e) {
