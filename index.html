@@ -317,31 +317,6 @@ section { position: relative; z-index: 2; }
 .section-title { font-family: var(--logo-font); font-size: clamp(2rem,3.5vw,3rem); font-weight: 700; letter-spacing: -0.02em; color: var(--heading); line-height: 1.3; padding-bottom: 0.3em; }
 .section-sub { font-size: 1rem; color: var(--muted2); margin-top: 0.75rem; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7; }
 
-/* ══ SERVICES ══ */
-#services { padding: 8rem 0; background: var(--bg2); transition: background 0.35s ease; }
-.services-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1.5px; background: var(--border);
-  border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
-}
-.service-card {
-  background: var(--bg2); padding: 2.5rem 2rem;
-  transition: background 0.25s; position: relative; overflow: hidden;
-}
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg, var(--cyan), var(--accent2));
-  transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
-}
-.service-card:hover { background: var(--card-hover); }
-.service-card:hover::before { transform: scaleX(1); }
-
-.service-icon { width: 48px; height: 48px; border-radius: 10px; background: var(--cyan-dim); border: 1px solid rgba(0,212,232,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.3rem; }
-.service-num { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.75rem; }
-.service-name { font-family: var(--logo-font); font-size: 1.35rem; font-weight: 800; color: var(--heading); margin-bottom: 0.75rem; letter-spacing: -0.01em; line-height: 1.4; }
-.service-desc { font-size: 0.95rem; color: var(--text); line-height: 1.75; margin-bottom: 1.5rem; font-weight: 400; }
-.service-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.tag { font-family: var(--mono); font-size: 0.64rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border2); border-radius: 4px; color: var(--muted2); letter-spacing: 0.05em; }
 
 /* ══ EXPERIENCE ══ */
 #experience { padding: 8rem 0; transition: background 0.35s ease; }
@@ -921,7 +896,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 
 /* ══ PERFORMANCE ══ */
 /* Skip rendering of below-fold sections until they scroll into view */
-#services, #tools, #experience, #portfolio, #testimonials,
+#tools, #experience, #portfolio, #testimonials,
 #certifications, #trade-offer, #process, #roi-calc {
   content-visibility: auto;
   contain-intrinsic-size: 0 600px;
@@ -962,7 +937,6 @@ input[type="range"].roi-range::-moz-range-thumb {
   .hero-right { align-items: flex-start; }
   .hero-right .hero-title, .hero-right .hero-desc { text-align: left; }
   .hero-right .hero-actions { justify-content: flex-start; }
-  .services-grid { grid-template-columns: 1fr; gap: 1px; }
   .timeline { flex-direction: column; }
   .timeline-item { width: 100%; }
   .timeline-track { flex-direction: column; margin: 0.5rem 0; }
@@ -995,7 +969,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   .btn-primary, .btn-ghost { width: 100%; justify-content: center; padding: 0.85rem 1.5rem; }
 
   /* Sections */
-  #services, #experience, #works, #testimonials, #certifications,
+  #experience, #works, #testimonials, #certifications,
   #contact, #trade-offer, #process, #roi-calc { padding: 5rem 0; }
   .container { padding: 0 1.1rem; }
   .section-title { font-size: clamp(1.7rem, 8vw, 2.4rem); }
@@ -1037,7 +1011,108 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 
 /* ══ PORTFOLIO ══ */
-#portfolio { padding: 8rem 0; }
+#portfolio { padding: 0 0 8rem 0; }
+
+/* ══ PORTFOLIO SCROLL EXPANSION HERO ══ */
+.psh-outer {
+  position: relative;
+  height: calc(100vh + 700px);
+}
+.psh-sticky {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.psh-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: opacity 0.08s linear;
+}
+.psh-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.psh-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 27, 39, 0.35);
+}
+.psh-media-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.35);
+  width: 300px;
+  height: 400px;
+  max-width: 95vw;
+  max-height: 85vh;
+  transition: width 0.03s linear, height 0.03s linear;
+}
+.psh-media-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+.psh-media-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.08s linear;
+}
+.psh-title-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+.psh-title-first,
+.psh-title-rest {
+  font-family: var(--logo-font);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  text-align: center;
+  will-change: transform;
+}
+.psh-hints-row {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  pointer-events: none;
+}
+.psh-hint-text {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(200, 215, 255, 0.75);
+  white-space: nowrap;
+  will-change: transform;
+}
 
 .portfolio-tabs {
   display: flex; align-items: center; justify-content: center;
@@ -1145,6 +1220,64 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 .proj-lightbox-close:hover { color: #fff; }
 
+/* ══ SERVICES (ScrollStack) ══ */
+#services { padding: 8rem 0; }
+.sstack-wrapper { position: relative; display: flex; flex-direction: column; }
+.sstack-item:nth-child(1) { z-index: 1; }
+.sstack-item:nth-child(2) { z-index: 2; }
+.sstack-item:nth-child(3) { z-index: 3; }
+.sstack-item:nth-child(4) { z-index: 4; }
+.sstack-item:nth-child(5) { z-index: 5; }
+.sstack-item:nth-child(6) { z-index: 6; }
+.sstack-item {
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.5rem;
+  margin-bottom: 80px;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.sstack-item:hover { border-color: rgba(61,69,170,0.5); }
+.sstack-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--accent2));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.sstack-item:hover::before { transform: scaleX(1); }
+.sstack-icon {
+  width: 52px; height: 52px; border-radius: 12px;
+  background: var(--cyan-dim); border: 1px solid rgba(61,69,170,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.sstack-content { flex: 1; }
+.sstack-num { font-family: var(--mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.sstack-name { font-family: var(--logo-font); font-size: 1.35rem; font-weight: 800; color: var(--heading); margin-bottom: 0.65rem; letter-spacing: -0.01em; line-height: 1.3; }
+.sstack-desc { font-size: 0.95rem; color: var(--text); line-height: 1.75; margin-bottom: 1.25rem; max-width: 700px; }
+.sstack-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.sstack-end { height: 1px; pointer-events: none; }
+[data-theme="dark"] .sstack-item {
+  background: rgba(22,38,62,0.96);
+  border-color: rgba(61,69,170,0.18);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.55);
+}
+[data-theme="light"] .sstack-item {
+  background: rgba(255,255,255,0.97);
+  border-color: rgba(61,69,170,0.22);
+  box-shadow: 0 6px 32px rgba(61,69,170,0.12);
+}
+@media (max-width: 600px) {
+  #services { padding: 5rem 0; }
+  .sstack-item { padding: 1.5rem; gap: 1.25rem; margin-bottom: 60px; }
+  .sstack-icon { width: 42px; height: 42px; font-size: 1.1rem; }
+}
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
@@ -1207,49 +1340,62 @@ input[type="range"].roi-range::-moz-range-thumb {
       <h2 class="section-title">What I Bring to the Table</h2>
       <p class="section-sub">End-to-end automation engineering, AI integration, and full stack development — delivered remotely with precision.</p>
     </div>
-    <div class="services-grid fade-up">
-      <div class="service-card">
-        <div class="service-icon">🤖</div>
-        <div class="service-num">// 01</div>
-        <div class="service-name">AI & ML Engineering</div>
-        <p class="service-desc">Designing and deploying AI-driven tools and machine learning pipelines that enhance operational intelligence and automate complex decision-making.</p>
-        <div class="service-tags"><span class="tag">NLP</span><span class="tag">Prompt Engineering</span><span class="tag">AI Integration</span><span class="tag">LLM APIs</span></div>
+    <div class="sstack-wrapper">
+      <div class="sstack-item">
+        <div class="sstack-icon">🤖</div>
+        <div class="sstack-content">
+          <div class="sstack-num">// 01</div>
+          <div class="sstack-name">AI &amp; ML Engineering</div>
+          <p class="sstack-desc">Designing and deploying AI-driven tools and machine learning pipelines that enhance operational intelligence and automate complex decision-making.</p>
+          <div class="sstack-tags"><span class="tag">NLP</span><span class="tag">Prompt Engineering</span><span class="tag">AI Integration</span><span class="tag">LLM APIs</span></div>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">⚡</div>
-        <div class="service-num">// 02</div>
-        <div class="service-name">Workflow Automation</div>
-        <p class="service-desc">Building robust, no-downtime automation pipelines using Zapier, Make.com, and custom scripts — reducing manual intervention and boosting throughput.</p>
-        <div class="service-tags"><span class="tag">Zapier</span><span class="tag">Make.com</span><span class="tag">HighLevel</span><span class="tag">n8n</span></div>
+      <div class="sstack-item">
+        <div class="sstack-icon">⚡</div>
+        <div class="sstack-content">
+          <div class="sstack-num">// 02</div>
+          <div class="sstack-name">Workflow Automation</div>
+          <p class="sstack-desc">Building robust, no-downtime automation pipelines using Zapier, Make.com, and custom scripts — reducing manual intervention and boosting throughput.</p>
+          <div class="sstack-tags"><span class="tag">Zapier</span><span class="tag">Make.com</span><span class="tag">HighLevel</span><span class="tag">n8n</span></div>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🔗</div>
-        <div class="service-num">// 03</div>
-        <div class="service-name">API & System Integration</div>
-        <p class="service-desc">Seamlessly connecting disparate systems through RESTful APIs, webhooks, and middleware architectures to create unified data flows and automated triggers.</p>
-        <div class="service-tags"><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">OAuth</span><span class="tag">GraphQL</span></div>
+      <div class="sstack-item">
+        <div class="sstack-icon">🔗</div>
+        <div class="sstack-content">
+          <div class="sstack-num">// 03</div>
+          <div class="sstack-name">API &amp; System Integration</div>
+          <p class="sstack-desc">Seamlessly connecting disparate systems through RESTful APIs, webhooks, and middleware architectures to create unified data flows and automated triggers.</p>
+          <div class="sstack-tags"><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">OAuth</span><span class="tag">GraphQL</span></div>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🤝</div>
-        <div class="service-num">// 04</div>
-        <div class="service-name">CRM Automation</div>
-        <p class="service-desc">Designing and implementing intelligent CRM workflows that automate lead management, follow-ups, pipeline updates, and customer communications — turning your CRM into a hands-free revenue engine.</p>
-        <div class="service-tags"><span class="tag">HubSpot</span><span class="tag">HighLevel</span><span class="tag">Salesforce</span><span class="tag">Pipedrive</span></div>
+      <div class="sstack-item">
+        <div class="sstack-icon">🤝</div>
+        <div class="sstack-content">
+          <div class="sstack-num">// 04</div>
+          <div class="sstack-name">CRM Automation</div>
+          <p class="sstack-desc">Designing and implementing intelligent CRM workflows that automate lead management, follow-ups, pipeline updates, and customer communications — turning your CRM into a hands-free revenue engine.</p>
+          <div class="sstack-tags"><span class="tag">HubSpot</span><span class="tag">HighLevel</span><span class="tag">Salesforce</span><span class="tag">Pipedrive</span></div>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">📊</div>
-        <div class="service-num">// 05</div>
-        <div class="service-name">Process Optimization</div>
-        <p class="service-desc">Analyzing existing workflows, identifying bottlenecks, and engineering leaner processes — translating operational improvements into measurable ROI.</p>
-        <div class="service-tags"><span class="tag">Data Analysis</span><span class="tag">Process Mapping</span><span class="tag">Scripting</span><span class="tag">Monitoring</span></div>
+      <div class="sstack-item">
+        <div class="sstack-icon">📊</div>
+        <div class="sstack-content">
+          <div class="sstack-num">// 05</div>
+          <div class="sstack-name">Process Optimization</div>
+          <p class="sstack-desc">Analyzing existing workflows, identifying bottlenecks, and engineering leaner processes — translating operational improvements into measurable ROI.</p>
+          <div class="sstack-tags"><span class="tag">Data Analysis</span><span class="tag">Process Mapping</span><span class="tag">Scripting</span><span class="tag">Monitoring</span></div>
+        </div>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🌐</div>
-        <div class="service-num">// 06</div>
-        <div class="service-name">Funnels, Websites & Landing Pages</div>
-        <p class="service-desc">Crafting high-converting sales funnels, branded websites, and targeted landing pages that capture leads, nurture prospects, and drive measurable results — built for speed, clarity, and conversion.</p>
-        <div class="service-tags"><span class="tag">HighLevel</span><span class="tag">Webflow</span><span class="tag">WordPress</span><span class="tag">Framer</span></div>
+      <div class="sstack-item">
+        <div class="sstack-icon">🌐</div>
+        <div class="sstack-content">
+          <div class="sstack-num">// 06</div>
+          <div class="sstack-name">Funnels, Websites &amp; Landing Pages</div>
+          <p class="sstack-desc">Crafting high-converting sales funnels, branded websites, and targeted landing pages that capture leads, nurture prospects, and drive measurable results — built for speed, clarity, and conversion.</p>
+          <div class="sstack-tags"><span class="tag">HighLevel</span><span class="tag">Webflow</span><span class="tag">WordPress</span><span class="tag">Framer</span></div>
+        </div>
       </div>
+      <div class="sstack-end"></div>
     </div>
   </div>
 </section>
@@ -1422,6 +1568,34 @@ input[type="range"].roi-range::-moz-range-thumb {
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
+
+  <!-- SCROLL EXPANSION HERO -->
+  <div id="psh-outer" class="psh-outer">
+    <div class="psh-sticky">
+
+      <div id="psh-bg" class="psh-bg">
+        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80" alt="">
+        <div class="psh-bg-overlay"></div>
+      </div>
+
+      <div id="psh-media-box" class="psh-media-box">
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&q=80" alt="Automation Projects">
+        <div id="psh-media-overlay" class="psh-media-overlay"></div>
+      </div>
+
+      <div class="psh-title-wrap">
+        <h2 id="psh-title-first" class="psh-title-first">Automation</h2>
+        <h2 id="psh-title-rest" class="psh-title-rest">Projects</h2>
+      </div>
+
+      <div class="psh-hints-row">
+        <p id="psh-date" class="psh-hint-text">Portfolio</p>
+        <p id="psh-hint" class="psh-hint-text">Scroll to Explore ↓</p>
+      </div>
+
+    </div>
+  </div>
+
   <div class="container">
     <div class="section-header fade-up">
       <div class="section-num">Portfolio</div>
@@ -2650,6 +2824,148 @@ function handleSubmit(btn) {
 </script>
 
 <script>
+// ══ SCROLL STACK (Services) ══
+(function () {
+  var ITEM_SCALE      = 0.03;
+  var ITEM_STACK_DIST = 30;
+  var BASE_SCALE      = 0.85;
+  var STACK_POS       = 0.20;
+  var SCALE_END_POS   = 0.10;
+
+  function docOffsetTop(el) {
+    // offsetParent traversal — unaffected by content-visibility or transforms
+    var top = 0;
+    var e   = el;
+    while (e) { top += e.offsetTop || 0; e = e.offsetParent; }
+    return top;
+  }
+
+  function run() {
+    var wrapper = document.querySelector('.sstack-wrapper');
+    if (!wrapper) return;
+
+    var cards  = Array.from(wrapper.querySelectorAll('.sstack-item'));
+    var endEl  = wrapper.querySelector('.sstack-end');
+    var n      = cards.length;
+    var last   = new Array(n).fill(null);
+    var tops   = new Array(n).fill(0);
+    var endTop = 0;
+    var cached = false;
+
+    function cacheTops() {
+      // Reset transforms so positions are measured from natural layout
+      cards.forEach(function (c) { c.style.transform = 'none'; });
+      cards.forEach(function (c, i) { tops[i] = docOffsetTop(c); });
+      endTop = endEl ? docOffsetTop(endEl) : docOffsetTop(cards[n - 1]) + cards[n - 1].offsetHeight;
+      // Restore last known transforms
+      last.fill(null);
+      cached = true;
+    }
+
+    function update() {
+      if (!cached) { cacheTops(); }
+      var st   = window.scrollY;
+      var vh   = window.innerHeight;
+      var spx  = STACK_POS * vh;
+      var sepx = SCALE_END_POS * vh;
+      var pEnd = endTop - vh * 0.5;
+
+      cards.forEach(function (card, i) {
+        var ct = tops[i];
+        var tS = ct - spx - ITEM_STACK_DIST * i;
+        var tE = ct - sepx;
+        var pS = tS;
+
+        var sp = 0;
+        if (st >= tS && st <= tE) sp = (st - tS) / Math.max(1, tE - tS);
+        else if (st > tE) sp = 1;
+
+        var scale = 1 - sp * (1 - (BASE_SCALE + i * ITEM_SCALE));
+        var ty = 0;
+        if (st >= pS && st <= pEnd)  ty = st - ct + spx + ITEM_STACK_DIST * i;
+        else if (st > pEnd)          ty = pEnd - ct + spx + ITEM_STACK_DIST * i;
+
+        var ty2 = Math.round(ty * 10) / 10;
+        var sc2 = Math.round(scale * 1000) / 1000;
+        var l   = last[i];
+        if (!l || Math.abs(l.t - ty2) > 0.1 || Math.abs(l.s - sc2) > 0.001) {
+          card.style.transform = 'translate3d(0,' + ty2 + 'px,0) scale(' + sc2 + ')';
+          last[i] = { t: ty2, s: sc2 };
+        }
+      });
+    }
+
+    // Style cards
+    cards.forEach(function (c) {
+      c.style.transformOrigin    = 'top center';
+      c.style.willChange         = 'transform';
+      c.style.backfaceVisibility = 'hidden';
+    });
+
+    // Cache positions after full page load (fonts, images settled)
+    function init() {
+      cacheTops();
+      update();
+    }
+    if (document.readyState === 'complete') init();
+    else window.addEventListener('load', init);
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', function () {
+      cached = false;
+      requestAnimationFrame(function () { cacheTops(); update(); });
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
+})();
+
+/* ══ PORTFOLIO SCROLL EXPANSION HERO ══ */
+(function () {
+  var pshOuter = document.getElementById('psh-outer');
+  if (!pshOuter) return;
+
+  function update() {
+    var rect        = pshOuter.getBoundingClientRect();
+    var outerH      = pshOuter.offsetHeight;
+    var scrollRange = outerH - window.innerHeight;
+    if (scrollRange <= 0) return;
+
+    var scrolled = -rect.top;
+    var p        = Math.max(0, Math.min(1, scrolled / scrollRange));
+    var mobile   = window.innerWidth < 768;
+
+    var mw = Math.min(300 + p * (mobile ? 650 : 1150), window.innerWidth  * 0.95);
+    var mh = Math.min(400 + p * (mobile ? 200 :  380), window.innerHeight * 0.85);
+    var tx = p * (mobile ? 180 : 150); /* vw — mirrors the React component */
+
+    var mb = document.getElementById('psh-media-box');
+    if (mb) { mb.style.width = mw + 'px'; mb.style.height = mh + 'px'; }
+
+    var bg = document.getElementById('psh-bg');
+    if (bg) bg.style.opacity = 1 - p;
+
+    var ov = document.getElementById('psh-media-overlay');
+    if (ov) ov.style.opacity = Math.max(0, 0.5 - p * 0.3);
+
+    var tf = document.getElementById('psh-title-first');
+    if (tf) tf.style.transform = 'translateX(-' + tx + 'vw)';
+    var tr = document.getElementById('psh-title-rest');
+    if (tr) tr.style.transform = 'translateX(' + tx + 'vw)';
+
+    var pd = document.getElementById('psh-date');
+    if (pd) pd.style.transform = 'translateX(-' + tx + 'vw)';
+    var ph = document.getElementById('psh-hint');
+    if (ph) ph.style.transform = 'translateX(' + tx + 'vw)';
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  document.addEventListener('DOMContentLoaded', update);
+  update();
+})();
+
 // ══ CLICK SPARK ══
 (function () {
   var SPARK_COLOR  = '#ffffff';
