@@ -1063,11 +1063,12 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 .pcard-thumb:hover .pcard-thumb-overlay { opacity: 1; }
 .pcard-zoom-icon {
-  width: 48px; height: 48px; border-radius: 50%;
-  background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.5);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; color: #fff;
+  font-family: var(--mono); font-size: 0.72rem;
+  letter-spacing: 0.07em; color: #fff; padding: 0.45rem 1.1rem;
+  background: rgba(61,69,170,0.72); border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 999px; white-space: nowrap;
 }
+.pcard { cursor: pointer; }
 
 .pcard-body { padding: 1.25rem 1.25rem 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 0.6rem; }
 .pcard-title { font-family: var(--logo-font); font-size: 1rem; font-weight: 700; color: var(--heading); letter-spacing: -0.01em; line-height: 1.45; }
@@ -1228,6 +1229,153 @@ input[type="range"].roi-range::-moz-range-thumb {
   .srv-word-a, .srv-word-b { white-space: normal; text-align: center; font-size: clamp(1.6rem, 6vw, 2.6rem); }
 }
 
+/* ══ CASE STUDY MODAL ══ */
+#cs-modal {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.88); z-index: 1002;
+  overflow-y: auto; padding: 2rem 1rem;
+  backdrop-filter: blur(6px);
+}
+#cs-modal.open { display: block; }
+.cs-panel {
+  max-width: 860px; margin: 0 auto;
+  background: var(--bg2); border: 1px solid var(--border2);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.cs-close {
+  position: fixed; top: 1.5rem; right: 1.75rem; z-index: 1010;
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(15,27,39,0.92); border: 1px solid rgba(255,255,255,0.22);
+  color: #fff; font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.cs-close:hover { background: rgba(61,69,170,0.7); transform: rotate(90deg); }
+.cs-hero {
+  padding: 2.5rem 2.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+[data-theme="dark"] .cs-hero { background: rgba(22,38,62,0.65); }
+[data-theme="light"] .cs-hero { background: rgba(255,255,255,0.85); }
+.cs-kicker {
+  font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--cyan); margin-bottom: 0.75rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.cs-kicker::before { content: ''; display: block; width: 20px; height: 1px; background: var(--cyan); }
+.cs-title {
+  font-family: var(--logo-font); font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 800; color: var(--heading); letter-spacing: -0.02em;
+  line-height: 1.2; margin-bottom: 1.25rem;
+}
+.cs-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.cs-badge {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.07em;
+  padding: 0.38rem 1rem; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.cs-badge-time { background: var(--cyan-soft); border: 1px solid rgba(61,69,170,0.3); color: var(--cyan); }
+.cs-badge-save { background: rgba(0,201,167,0.1); border: 1px solid rgba(0,201,167,0.3); color: #00c9a7; }
+.cs-body { padding: 0 2.5rem 2.5rem; }
+.cs-section { padding: 2rem 0; border-bottom: 1px solid var(--border); }
+.cs-section:last-child { border-bottom: none; }
+.cs-section-label {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--cyan); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.45rem;
+}
+.cs-section-label::before { content: '//'; opacity: 0.55; }
+.cs-text { font-size: 0.95rem; color: var(--text); line-height: 1.8; }
+.cs-tools-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.cs-tool-tag {
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.04em;
+  padding: 0.38rem 0.9rem; border-radius: 8px;
+  background: var(--cyan-soft); border: 1px solid rgba(61,69,170,0.25);
+  color: var(--heading);
+}
+.cs-2col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  padding: 2rem 0; border-bottom: 1px solid var(--border);
+}
+.cs-2col .cs-section { padding: 0; border-bottom: none; }
+.cs-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.cs-ba-col {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.5rem;
+}
+.cs-ba-col.cs-ba-after { border-color: rgba(61,69,170,0.4); }
+.cs-ba-header {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 700;
+  margin-bottom: 1.25rem; padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.cs-ba-before .cs-ba-header { color: var(--muted2); }
+.cs-ba-after  .cs-ba-header { color: var(--cyan); }
+.cs-ba-step {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  margin-bottom: 0.85rem; font-size: 0.87rem; line-height: 1.6;
+}
+.cs-ba-step:last-child { margin-bottom: 0; }
+.cs-ba-num {
+  width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 0.6rem; font-weight: 700; margin-top: 1px;
+}
+.cs-ba-before .cs-ba-num { background: rgba(255,255,255,0.08); color: var(--muted2); }
+.cs-ba-after  .cs-ba-num { background: var(--cyan-soft); color: var(--cyan); }
+.cs-ba-before .cs-ba-step { color: var(--muted2); }
+.cs-ba-after  .cs-ba-step { color: var(--text); }
+.cs-arch-steps { display: flex; flex-direction: column; gap: 0.75rem; }
+.cs-arch-step {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem 1.25rem; background: var(--card-bg);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  transition: border-color 0.2s;
+}
+.cs-arch-step:hover { border-color: rgba(61,69,170,0.45); }
+.cs-arch-num {
+  font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
+  color: var(--cyan); flex-shrink: 0; width: 24px; padding-top: 2px;
+}
+.cs-arch-title {
+  font-family: var(--logo-font); font-size: 0.9rem; font-weight: 700;
+  color: var(--heading); margin-bottom: 0.2rem;
+}
+.cs-arch-desc { font-size: 0.84rem; color: var(--muted2); line-height: 1.6; }
+.cs-obstacles-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.cs-obstacles-list li {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 0.92rem; color: var(--text); line-height: 1.65;
+}
+.cs-obstacles-list li::before { content: '→'; color: var(--cyan); font-family: var(--mono); flex-shrink: 0; }
+.cs-outcome-box {
+  background: var(--cyan); border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+}
+.cs-outcome-box p { font-size: 1rem; line-height: 1.75; color: #fff; }
+.cs-visual-grid { display: flex; flex-direction: column; gap: 1rem; }
+
+.cs-visual-img {
+  width: 100%; border-radius: var(--radius); border: 1px solid var(--border);
+  display: block; cursor: zoom-in;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cs-visual-img:hover { transform: scale(1.01); box-shadow: 0 8px 32px rgba(0,0,0,0.35); }
+.cs-visual-caption {
+  font-family: var(--mono); font-size: 0.65rem; color: var(--muted2);
+  letter-spacing: 0.06em; margin-top: 0.4rem; text-align: center;
+}
+@media (max-width: 600px) {
+  .cs-hero { padding: 1.75rem 1.25rem 1.5rem; }
+  .cs-body { padding: 0 1.25rem 2rem; }
+  .cs-2col { grid-template-columns: 1fr; gap: 0; }
+  .cs-2col .cs-section { padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+  .cs-ba { grid-template-columns: 1fr; }
+  #cs-modal { padding: 0; }
+  .cs-panel { border-radius: 0; min-height: 100vh; }
+  .cs-close { top: 0.85rem; right: 1rem; }
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
@@ -1623,10 +1771,10 @@ input[type="range"].roi-range::-moz-range-thumb {
     <div class="portfolio-pane active" id="pane-n8n">
       <div class="portfolio-grid fade-up">
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/AI Receptionist.png', this)">
+        <div class="pcard" onclick="openCaseStudy('n8n-ai-receptionist')">
+          <div class="pcard-thumb">
             <img src="projects/N8n/AI Receptionist.png" alt="AI Receptionist" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">AI Receptionist</div>
@@ -1635,10 +1783,10 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
         </div>
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/AI Facebook Agent.png', this)">
+        <div class="pcard" onclick="openCaseStudy('n8n-ai-facebook-agent')">
+          <div class="pcard-thumb">
             <img src="projects/N8n/AI Facebook Agent.png" alt="AI Facebook Agent" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">AI Facebook Agent</div>
@@ -1647,10 +1795,10 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
         </div>
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/ASMR Video Creator.png', this)">
+        <div class="pcard" onclick="openCaseStudy('n8n-asmr-video-creator')">
+          <div class="pcard-thumb">
             <img src="projects/N8n/ASMR Video Creator.png" alt="ASMR Video Creator" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">ASMR Video Creator</div>
@@ -1659,10 +1807,10 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
         </div>
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/RAG Workflow For Company Documents stored in Google Drive.png', this)">
+        <div class="pcard" onclick="openCaseStudy('n8n-rag-workflow')">
+          <div class="pcard-thumb">
             <img src="projects/N8n/RAG Workflow For Company Documents stored in Google Drive.png" alt="RAG Workflow for Company Documents" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">RAG Workflow for Company Docs</div>
@@ -1678,10 +1826,10 @@ input[type="range"].roi-range::-moz-range-thumb {
     <div class="portfolio-pane" id="pane-make">
       <div class="portfolio-grid fade-up">
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Inventory Order Management - Make.png', this)">
+        <div class="pcard" onclick="openCaseStudy('make-inventory-order')">
+          <div class="pcard-thumb">
             <img src="projects/Make/Inventory Order Management - Make.png" alt="Inventory and Order Management Agent" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">Inventory & Order Management Agent</div>
@@ -1690,10 +1838,10 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
         </div>
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Invoice Extractor Agent - Make.png', this)">
+        <div class="pcard" onclick="openCaseStudy('make-invoice-extractor')">
+          <div class="pcard-thumb">
             <img src="projects/Make/Invoice Extractor Agent - Make.png" alt="Invoice Extractor Agent" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">Invoice Extractor Agent</div>
@@ -1702,10 +1850,10 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
         </div>
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Receipt Extractor Agent - Make.png', this)">
+        <div class="pcard" onclick="openCaseStudy('make-receipt-extractor')">
+          <div class="pcard-thumb">
             <img src="projects/Make/Receipt Extractor Agent - Make.png" alt="Receipt Extractor Agent" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">Receipt Extractor Agent</div>
@@ -1714,10 +1862,10 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
         </div>
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Slack Sales Outreach Agent - Make.png', this)">
+        <div class="pcard" onclick="openCaseStudy('make-sales-outreach')">
+          <div class="pcard-thumb">
             <img src="projects/Make/Slack Sales Outreach Agent - Make.png" alt="Sales Outreach Agent" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">Sales Outreach Agent</div>
@@ -1726,10 +1874,10 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
         </div>
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/Make/Xero-Asana-Googlesheet Integration.png', this)">
+        <div class="pcard" onclick="openCaseStudy('make-xero-asana')">
+          <div class="pcard-thumb">
             <img src="projects/Make/Xero-Asana-Googlesheet Integration.png" alt="Xero Report Delivery to Asana" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">Automating Xero Report Delivery to Asana</div>
@@ -1745,10 +1893,10 @@ input[type="range"].roi-range::-moz-range-thumb {
     <div class="portfolio-pane" id="pane-zapier">
       <div class="portfolio-grid fade-up">
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/Zapier/AI Content Repurposing - Zapier.png', this)">
+        <div class="pcard" onclick="openCaseStudy('zapier-content-repurposing')">
+          <div class="pcard-thumb">
             <img src="projects/Zapier/AI Content Repurposing - Zapier.png" alt="AI Content Repurposing" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">AI Content Repurposing</div>
@@ -1757,10 +1905,10 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
         </div>
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/Zapier/Asana CRM Lead Engagement- Zapier.png', this)">
+        <div class="pcard" onclick="openCaseStudy('zapier-asana-crm')">
+          <div class="pcard-thumb">
             <img src="projects/Zapier/Asana CRM Lead Engagement- Zapier.png" alt="Asana CRM Lead Engagement" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">Asana CRM Lead Engagement</div>
@@ -1769,10 +1917,10 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
         </div>
 
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/Zapier/Automated Leads Enrichment - Zapier.png', this)">
+        <div class="pcard" onclick="openCaseStudy('zapier-leads-enrichment')">
+          <div class="pcard-thumb">
             <img src="projects/Zapier/Automated Leads Enrichment - Zapier.png" alt="Automated Leads Enrichment" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">View Case Study →</div></div>
           </div>
           <div class="pcard-body">
             <div class="pcard-title">Automated Leads Enrichment</div>
@@ -1793,6 +1941,67 @@ input[type="range"].roi-range::-moz-range-thumb {
 
   </div>
 </section>
+
+<!-- CASE STUDY MODAL -->
+<div id="cs-modal" onclick="if(event.target===this)closeCaseStudy()">
+  <button class="cs-close" onclick="closeCaseStudy()" aria-label="Close">✕</button>
+  <div class="cs-panel">
+    <div class="cs-hero">
+      <div class="cs-kicker">Case Study</div>
+      <h2 class="cs-title" id="cs-title"></h2>
+      <div class="cs-badges" id="cs-badges"></div>
+    </div>
+    <div class="cs-body">
+      <div class="cs-section">
+        <div class="cs-section-label">Project Summary</div>
+        <p class="cs-text" id="cs-summary"></p>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Tools &amp; Integrations</div>
+        <div class="cs-tools-grid" id="cs-tools"></div>
+      </div>
+      <div class="cs-2col">
+        <div class="cs-section">
+          <div class="cs-section-label">The Challenge</div>
+          <p class="cs-text" id="cs-challenge"></p>
+        </div>
+        <div class="cs-section">
+          <div class="cs-section-label">The Approach</div>
+          <p class="cs-text" id="cs-approach"></p>
+        </div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Before &amp; After</div>
+        <div class="cs-ba">
+          <div class="cs-ba-col cs-ba-before">
+            <div class="cs-ba-header">The Old Way</div>
+            <div id="cs-before"></div>
+          </div>
+          <div class="cs-ba-col cs-ba-after">
+            <div class="cs-ba-header">The New Way</div>
+            <div id="cs-after"></div>
+          </div>
+        </div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">System Architecture</div>
+        <div class="cs-arch-steps" id="cs-arch"></div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Obstacles Overcome</div>
+        <ul class="cs-obstacles-list" id="cs-obstacles"></ul>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Measured Outcome</div>
+        <div class="cs-outcome-box"><p id="cs-outcome"></p></div>
+      </div>
+      <div class="cs-section">
+        <div class="cs-section-label">Workflow Visuals</div>
+        <div class="cs-visual-grid" id="cs-visuals"></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- PROJECT LIGHTBOX -->
 <div id="proj-lightbox" onclick="closeProjLightbox()">
@@ -2222,6 +2431,281 @@ input[type="range"].roi-range::-moz-range-thumb {
 </footer>
 
 <script>
+/* ── Case Study data ── */
+const CASE_STUDIES = {
+  'n8n-ai-receptionist': {
+    title: 'AI Receptionist',
+    time: '5 days', saved: '30+ hrs/week',
+    summary: 'A 24/7 AI-powered receptionist that answers inbound calls, qualifies leads with dynamic scripts, books appointments directly into the calendar, and syncs all contact data to the CRM — entirely hands-free.',
+    tools: ['n8n', 'Vapi (Voice AI)', 'GoHighLevel CRM', 'Google Calendar', 'Twilio'],
+    challenge: "The client's front desk could only handle calls during business hours. After-hours inquiries were lost, and manual lead entry into the CRM was slow and inconsistent — causing follow-up delays and missed revenue.",
+    approach: "Built an n8n workflow integrating Vapi's voice AI for call handling with dynamic qualification scripts. Confirmed bookings write directly to Google Calendar with conflict detection, and all contact records sync to GoHighLevel automatically.",
+    before: ['Calls go unanswered after 5 PM', 'Receptionists manually log each lead into the CRM', 'Appointment scheduling requires back-and-forth phone tag', 'No record of missed call details or caller info'],
+    after: ['AI answers every call 24/7 — weekends included', 'Lead data auto-syncs to CRM within seconds of the call', 'Appointments booked in real-time with calendar conflict checks', 'Full call transcript and lead details logged automatically'],
+    architecture: [
+      { num: '1', title: 'Call Trigger', desc: 'Inbound call hits Twilio number, routed to the Vapi voice AI agent' },
+      { num: '2', title: 'Lead Qualification', desc: 'AI runs through a dynamic qualification script and collects contact details' },
+      { num: '3', title: 'Calendar Check', desc: 'n8n queries Google Calendar for real-time slot availability' },
+      { num: '4', title: 'Appointment Booking', desc: 'Confirmed slot written to Google Calendar with full meeting details' },
+      { num: '5', title: 'CRM Sync', desc: 'Contact record and call summary synced to GoHighLevel automatically' }
+    ],
+    obstacles: ['Handling background noise and speech recognition edge cases in Vapi', 'Preventing double-bookings with concurrent calendar conflict detection', 'CRM deduplication logic for returning callers with existing records', 'Graceful escalation path for complex queries needing human review'],
+    outcome: 'Zero missed after-hours leads. Appointments fill the calendar automatically. The client reclaimed 30+ hours per week previously spent on manual call logging and scheduling.',
+    images: ['projects/N8n/AI Receptionist.png']
+  },
+  'n8n-ai-facebook-agent': {
+    title: 'AI Facebook Agent',
+    time: '3 days', saved: '15+ hrs/week',
+    summary: 'An AI-powered agent that monitors a Facebook Business Page for all incoming messages and comments, classifies intent, and responds within seconds — keeping leads engaged and the social presence active around the clock.',
+    tools: ['n8n', 'Facebook Graph API', 'OpenAI GPT-4', 'Webhooks'],
+    challenge: 'The client was manually responding to 50+ Facebook messages and post comments every day. Delayed responses caused leads to cool off, and the time cost was unsustainable as the page grew.',
+    approach: 'Set up Facebook webhooks to pipe all messages and comments into n8n. The workflow classifies intent (sales inquiry, support, spam, general), generates a context-aware reply via GPT-4 trained on business FAQs, and posts the response via the Graph API. Complex cases route to a human queue.',
+    before: ['Check Facebook manually several times a day', 'Write responses one by one — 50+ per day', 'Leads wait hours for a reply and go cold', 'Ad comments go unmanaged, hurting conversion'],
+    after: ['Every message and comment gets a reply within seconds', 'Only genuine complex queries reach the human inbox', 'Lead interest captured while intent is still warm', 'Ad comments moderated and responded to automatically'],
+    architecture: [
+      { num: '1', title: 'Facebook Webhook', desc: 'Graph API webhook delivers message and comment events to n8n in real time' },
+      { num: '2', title: 'Intent Classification', desc: 'GPT-4 classifies message type: lead inquiry, support, spam, or general' },
+      { num: '3', title: 'Response Generation', desc: 'Context-aware reply drafted using the business FAQ and conversation history' },
+      { num: '4', title: 'API Reply', desc: 'Response posted back via Facebook Graph API to the original message thread or comment' },
+      { num: '5', title: 'Escalation', desc: 'Complex or sensitive queries flagged and forwarded to the human inbox' }
+    ],
+    obstacles: ['Passing Facebook webhook verification challenge during initial setup', 'Handling Graph API rate limits during high-volume post activity', 'Preventing duplicate replies from webhook retry deliveries', 'Differentiating genuine leads from spam to avoid wasting API calls'],
+    outcome: 'Response time dropped from hours to seconds. The client recovered 15+ hours per week and saw measurably higher lead conversion from social inquiries.',
+    images: ['projects/N8n/AI Facebook Agent.png']
+  },
+  'n8n-asmr-video-creator': {
+    title: 'ASMR Video Creator',
+    time: '7 days', saved: '20+ hrs/week',
+    summary: 'A fully automated content pipeline that takes a single keyword prompt and produces a complete ASMR-style video — script, voiceover, visuals, and final edit — ready to publish without any manual production steps.',
+    tools: ['n8n', 'ElevenLabs', 'Pexels API', 'OpenAI GPT-4', 'FFmpeg', 'Google Drive'],
+    challenge: 'The client was publishing 5 ASMR videos per week, each requiring 4+ hours of manual work: writing scripts, recording audio, sourcing royalty-free clips, and editing in post. The process was a bottleneck that limited growth.',
+    approach: "Built an n8n workflow where a keyword input triggers the full pipeline: GPT-4 generates the script → ElevenLabs synthesizes the voiceover → Pexels API fetches matching visuals → a custom FFmpeg node assembles the final video → output is saved to Google Drive for review.",
+    before: ['Write script manually for each video concept', 'Record or source voiceover audio separately', 'Search Pexels manually for matching b-roll', 'Edit everything together in a video editor — 4+ hrs per video'],
+    after: ['Enter a keyword — pipeline runs automatically end-to-end', 'Script, audio, visuals, and edit all generated without intervention', 'Final video ready in Google Drive within minutes', 'Scale to 20+ videos/week with zero additional effort'],
+    architecture: [
+      { num: '1', title: 'Keyword Input', desc: 'Trigger via form submission or scheduled batch list of keywords' },
+      { num: '2', title: 'Script Generation', desc: 'GPT-4 writes an ASMR-optimized script for the given topic' },
+      { num: '3', title: 'Audio Synthesis', desc: 'ElevenLabs renders the script as a high-quality ASMR voiceover' },
+      { num: '4', title: 'Visual Sourcing', desc: 'Pexels API fetches royalty-free video clips matching the script themes' },
+      { num: '5', title: 'Video Assembly', desc: 'FFmpeg combines audio and visuals into the final MP4 file' },
+      { num: '6', title: 'Drive Upload', desc: 'Finished video uploaded to Google Drive, ready for review or direct publish' }
+    ],
+    obstacles: ['ElevenLabs audio sync timing with variable-length visual clips', 'Pexels API result relevance — built keyword expansion logic for better matches', 'FFmpeg execution within n8n using a custom Code node and subprocess call', 'Managing temporary file storage and cleanup between pipeline stages'],
+    outcome: 'Production time per video dropped from 4+ hours to under 10 minutes. The client scaled from 5 to 20+ videos per week, reclaiming 20+ hours weekly.',
+    images: ['projects/N8n/ASMR Video Creator.png']
+  },
+  'n8n-rag-workflow': {
+    title: 'RAG Workflow for Company Docs',
+    time: '4 days', saved: '10+ hrs/week',
+    summary: 'A Retrieval-Augmented Generation system that ingests company documents from Google Drive, embeds them into a vector store, and lets the entire team ask natural-language questions — turning a static file archive into an intelligent, searchable knowledge base.',
+    tools: ['n8n', 'Google Drive API', 'Pinecone', 'OpenAI Embeddings', 'GPT-4'],
+    challenge: 'A 12-person team was spending 30+ minutes per person daily searching through hundreds of Google Drive documents for procedures, policies, and specs. Knowledge was siloed, and onboarding new staff took weeks.',
+    approach: 'Built a two-part n8n system: an ingestion pipeline that syncs new/updated Drive docs, chunks them, and embeds them into Pinecone — and a query interface that retrieves the most relevant chunks and feeds them to GPT-4 to generate a precise answer with source citations.',
+    before: ['Search Google Drive manually with keyword guessing', 'Open and scan through multiple documents to find one answer', 'Spend 30+ minutes per query across a team of 12', 'New staff struggle to locate correct procedures during onboarding'],
+    after: ['Ask any question in plain language via chat or form', 'Receive a precise answer with source document citations in seconds', 'New docs auto-indexed within minutes of being added to Drive', 'Onboarding time cut drastically — new staff self-serve from day one'],
+    architecture: [
+      { num: '1', title: 'Drive Sync Trigger', desc: 'n8n watches Google Drive for new or updated files via webhook' },
+      { num: '2', title: 'Document Chunking', desc: 'Files extracted and split into overlapping text chunks for context preservation' },
+      { num: '3', title: 'Embedding & Indexing', desc: 'OpenAI Embeddings converts chunks to vectors stored in Pinecone' },
+      { num: '4', title: 'Query Handling', desc: 'User question is embedded and matched against the vector store for top-K relevant chunks' },
+      { num: '5', title: 'Answer Generation', desc: 'GPT-4 synthesizes a precise answer from retrieved chunks with source citations' }
+    ],
+    obstacles: ['Chunking strategy — balancing chunk size vs. context quality for accurate retrieval', 'Handling PDF, DOCX, and Google Docs formats in a unified extraction pipeline', 'Stale vector cleanup when source documents are deleted or heavily revised', 'Preventing hallucinations by enforcing retrieval-grounded answer prompts'],
+    outcome: 'Team query time cut from 30+ minutes to under 10 seconds. Staff reclaimed 10+ hours per week collectively, and onboarding time for new hires dropped by over 60%.',
+    images: ['projects/N8n/RAG Workflow For Company Documents stored in Google Drive.png']
+  },
+  'make-inventory-order': {
+    title: 'Inventory & Order Management Agent',
+    time: '4 days', saved: '12+ hrs/week',
+    summary: 'A conversational Slack agent that lets warehouse and ops teams query stock levels, update inventory counts, and create purchase orders via plain-language Slack messages — synced live to Google Sheets with no spreadsheet access required.',
+    tools: ['Make.com', 'Slack API', 'Google Sheets API', 'OpenAI GPT-4', 'Webhooks'],
+    challenge: 'The warehouse manager was sending daily emails to log stock changes, and the ops team was manually opening spreadsheets to look up inventory before every order. The process was slow, error-prone, and required everyone to have spreadsheet access.',
+    approach: 'Built a Make.com scenario triggered by Slack slash commands. Messages are parsed by GPT-4 for intent and entities (product, quantity, action). Reads and writes flow directly to a structured Google Sheets inventory ledger. Confirmations are posted back to the originating Slack thread.',
+    before: ['Email updates sent manually for each stock change', 'Open and search Google Sheets to check any inventory level', 'Create orders by manually editing spreadsheet rows', 'No audit trail for who changed what and when'],
+    after: ['Message @InventoryBot in Slack to query or update stock', 'Natural language processed and sheets updated instantly', 'Orders created from Slack with a single command', 'Full change log auto-maintained in a dedicated audit sheet'],
+    architecture: [
+      { num: '1', title: 'Slack Webhook', desc: 'Slash command or @mention triggers the Make.com scenario via webhook' },
+      { num: '2', title: 'Intent Parsing', desc: 'GPT-4 extracts action type, product name, and quantity from the message' },
+      { num: '3', title: 'Sheets Read/Write', desc: 'Make reads or updates the inventory row in Google Sheets' },
+      { num: '4', title: 'Audit Logging', desc: 'Every change appended to a separate audit log sheet with timestamp and user' },
+      { num: '5', title: 'Slack Confirmation', desc: 'Formatted confirmation message posted back to the original Slack thread' }
+    ],
+    obstacles: ['Fuzzy product name matching when Slack messages use informal shorthand', 'Concurrent write protection to prevent race conditions on shared sheet rows', 'Handling out-of-stock and negative quantity edge cases gracefully', 'Slack OAuth token management for the workspace bot integration'],
+    outcome: 'Inventory queries and updates that took 10–15 minutes across email and spreadsheets now happen in seconds via Slack. The client saved 12+ hours per week and eliminated mis-entry errors.',
+    images: ['projects/Make/Inventory Order Management - Make.png']
+  },
+  'make-invoice-extractor': {
+    title: 'Invoice Extractor Agent',
+    time: '2 days', saved: '8+ hrs/week',
+    summary: 'Automatically watches Gmail for incoming invoice emails, uses AI vision to extract vendor name, amount, date, and invoice number from attachments, and logs every invoice as a structured row in Google Sheets — zero manual entry required.',
+    tools: ['Make.com', 'Gmail API', 'OpenAI GPT-4 Vision', 'Google Sheets API'],
+    challenge: 'The finance team was manually opening every invoice email, reading through PDF attachments, and copying key fields into a tracking spreadsheet. With 20–40 invoices per week, this consumed 8+ hours of skilled accounting time on pure data entry.',
+    approach: 'Make.com scenario watches Gmail for emails with invoice-related subjects or attachment types. The PDF or image attachment is passed to GPT-4 Vision for structured field extraction. Extracted data is validated and appended as a new row in the designated Google Sheets tracker.',
+    before: ['Monitor Gmail inbox throughout the day for new invoices', 'Open each PDF attachment and read through to find key fields', 'Manually type vendor, amount, date, and invoice number into Sheets', 'Repeat 20–40 times per week — risk of typos and missed entries'],
+    after: ['Invoices detected and processed automatically on arrival', 'AI extracts all key fields from any invoice format', 'Structured row appended to Google Sheets within seconds', 'Finance team reviews a clean, complete log — no data entry'],
+    architecture: [
+      { num: '1', title: 'Gmail Watcher', desc: 'Make.com monitors Gmail for new emails with invoice-type attachments' },
+      { num: '2', title: 'Attachment Download', desc: 'PDF or image attachment downloaded and prepared for AI analysis' },
+      { num: '3', title: 'AI Field Extraction', desc: 'GPT-4 Vision reads the invoice and extracts vendor, amount, date, and invoice number' },
+      { num: '4', title: 'Data Validation', desc: 'Extracted values are type-checked and formatted before writing' },
+      { num: '5', title: 'Sheets Append', desc: 'Validated row appended to the invoice tracking Google Sheet' }
+    ],
+    obstacles: ['Handling diverse invoice layouts from different vendors — no two look the same', 'Distinguishing invoice totals from subtotals and tax lines correctly', 'Processing both PDF and image attachment types in a unified pipeline', 'Gmail API polling frequency balanced against rate limits and processing speed'],
+    outcome: '100% of invoices captured and logged automatically. Finance team eliminated 8+ hours of weekly data entry, with a complete, accurate invoice log always up to date.',
+    images: ['projects/Make/Invoice Extractor Agent - Make.png']
+  },
+  'make-receipt-extractor': {
+    title: 'Receipt Extractor Agent',
+    time: '2 days', saved: '6+ hrs/week',
+    summary: 'Monitors Gmail for receipt emails, intelligently parses attached receipts using AI vision, and organizes extracted data — merchant, amount, date, category — into a clean Google Sheets expense log automatically.',
+    tools: ['Make.com', 'Gmail API', 'OpenAI GPT-4 Vision', 'Google Sheets API'],
+    challenge: 'The client was manually forwarding receipts, then going back to log each one into a spreadsheet for expense reporting. The process was scattered, easy to miss, and always backlogged before monthly reporting deadlines.',
+    approach: 'Make.com watches a dedicated Gmail label for new receipt emails, downloads attachments, and sends them to GPT-4 Vision for data extraction. Merchant name, amount, date, and auto-detected expense category are appended to a Google Sheets expense tracker immediately.',
+    before: ['Forward or save each receipt email manually', 'Open attachment and read through it to find key details', 'Open Google Sheets and type in all fields row by row', 'Chase down missing receipts at the end of every month'],
+    after: ['Receipt emails auto-detected on arrival in Gmail', 'AI extracts all fields including expense category', 'Row appended to expense tracker within seconds', 'Month-end reporting starts with a complete, organized log'],
+    architecture: [
+      { num: '1', title: 'Gmail Label Trigger', desc: 'Make.com watches a Gmail label for newly received receipt emails' },
+      { num: '2', title: 'Attachment Processing', desc: 'Receipt image or PDF extracted and formatted for AI analysis' },
+      { num: '3', title: 'AI Extraction', desc: 'GPT-4 Vision extracts merchant, amount, date, and infers expense category' },
+      { num: '4', title: 'Sheets Logging', desc: 'Extracted data appended as a new row to the expense tracker' }
+    ],
+    obstacles: ['Inconsistent receipt formats across digital, photographed, and scanned receipts', 'Expense category inference accuracy — built a classification prompt with 15 categories', 'Handling forwarded email chains vs. direct receipts to avoid duplicate entries', 'Currency formatting normalization across different merchant regions'],
+    outcome: 'Every receipt logged automatically with zero manual effort. The client eliminated 6+ weekly hours of expense admin and arrived at month-end with a complete, accurate ledger for the first time.',
+    images: ['projects/Make/Receipt Extractor Agent - Make.png']
+  },
+  'make-sales-outreach': {
+    title: 'Sales Outreach Agent',
+    time: '5 days', saved: '18+ hrs/week',
+    summary: 'Researches inbound leads, drafts highly personalized outreach emails, checks 7-day calendar availability, and proposes specific meeting times — all automatically within minutes of a lead arriving, so no opportunity slips through.',
+    tools: ['Make.com', 'Gmail API', 'Google Calendar API', 'OpenAI GPT-4', 'Hunter.io'],
+    challenge: 'The sales rep was spending 3+ hours daily researching new leads, writing personalized emails from scratch, and manually checking calendar availability before proposing a meeting time. High-value leads often waited 24+ hours for a first response.',
+    approach: "Make.com scenario triggers on new lead arrival. Hunter.io enriches the lead with company and role context. GPT-4 drafts a personalized email referencing specific details. Google Calendar is queried for open slots in the next 7 days, and 3 options are inserted into the email before it's sent via Gmail.",
+    before: ["Manually research each lead's company and role background", 'Write a personalized email from scratch for every new lead', 'Open Google Calendar to find available slots manually', 'Copy times into the email and send — 30–45 min per lead'],
+    after: ['Lead arrives — research, email, and availability check happen automatically', 'Personalized email with 3 meeting time options sent within minutes', 'Sales rep only steps in to confirm booked meetings', 'No lead waits longer than 15 minutes for initial contact'],
+    architecture: [
+      { num: '1', title: 'Lead Trigger', desc: 'New lead detected via CRM webhook or form submission' },
+      { num: '2', title: 'Lead Enrichment', desc: 'Hunter.io fills in company, role, and professional context for personalization' },
+      { num: '3', title: 'Calendar Query', desc: 'Google Calendar API fetches open 30-minute slots over the next 7 business days' },
+      { num: '4', title: 'Email Draft', desc: 'GPT-4 writes a personalized outreach email with 3 specific meeting time options embedded' },
+      { num: '5', title: 'Gmail Send', desc: "Email sent from the rep's Gmail account with correct reply-to settings" }
+    ],
+    obstacles: ['Personalizing emails convincingly without access to deep lead history', 'Google Calendar time zone handling for leads in different regions', 'Avoiding generic-sounding GPT output — tuned prompts with role-specific examples', 'Rate limiting on Hunter.io enrichment for high-volume lead days'],
+    outcome: 'Lead response time cut from 24+ hours to under 15 minutes. The sales rep reclaimed 18+ weekly hours from research and writing, with measurably higher open and reply rates.',
+    images: ['projects/Make/Slack Sales Outreach Agent - Make.png']
+  },
+  'make-xero-asana': {
+    title: 'Automating Xero Report Delivery to Asana',
+    time: '3 days', saved: '10+ hrs/week',
+    summary: 'Pulls financial reports from Xero on a schedule, processes and formats the data through Google Sheets, then delivers the final report as an Asana task attachment — eliminating weekly manual export, formatting, and distribution entirely.',
+    tools: ['Make.com', 'Xero API', 'Google Sheets API', 'Asana API'],
+    challenge: 'The finance and ops team manually exported Xero reports every week, reformatted them in Google Sheets, and attached them to Asana tasks for the leadership review. The round trip took 2+ hours weekly and was consistently delayed.',
+    approach: "Make.com scenario runs on a weekly schedule. Xero API pulls the latest P&L and cash flow data. A Google Sheets template is populated and exported as a formatted PDF. The file is then attached to a pre-configured Asana task in the leadership review project with a timestamped note.",
+    before: ["Log into Xero and manually export the week's reports", 'Open Google Sheets and reformat the data into the report template', 'Export the formatted sheet as PDF', 'Attach to the correct Asana task and notify the team — 2+ hrs/week'],
+    after: ['Make.com runs automatically every Monday morning', 'Xero data pulled, formatted, and exported without intervention', 'PDF attached to Asana task with summary note automatically', 'Leadership review task ready before the team starts their day'],
+    architecture: [
+      { num: '1', title: 'Scheduled Trigger', desc: 'Make.com scenario fires on a weekly cron schedule (Monday 7 AM)' },
+      { num: '2', title: 'Xero Data Pull', desc: 'Xero API fetches P&L and cash flow report for the previous week' },
+      { num: '3', title: 'Google Sheets Population', desc: 'Financial data written into the pre-built Sheets report template' },
+      { num: '4', title: 'PDF Export', desc: 'Sheets exported as a formatted PDF via the Drive API' },
+      { num: '5', title: 'Asana Delivery', desc: 'PDF attached to the designated Asana task with a timestamped delivery note' }
+    ],
+    obstacles: ['Xero OAuth token refresh flow for unattended scheduled execution', 'Preserving Google Sheets formatting during programmatic data population', 'Mapping Xero account codes to the correct template rows across reporting periods', 'Asana task lookup to dynamically find the correct weekly review task'],
+    outcome: 'Weekly reporting overhead eliminated entirely. Reports land in Asana before business hours every Monday with zero manual work, saving 10+ hours per month.',
+    images: ['projects/Make/Xero-Asana-Googlesheet Integration.png']
+  },
+  'zapier-content-repurposing': {
+    title: 'AI Content Repurposing',
+    time: '2 days', saved: '10+ hrs/week',
+    summary: 'Takes a single published blog post or video transcript and automatically generates platform-optimized versions for Twitter/X, LinkedIn, and email newsletter — adapting format, tone, and length for each channel without any manual rewriting.',
+    tools: ['Zapier', 'OpenAI GPT-4', 'Notion', 'Gmail', 'Twitter/X API'],
+    challenge: 'The content team was publishing one long-form piece per week but manually rewriting it for every channel — tweets, LinkedIn posts, and newsletters — adding 3–4 hours of work per piece just to distribute the same content.',
+    approach: "Zapier workflow triggers when a new post is published to Notion. GPT-4 receives the full content and generates a Twitter thread (10 tweets), a LinkedIn article intro, and an email newsletter draft — each adapted for the platform's format and audience. Outputs are saved as drafts for team review.",
+    before: ['Publish long-form content to the blog or Notion', 'Manually rewrite for Twitter — condensing into thread format', 'Separately rewrite for LinkedIn professional audience', 'Write yet another version for the email newsletter — 3–4 hrs extra per post'],
+    after: ['Publish to Notion as normal', 'Zapier triggers automatically and generates all three variants', 'Twitter thread, LinkedIn post, and email draft ready for review', 'Content team edits and publishes — total extra time under 20 minutes'],
+    architecture: [
+      { num: '1', title: 'Notion Trigger', desc: 'Zapier detects new or updated page in the "Published" Notion database' },
+      { num: '2', title: 'Content Extraction', desc: 'Page body retrieved and cleaned into plain text for AI processing' },
+      { num: '3', title: 'Multi-Format Generation', desc: 'GPT-4 generates Twitter thread, LinkedIn post, and newsletter draft in one pass' },
+      { num: '4', title: 'Draft Storage', desc: 'Outputs saved as Notion pages in a "Content Drafts" database for team review' }
+    ],
+    obstacles: ["Preserving the author's voice and tone across platform-specific rewrites", 'Twitter thread coherence — ensuring each tweet flows naturally from the last', 'Avoiding GPT output that sounds generically AI-written on LinkedIn', 'Notion API page body extraction handling rich text blocks and embeds'],
+    outcome: 'Content distribution time cut from 3–4 hours to under 20 minutes per piece. The team reclaimed 10+ hours weekly and doubled their publishing frequency across all channels.',
+    images: ['projects/Zapier/AI Content Repurposing - Zapier.png']
+  },
+  'zapier-asana-crm': {
+    title: 'Asana CRM Lead Engagement',
+    time: '3 days', saved: '12+ hrs/week',
+    summary: 'Bridges the CRM and Asana so that every new lead automatically creates a tracked Asana task, triggers a multi-step follow-up sequence, and updates the deal stage as actions are completed — keeping the pipeline moving without any manual input.',
+    tools: ['Zapier', 'HubSpot CRM', 'Asana API', 'Gmail', 'Slack'],
+    challenge: 'The sales team was manually creating Asana tasks for every new CRM lead, then copy-pasting contact details and setting follow-up reminders by hand. Tasks were missed, deal stages fell out of sync, and nothing was standardized.',
+    approach: 'Zapier watches for new HubSpot contacts. A multi-step Zap creates a formatted Asana task in the correct project, assigns it to the right rep based on lead source, sends an automated intro email, and posts a Slack notification. Subsequent Asana task completions trigger HubSpot deal stage updates.',
+    before: ['CRM contact created — rep manually creates a matching Asana task', 'Copy-paste lead details into the task description', 'Manually set due date and assignee for each task', 'Forget to update HubSpot when Asana tasks are completed'],
+    after: ['New CRM lead instantly creates a fully populated Asana task', 'Correct assignee and due date set automatically based on lead source rules', 'Automated intro email sent within minutes of lead arrival', 'HubSpot deal stage syncs automatically as Asana tasks are marked complete'],
+    architecture: [
+      { num: '1', title: 'CRM Lead Trigger', desc: 'New HubSpot contact triggers the Zapier workflow' },
+      { num: '2', title: 'Task Creation', desc: 'Asana task created with lead details, assignee, and due date populated' },
+      { num: '3', title: 'Email Sequence', desc: "Automated intro email sent from the assigned rep's Gmail" },
+      { num: '4', title: 'Slack Notification', desc: 'Rep notified in Slack with lead summary and direct Asana task link' },
+      { num: '5', title: 'Stage Sync', desc: 'Asana task status changes reflected back to HubSpot deal stage via reverse Zap' }
+    ],
+    obstacles: ['Bidirectional sync logic to prevent infinite loops between HubSpot and Asana', 'Lead routing rules based on source, territory, and rep capacity', 'Asana project selection based on lead type and pipeline stage mapping', 'Handling CRM duplicates to avoid creating multiple Asana tasks for the same lead'],
+    outcome: 'Zero manual task creation. Every lead is tracked, assigned, and followed up automatically. The team recovered 12+ hours weekly and deal stage accuracy improved from ~60% to near 100%.',
+    images: ['projects/Zapier/Asana CRM Lead Engagement- Zapier.png']
+  },
+  'zapier-leads-enrichment': {
+    title: 'Automated Leads Enrichment',
+    time: '4 days', saved: '15+ hrs/week',
+    summary: 'Automatically enriches every inbound lead with company data, LinkedIn profile, tech stack, and direct contact details — giving the sales team the full picture on every prospect before they ever make the first call.',
+    tools: ['Zapier', 'HubSpot CRM', 'Hunter.io', 'Clearbit', 'Google Sheets'],
+    challenge: 'Sales reps were spending 30–45 minutes per lead manually researching on LinkedIn, Google, and company websites before outreach. With 20+ leads per day, most research was skipped and cold calls were genuinely cold — leading to poor conversion.',
+    approach: 'Zapier workflow triggers on every new HubSpot lead. In parallel, Clearbit enriches company data (size, industry, revenue), Hunter.io finds verified contact emails, and a LinkedIn lookup pulls role and seniority context. All enriched data is written back to the HubSpot contact record and a Google Sheets master list.',
+    before: ['New lead arrives with just name and email — no context', 'Rep opens LinkedIn, Google, and company website manually', 'Notes taken inconsistently or not at all', 'Outreach delayed 30–45 minutes while research is done — or skipped entirely'],
+    after: ['Lead arrives in CRM already enriched with company, role, and contact data', 'Rep opens the contact and has full context before placing the first call', 'Outreach personalization based on actual company data, not guesswork', 'Research time per lead: under 1 minute to review what automation gathered'],
+    architecture: [
+      { num: '1', title: 'Lead Trigger', desc: 'New HubSpot contact or form submission triggers the Zapier workflow' },
+      { num: '2', title: 'Company Enrichment', desc: 'Clearbit looks up company size, industry, funding stage, and tech stack' },
+      { num: '3', title: 'Contact Discovery', desc: 'Hunter.io finds and verifies direct email addresses for the contact' },
+      { num: '4', title: 'CRM Update', desc: 'All enriched fields written back to the HubSpot contact record' },
+      { num: '5', title: 'Sheets Logging', desc: 'Enriched lead data appended to Google Sheets master pipeline tracker' }
+    ],
+    obstacles: ['API confidence score filtering — only writing high-confidence enrichment data to CRM', 'Handling enrichment failures gracefully when leads are from smaller companies', 'Rate limit coordination across multiple simultaneous enrichment API calls', 'Field mapping consistency between Clearbit, Hunter.io, and HubSpot custom properties'],
+    outcome: 'Sales team arrives at every call with full prospect context. Research time per lead dropped from 30–45 minutes to under 1 minute. The team reclaimed 15+ hours weekly, and cold call quality improved measurably.',
+    images: ['projects/Zapier/Automated Leads Enrichment - Zapier.png']
+  }
+};
+
+function openCaseStudy(id) {
+  const d = CASE_STUDIES[id];
+  if (!d) return;
+  document.getElementById('cs-title').textContent = d.title;
+  document.getElementById('cs-badges').innerHTML =
+    '<span class="cs-badge cs-badge-time">&#9201; Completed in ' + d.time + '</span>' +
+    '<span class="cs-badge cs-badge-save">&#9889; ' + d.saved + ' saved</span>';
+  document.getElementById('cs-summary').textContent = d.summary;
+  document.getElementById('cs-tools').innerHTML = d.tools.map(t => '<span class="cs-tool-tag">' + t + '</span>').join('');
+  document.getElementById('cs-challenge').textContent = d.challenge;
+  document.getElementById('cs-approach').textContent = d.approach;
+  document.getElementById('cs-before').innerHTML = d.before.map((s, i) =>
+    '<div class="cs-ba-step"><span class="cs-ba-num">' + (i+1) + '</span><span>' + s + '</span></div>').join('');
+  document.getElementById('cs-after').innerHTML = d.after.map((s, i) =>
+    '<div class="cs-ba-step"><span class="cs-ba-num">' + (i+1) + '</span><span>' + s + '</span></div>').join('');
+  document.getElementById('cs-arch').innerHTML = d.architecture.map(s =>
+    '<div class="cs-arch-step"><div class="cs-arch-num">' + s.num + '</div><div><div class="cs-arch-title">' + s.title + '</div><div class="cs-arch-desc">' + s.desc + '</div></div></div>').join('');
+  document.getElementById('cs-obstacles').innerHTML = d.obstacles.map(o => '<li>' + o + '</li>').join('');
+  document.getElementById('cs-outcome').textContent = d.outcome;
+  document.getElementById('cs-visuals').innerHTML = d.images.map(src =>
+    '<div><img class="cs-visual-img" src="' + src + '" alt="' + d.title + ' workflow" loading="lazy" onclick="event.stopPropagation();openCertLightbox(\'' + src + '\')"><div class="cs-visual-caption">' + d.title + ' — workflow screenshot</div></div>').join('');
+  const modal = document.getElementById('cs-modal');
+  modal.classList.add('open');
+  modal.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCaseStudy() {
+  document.getElementById('cs-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 /* ── Portfolio tab switching ── */
 function switchTab(tool) {
   document.querySelectorAll('.ptab-btn').forEach(b => b.classList.remove('active'));
@@ -2246,7 +2730,7 @@ function closeProjLightbox() {
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeProjLightbox(); closeCertLightbox(); }
+  if (e.key === 'Escape') { closeProjLightbox(); closeCertLightbox(); closeCaseStudy(); }
 });
 
 const root = document.documentElement;
