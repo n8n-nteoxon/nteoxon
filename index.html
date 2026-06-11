@@ -1288,6 +1288,75 @@ input[type="range"].roi-range::-moz-range-thumb {
   .sstack-icon { width: 42px; height: 42px; font-size: 1.1rem; }
 }
 
+
+/* ══ HERO SPLIT (Automation Projects side panel) ══ */
+#hero { flex-direction: row !important; align-items: stretch !important; justify-content: flex-start !important; }
+.hero-bottom { flex: 1 1 52%; width: auto !important; align-items: flex-end; padding: 0 2rem 2rem 4rem !important; }
+.hero-preview {
+  flex: 0 0 46%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+  padding: 2rem;
+  border-left: 1px solid rgba(255,255,255,0.07);
+  background: rgba(5,12,22,0.28);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.hero-ap-card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 70px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+}
+.hero-ap-card img {
+  width: 100%; display: block;
+  filter: brightness(0.68) saturate(1.1);
+  aspect-ratio: 4/5; object-fit: cover;
+}
+.hero-ap-overlay-text {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.15rem;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+.hero-ap-t1, .hero-ap-t2 {
+  font-family: var(--logo-font);
+  font-size: clamp(2rem, 3.2vw, 3.6rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  text-align: center;
+  line-height: 1.05;
+}
+.hero-ap-badge {
+  position: absolute; bottom: 1.5rem; left: 50%;
+  transform: translateX(-50%);
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0.28rem;
+  pointer-events: none;
+}
+.hero-ap-badge-label {
+  font-family: var(--mono); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(200,215,255,0.7); white-space: nowrap;
+}
+@media (max-width: 1024px) {
+  .hero-preview { flex: 0 0 42%; }
+}
+@media (max-width: 900px) {
+  #hero { flex-direction: column !important; align-items: stretch !important; }
+  .hero-bottom { flex: none !important; width: 100% !important; padding: 0 1.5rem 3.5rem !important; align-items: flex-end; }
+  .hero-preview { display: none !important; }
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
@@ -1337,6 +1406,19 @@ input[type="range"].roi-range::-moz-range-thumb {
           <a class="btn-primary" href="#portfolio">View My Work →</a>
           <a class="btn-ghost" href="#contact">Get in Touch</a>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-preview">
+    <div class="hero-ap-card">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Automation Projects">
+      <div class="hero-ap-overlay-text">
+        <span class="hero-ap-t1">Automation</span>
+        <span class="hero-ap-t2">Projects</span>
+      </div>
+      <div class="hero-ap-badge">
+        <span class="hero-ap-badge-label">Portfolio</span>
+        <span class="hero-ap-badge-label">Scroll to Explore ↓</span>
       </div>
     </div>
   </div>
