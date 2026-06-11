@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 560" style="font-family:'Segoe UI',system-ui,sans-serif">
+  <defs>
+    <pattern id="dp" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="20" cy="20" r="1" fill="#ffffff" opacity="0.05"/>
+    </pattern>
+    <marker id="ah" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0,9 3.5,0 7" fill="#3a5272"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="560" fill="#0f1b27"/>
+  <rect width="1920" height="560" fill="url(#dp)"/>
+
+  <!-- ===== CONNECTIONS ===== -->
+  <!-- execute → createFolder -->
+  <path d="M244,236 C288,236 288,306 302,306" stroke="#243650" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+  <!-- schedule → createFolder -->
+  <path d="M244,376 C288,376 288,306 302,306" stroke="#243650" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+  <!-- createFolder → n8n -->
+  <path d="M466,306 L542,306" stroke="#243650" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+  <!-- n8n → loop -->
+  <path d="M706,306 L782,306" stroke="#243650" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+  <!-- loop done → getFolders -->
+  <path d="M946,282 C992,282 992,186 1032,186" stroke="#243650" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+  <!-- loop loop → convertFile -->
+  <path d="M946,330 C992,330 992,426 1032,426" stroke="#243650" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+  <!-- getFolders → filter -->
+  <path d="M1196,186 L1272,186" stroke="#243650" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+  <!-- filter → deleteFolder -->
+  <path d="M1436,186 L1512,186" stroke="#243650" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+  <!-- convertFile → gDriveUpload -->
+  <path d="M1196,426 L1272,426" stroke="#243650" stroke-width="2.5" fill="none" marker-end="url(#ah)"/>
+
+  <!-- Connection labels -->
+  <text x="952" y="272" fill="#3a5272" font-size="11">done</text>
+  <text x="952" y="348" fill="#3a5272" font-size="11">loop</text>
+  <text x="1444" y="180" fill="#3a5272" font-size="11">→ Keep</text>
+
+  <!-- ===== NODES ===== -->
+
+  <!-- NODE: On clicking execute  pos=(80,200) -->
+  <g transform="translate(80,200)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#d97706"/>
+    <rect x="36" y="0" width="8" height="72" fill="#d97706"/>
+    <!-- click cursor -->
+    <path d="M19,18 L19,42 L23,38 L27,47 L30,46 L26,37 L33,37 Z" fill="#fff"/>
+    <text x="56" y="29" fill="#dce8f4" font-size="11.5" font-weight="600">On clicking</text>
+    <text x="56" y="44" fill="#dce8f4" font-size="11.5" font-weight="600">'execute'</text>
+    <text x="56" y="59" fill="#3e5a76" font-size="10">Manual Trigger</text>
+    <circle cx="164" cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+  <!-- NODE: Schedule Trigger  pos=(80,340) -->
+  <g transform="translate(80,340)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#d97706"/>
+    <rect x="36" y="0" width="8" height="72" fill="#d97706"/>
+    <!-- clock -->
+    <circle cx="22" cy="36" r="14" fill="none" stroke="#fff" stroke-width="2.2"/>
+    <line x1="22" y1="36" x2="22" y2="25" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    <line x1="22" y1="36" x2="30" y2="41" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+    <text x="56" y="32" fill="#dce8f4" font-size="11.5" font-weight="600">Schedule</text>
+    <text x="56" y="47" fill="#dce8f4" font-size="11.5" font-weight="600">Trigger</text>
+    <text x="56" y="62" fill="#3e5a76" font-size="10">Every 4 hours</text>
+    <circle cx="164" cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+  <!-- NODE: create new folder  pos=(302,270) -->
+  <g transform="translate(302,270)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#1967d2"/>
+    <rect x="36" y="0" width="8" height="72" fill="#1967d2"/>
+    <!-- Google Drive triangle -->
+    <polygon points="22,14 7,42 37,42" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+    <text x="56" y="29" fill="#dce8f4" font-size="11.5" font-weight="600">create new</text>
+    <text x="56" y="44" fill="#dce8f4" font-size="11.5" font-weight="600">folder</text>
+    <text x="56" y="59" fill="#3e5a76" font-size="10">create: folder</text>
+    <circle cx="0"   cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+    <circle cx="164" cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+  <!-- NODE: n8n  pos=(542,270) -->
+  <g transform="translate(542,270)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#e8437a"/>
+    <rect x="36" y="0" width="8" height="72" fill="#e8437a"/>
+    <!-- n8n logo circles -->
+    <circle cx="13" cy="30" r="8"  fill="none" stroke="#fff" stroke-width="2.5"/>
+    <circle cx="31" cy="30" r="8"  fill="none" stroke="#fff" stroke-width="2.5"/>
+    <circle cx="13" cy="30" r="2.5" fill="#fff"/>
+    <circle cx="31" cy="30" r="2.5" fill="#fff"/>
+    <text x="56" y="36" fill="#dce8f4" font-size="15" font-weight="700">n8n</text>
+    <text x="56" y="54" fill="#3e5a76" font-size="10">getAll: workflow</text>
+    <circle cx="0"   cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+    <circle cx="164" cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+  <!-- NODE: Loop Over Items  pos=(782,270) -->
+  <g transform="translate(782,270)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#059669"/>
+    <rect x="36" y="0" width="8" height="72" fill="#059669"/>
+    <!-- circular arrow -->
+    <path d="M22,18 A14,14 0 1 1 12,46" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="10,46 8,38 18,42" fill="#fff"/>
+    <text x="56" y="29" fill="#dce8f4" font-size="11.5" font-weight="600">Loop Over</text>
+    <text x="56" y="44" fill="#dce8f4" font-size="11.5" font-weight="600">Items</text>
+    <circle cx="0"   cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+    <!-- two right outputs: done (top) / loop (bottom) -->
+    <circle cx="164" cy="12" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+    <circle cx="164" cy="60" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+  <!-- NODE: Get folders  pos=(1032,150) -->
+  <g transform="translate(1032,150)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#16a34a"/>
+    <rect x="36" y="0" width="8" height="72" fill="#16a34a"/>
+    <polygon points="22,14 7,42 37,42" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+    <text x="56" y="32" fill="#dce8f4" font-size="11.5" font-weight="600">Get folders</text>
+    <text x="56" y="49" fill="#3e5a76" font-size="10">search: fileFolder</text>
+    <circle cx="0"   cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+    <circle cx="164" cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+  <!-- NODE: Filter  pos=(1272,150) -->
+  <g transform="translate(1272,150)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#7c3aed"/>
+    <rect x="36" y="0" width="8" height="72" fill="#7c3aed"/>
+    <!-- funnel -->
+    <polygon points="8,19 36,19 26,33 26,52 18,52 18,33" fill="#fff" opacity="0.88"/>
+    <text x="56" y="37" fill="#dce8f4" font-size="14" font-weight="700">Filter</text>
+    <text x="56" y="54" fill="#3e5a76" font-size="10">Items</text>
+    <circle cx="0"   cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+    <circle cx="164" cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+  <!-- NODE: delete folder  pos=(1512,150) -->
+  <g transform="translate(1512,150)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#dc2626"/>
+    <rect x="36" y="0" width="8" height="72" fill="#dc2626"/>
+    <polygon points="22,14 7,42 37,42" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- X inside triangle -->
+    <line x1="16" y1="29" x2="28" y2="39" stroke="#fff" stroke-width="1.8" opacity="0.7"/>
+    <line x1="28" y1="29" x2="16" y2="39" stroke="#fff" stroke-width="1.8" opacity="0.7"/>
+    <text x="56" y="29" fill="#dce8f4" font-size="11.5" font-weight="600">delete folder</text>
+    <text x="56" y="44" fill="#3e5a76" font-size="10">deleteFolder: folder</text>
+    <circle cx="0" cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+  <!-- NODE: Convert to File  pos=(1032,390) -->
+  <g transform="translate(1032,390)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#0891b2"/>
+    <rect x="36" y="0" width="8" height="72" fill="#0891b2"/>
+    <!-- doc + arrow -->
+    <rect x="9" y="18" width="16" height="22" rx="2" fill="none" stroke="#fff" stroke-width="2"/>
+    <line x1="12" y1="25" x2="22" y2="25" stroke="#fff" stroke-width="1.5"/>
+    <line x1="12" y1="30" x2="20" y2="30" stroke="#fff" stroke-width="1.5"/>
+    <line x1="12" y1="35" x2="18" y2="35" stroke="#fff" stroke-width="1.5"/>
+    <path d="M27,23 L35,29 L27,35" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="56" y="29" fill="#dce8f4" font-size="11.5" font-weight="600">Convert to</text>
+    <text x="56" y="44" fill="#dce8f4" font-size="11.5" font-weight="600">File</text>
+    <text x="56" y="59" fill="#3e5a76" font-size="10">Convert to JSON</text>
+    <circle cx="0"   cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+    <circle cx="164" cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+  <!-- NODE: Google Drive upload  pos=(1272,390) -->
+  <g transform="translate(1272,390)">
+    <rect width="164" height="72" rx="8" fill="#182840" stroke="#243650" stroke-width="1.5"/>
+    <rect width="44" height="72" rx="8" fill="#1967d2"/>
+    <rect x="36" y="0" width="8" height="72" fill="#1967d2"/>
+    <polygon points="22,14 7,42 37,42" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+    <text x="56" y="29" fill="#dce8f4" font-size="11.5" font-weight="600">Google Drive</text>
+    <text x="56" y="44" fill="#3e5a76" font-size="10">upload: file</text>
+    <circle cx="0" cy="36" r="5.5" fill="#0f1b27" stroke="#3a5272" stroke-width="1.5"/>
+  </g>
+
+</svg>
