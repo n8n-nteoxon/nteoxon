@@ -1602,13 +1602,13 @@ input[type="range"].roi-range::-moz-range-thumb {
 
     <!-- Tabs -->
     <div class="portfolio-tabs fade-up">
-      <button class="ptab-btn active" onclick="switchTab('make')">
-        <img class="ptab-logo" src="https://cdn.simpleicons.org/make" alt="" onerror="this.style.display='none'">
-        Make.com
-      </button>
-      <button class="ptab-btn" onclick="switchTab('n8n')">
+      <button class="ptab-btn active" onclick="switchTab('n8n')">
         <img class="ptab-logo" src="https://cdn.simpleicons.org/n8n" alt="" onerror="this.style.display='none'">
         n8n
+      </button>
+      <button class="ptab-btn" onclick="switchTab('make')">
+        <img class="ptab-logo" src="https://cdn.simpleicons.org/make" alt="" onerror="this.style.display='none'">
+        Make.com
       </button>
       <button class="ptab-btn" onclick="switchTab('zapier')">
         <img class="ptab-logo" src="https://cdn.simpleicons.org/zapier" alt="" onerror="this.style.display='none'">
@@ -1619,8 +1619,63 @@ input[type="range"].roi-range::-moz-range-thumb {
       </button>
     </div>
 
+    <!-- n8n pane -->
+    <div class="portfolio-pane active" id="pane-n8n">
+      <div class="portfolio-grid fade-up">
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/AI Receptionist.png', this)">
+            <img src="projects/N8n/AI Receptionist.png" alt="AI Receptionist" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">AI Receptionist</div>
+            <p class="pcard-desc">A fully automated AI receptionist that handles inbound calls, qualifies leads, books appointments, and syncs contact data to the CRM — 24/7 with zero human intervention.</p>
+            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">Voice AI</span><span class="tag">CRM Integration</span><span class="tag">Calendar Booking</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/AI Facebook Agent.png', this)">
+            <img src="projects/N8n/AI Facebook Agent.png" alt="AI Facebook Agent" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">AI Facebook Agent</div>
+            <p class="pcard-desc">An AI-powered agent that monitors Facebook pages for messages and comments, then responds intelligently — keeping your social presence active and leads engaged around the clock.</p>
+            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">Facebook API</span><span class="tag">AI Agent</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/ASMR Video Creator.png', this)">
+            <img src="projects/N8n/ASMR Video Creator.png" alt="ASMR Video Creator" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">ASMR Video Creator</div>
+            <p class="pcard-desc">Automated content pipeline that generates, assembles, and exports ASMR-style videos end-to-end — from concept to ready-to-publish video without manual production steps.</p>
+            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">AI Generation</span><span class="tag">Content Automation</span></div>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/RAG Workflow For Company Documents stored in Google Drive.png', this)">
+            <img src="projects/N8n/RAG Workflow For Company Documents stored in Google Drive.png" alt="RAG Workflow for Company Documents" loading="lazy">
+            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
+          </div>
+          <div class="pcard-body">
+            <div class="pcard-title">RAG Workflow for Company Docs</div>
+            <p class="pcard-desc">Retrieval-Augmented Generation system that lets teams ask natural-language questions about their Google Drive documents — turning a passive file store into an intelligent knowledge base.</p>
+            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">RAG</span><span class="tag">Google Drive</span><span class="tag">LLM</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- Make.com pane -->
-    <div class="portfolio-pane active" id="pane-make">
+    <div class="portfolio-pane" id="pane-make">
       <div class="portfolio-grid fade-up">
 
         <div class="pcard">
@@ -1680,61 +1735,6 @@ input[type="range"].roi-range::-moz-range-thumb {
             <div class="pcard-title">Automating Xero Report Delivery to Asana</div>
             <p class="pcard-desc">Pulls financial data from Xero, processes it via Google Sheets, then delivers formatted reports as Asana task attachments on a schedule — eliminating manual reporting overhead entirely.</p>
             <div class="pcard-tags"><span class="tag">Xero</span><span class="tag">Asana</span><span class="tag">Google Sheets</span><span class="tag">Make.com</span></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- n8n pane -->
-    <div class="portfolio-pane" id="pane-n8n">
-      <div class="portfolio-grid fade-up">
-
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/AI Receptionist.png', this)">
-            <img src="projects/N8n/AI Receptionist.png" alt="AI Receptionist" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
-          </div>
-          <div class="pcard-body">
-            <div class="pcard-title">AI Receptionist</div>
-            <p class="pcard-desc">A fully automated AI receptionist that handles inbound calls, qualifies leads, books appointments, and syncs contact data to the CRM — 24/7 with zero human intervention.</p>
-            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">Voice AI</span><span class="tag">CRM Integration</span><span class="tag">Calendar Booking</span></div>
-          </div>
-        </div>
-
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/AI Facebook Agent.png', this)">
-            <img src="projects/N8n/AI Facebook Agent.png" alt="AI Facebook Agent" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
-          </div>
-          <div class="pcard-body">
-            <div class="pcard-title">AI Facebook Agent</div>
-            <p class="pcard-desc">An AI-powered agent that monitors Facebook pages for messages and comments, then responds intelligently — keeping your social presence active and leads engaged around the clock.</p>
-            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">Facebook API</span><span class="tag">AI Agent</span></div>
-          </div>
-        </div>
-
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/ASMR Video Creator.png', this)">
-            <img src="projects/N8n/ASMR Video Creator.png" alt="ASMR Video Creator" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
-          </div>
-          <div class="pcard-body">
-            <div class="pcard-title">ASMR Video Creator</div>
-            <p class="pcard-desc">Automated content pipeline that generates, assembles, and exports ASMR-style videos end-to-end — from concept to ready-to-publish video without manual production steps.</p>
-            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">AI Generation</span><span class="tag">Content Automation</span></div>
-          </div>
-        </div>
-
-        <div class="pcard">
-          <div class="pcard-thumb" onclick="openProjLightbox('projects/N8n/RAG Workflow For Company Documents stored in Google Drive.png', this)">
-            <img src="projects/N8n/RAG Workflow For Company Documents stored in Google Drive.png" alt="RAG Workflow for Company Documents" loading="lazy">
-            <div class="pcard-thumb-overlay"><div class="pcard-zoom-icon">🔍</div></div>
-          </div>
-          <div class="pcard-body">
-            <div class="pcard-title">RAG Workflow for Company Docs</div>
-            <p class="pcard-desc">Retrieval-Augmented Generation system that lets teams ask natural-language questions about their Google Drive documents — turning a passive file store into an intelligent knowledge base.</p>
-            <div class="pcard-tags"><span class="tag">n8n</span><span class="tag">RAG</span><span class="tag">Google Drive</span><span class="tag">LLM</span></div>
           </div>
         </div>
 
@@ -2182,14 +2182,7 @@ input[type="range"].roi-range::-moz-range-thumb {
     <div class="contact-layout">
       <div class="contact-info fade-up">
         <div class="contact-items">
-          <a class="contact-item" href="mailto:teoxon0207@gmail.com">
-            <div class="contact-item-icon">📧</div>
-            <div><div class="contact-item-label">Email</div><div class="contact-item-value">teoxon0207@gmail.com</div></div>
-          </a>
-          <a class="contact-item" href="tel:+639950888033">
-            <div class="contact-item-icon">📱</div>
-            <div><div class="contact-item-label">Phone / WhatsApp</div><div class="contact-item-value">+63 995 088 8033</div></div>
-          </a>
+
           <div class="contact-item" style="cursor:default">
             <div class="contact-item-icon">📍</div>
             <div><div class="contact-item-label">Location</div><div class="contact-item-value">Marikina, Philippines — Remote Worldwide</div></div>
