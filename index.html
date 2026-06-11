@@ -1006,9 +1006,44 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 /* Strip solid section backgrounds so galaxy shows through */
 #services, #tools, #works, #portfolio, #certifications, #contact,
-#trade-offer, #process, #roi-calc, footer {
+#trade-offer, #process, #roi-calc, #value-props, footer {
   background: transparent !important;
 }
+
+/* ══ VALUE PROPS ══ */
+#value-props { padding: 8rem 0; }
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.value-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.75rem;
+  position: relative; overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+.value-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.value-card:nth-child(1)::before { background: #3d6fff; }
+.value-card:nth-child(2)::before { background: #e83875; }
+.value-card:nth-child(3)::before { background: #00c9a7; }
+.value-card:nth-child(4)::before { background: #a855f7; }
+.value-card:nth-child(5)::before { background: #f07830; }
+.value-card:nth-child(6)::before { background: #ffd84d; }
+.value-card:hover { transform: translateY(-4px); border-color: rgba(61,69,170,0.4); background: var(--card-hover); box-shadow: 0 16px 48px rgba(0,0,0,0.2); }
+.value-card:hover::before { transform: scaleX(1); }
+.value-card-icon { font-size: 1.75rem; margin-bottom: 1.25rem; display: block; line-height: 1; }
+.value-card-title { font-family: var(--logo-font); font-size: 1.05rem; font-weight: 800; color: var(--heading); letter-spacing: -0.01em; margin-bottom: 0.6rem; }
+.value-card-desc { font-size: 0.88rem; color: var(--muted2); line-height: 1.75; }
+@media (max-width: 900px) { .value-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .value-grid { grid-template-columns: 1fr; } #value-props { padding: 5rem 0; } }
 
 /* ══ PORTFOLIO ══ */
 #portfolio { padding: 0 0 8rem 0; }
@@ -1271,6 +1306,49 @@ input[type="range"].roi-range::-moz-range-thumb {
           <a class="btn-primary" href="#portfolio">View My Work →</a>
           <a class="btn-ghost" href="#contact">Get in Touch</a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I BRING TO THE TABLE -->
+<section id="value-props">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-num">Value</div>
+      <h2 class="section-title">What I Bring to the Table</h2>
+      <p class="section-sub">Beyond technical skills — measurable outcomes, clear communication, and systems that actually work in production.</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-card fade-up">
+        <span class="value-card-icon">⚡</span>
+        <h3 class="value-card-title">End-to-End Automation</h3>
+        <p class="value-card-desc">From scoping to deployment — I own the full automation lifecycle across n8n, Make, and custom API integrations.</p>
+      </div>
+      <div class="value-card fade-up">
+        <span class="value-card-icon">🧠</span>
+        <h3 class="value-card-title">AI-Native Thinking</h3>
+        <p class="value-card-desc">LLMs, RAG pipelines, and intelligent agents aren't buzzwords — they're default considerations in every solution I build.</p>
+      </div>
+      <div class="value-card fade-up">
+        <span class="value-card-icon">🔗</span>
+        <h3 class="value-card-title">Cross-Stack Integration</h3>
+        <p class="value-card-desc">REST APIs, webhooks, databases, and cloud services. If it has an API, I can connect it. If it doesn't, I'll find a way.</p>
+      </div>
+      <div class="value-card fade-up">
+        <span class="value-card-icon">📋</span>
+        <h3 class="value-card-title">Project Ownership</h3>
+        <p class="value-card-desc">No micromanagement needed. I scope, plan, execute, and deliver — with clear milestones, updates, and documentation throughout.</p>
+      </div>
+      <div class="value-card fade-up">
+        <span class="value-card-icon">🚀</span>
+        <h3 class="value-card-title">Fast Iteration</h3>
+        <p class="value-card-desc">From brief to working prototype in days, not months. I validate before I ship, so you're never left waiting on rework.</p>
+      </div>
+      <div class="value-card fade-up">
+        <span class="value-card-icon">📈</span>
+        <h3 class="value-card-title">Measurable ROI</h3>
+        <p class="value-card-desc">Every solution is anchored to business outcomes — hours saved, costs cut, errors eliminated. If it doesn't move the needle, it's not done.</p>
       </div>
     </div>
   </div>
