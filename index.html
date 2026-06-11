@@ -2869,7 +2869,6 @@ function openCaseStudy(id) {
   if (!d) return;
   document.getElementById('cs-title').textContent = d.title;
   document.getElementById('cs-badges').innerHTML =
-    '<span class="cs-badge cs-badge-time">&#9201; Completed in ' + d.time + '</span>' +
     '<span class="cs-badge cs-badge-save">&#9889; ' + d.saved + ' saved</span>';
   document.getElementById('cs-summary').textContent = d.summary;
   document.getElementById('cs-tools').innerHTML = d.tools.map(t => '<span class="cs-tool-tag">' + t + '</span>').join('');
