@@ -1192,20 +1192,23 @@ input[type="range"].roi-range::-moz-range-thumb {
 .srv-info {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 3.5rem 5vw 3rem;
-  background: linear-gradient(to top, rgba(0,0,8,0.88) 0%, rgba(0,0,0,0.18) 65%, transparent 100%);
+  background: linear-gradient(to top, rgba(0,0,8,0.96) 0%, rgba(0,0,8,0.72) 45%, rgba(0,0,0,0.22) 72%, transparent 100%);
   will-change: opacity; opacity: 0; z-index: 25; pointer-events: none;
 }
 .srv-info-num {
   font-family: var(--mono); font-size: 0.62rem;
-  color: rgba(100,120,255,0.85); letter-spacing: 0.18em; margin-bottom: 0.45rem;
+  color: rgba(140,160,255,1); letter-spacing: 0.18em; margin-bottom: 0.45rem;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.8);
 }
 .srv-info-name {
   font-family: var(--logo-font); font-size: clamp(1.35rem, 2.4vw, 1.9rem);
-  font-weight: 800; color: #fff; margin-bottom: 0.55rem; line-height: 1.28;
+  font-weight: 800; color: #ffffff; margin-bottom: 0.55rem; line-height: 1.28;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.95), 0 1px 6px rgba(0,0,0,1);
 }
 .srv-info-desc {
-  font-size: 0.9rem; color: rgba(218,228,250,0.78);
+  font-size: 0.9rem; color: rgba(230,240,255,0.96);
   max-width: 560px; line-height: 1.78; margin-bottom: 1rem;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.9);
 }
 .srv-info-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .srv-info-tags .tag {
@@ -2918,8 +2921,8 @@ function handleSubmit(btn) {
       s.cue.style.transform    = 'translateX('  + tx + 'vw)';
       s.cue.style.opacity      = String(clamp(1 - p * 3, 0, 1));
 
-      // service details fade in at the bottom once nearly expanded
-      var infoP = p > 0.86 ? (p - 0.86) / 0.14 : 0;
+      // service details visible from the beginning of the transition
+      var infoP = clamp(p * 6, 0, 1);
       s.info.style.opacity = String(clamp(infoP, 0, 1));
     });
 
