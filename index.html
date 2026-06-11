@@ -976,12 +976,14 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 /* Strip solid section backgrounds so galaxy shows through */
 #services, #tools, #works, #portfolio, #certifications, #contact,
-#trade-offer, #process, #value-props, footer {
+#trade-offer, #process, #value-props, #roi-calc, footer {
   background: transparent !important;
 }
-/* ROI calc keeps a solid background so particles don't show through */
-#roi-calc {
-  background: var(--bg) !important;
+/* ROI calc inner cards keep solid backgrounds so particles don't bleed through */
+.roi-inputs,
+.roi-workflow-card,
+.roi-savings-card {
+  background: var(--bg2) !important;
 }
 
 /* ══ PERFORMANCE ══ */
