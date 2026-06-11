@@ -1013,106 +1013,6 @@ input[type="range"].roi-range::-moz-range-thumb {
 /* ══ PORTFOLIO ══ */
 #portfolio { padding: 0 0 8rem 0; }
 
-/* ══ PORTFOLIO SCROLL EXPANSION HERO ══ */
-.psh-outer {
-  position: relative;
-  height: calc(100vh + 700px);
-}
-.psh-sticky {
-  position: sticky;
-  top: 0;
-  height: 100dvh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.psh-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  transition: opacity 0.08s linear;
-}
-.psh-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-.psh-bg-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 27, 39, 0.35);
-}
-.psh-media-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.35);
-  width: 300px;
-  height: 400px;
-  max-width: 95vw;
-  max-height: 85vh;
-  transition: width 0.03s linear, height 0.03s linear;
-}
-.psh-media-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  pointer-events: none;
-}
-.psh-media-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  transition: opacity 0.08s linear;
-}
-.psh-title-wrap {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  pointer-events: none;
-  mix-blend-mode: difference;
-}
-.psh-title-first,
-.psh-title-rest {
-  font-family: var(--logo-font);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 700;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  text-align: center;
-  will-change: transform;
-}
-.psh-hints-row {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  pointer-events: none;
-}
-.psh-hint-text {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(200, 215, 255, 0.75);
-  white-space: nowrap;
-  will-change: transform;
-}
 
 .portfolio-tabs {
   display: flex; align-items: center; justify-content: center;
@@ -1376,32 +1276,6 @@ input[type="range"].roi-range::-moz-range-thumb {
   </div>
 </section>
 
-<!-- AUTOMATION PROJECTS SCROLL EXPANSION -->
-<div id="psh-outer" class="psh-outer">
-  <div class="psh-sticky">
-
-    <div id="psh-bg" class="psh-bg">
-      <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1920&q=80" alt="">
-      <div class="psh-bg-overlay"></div>
-    </div>
-
-    <div id="psh-media-box" class="psh-media-box">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&q=80" alt="Automation Projects">
-      <div id="psh-media-overlay" class="psh-media-overlay"></div>
-    </div>
-
-    <div class="psh-title-wrap">
-      <h2 id="psh-title-first" class="psh-title-first">Automation</h2>
-      <h2 id="psh-title-rest" class="psh-title-rest">Projects</h2>
-    </div>
-
-    <div class="psh-hints-row">
-      <p id="psh-date" class="psh-hint-text">Portfolio</p>
-      <p id="psh-hint" class="psh-hint-text">Scroll to Explore ↓</p>
-    </div>
-
-  </div>
-</div>
 
 <!-- SERVICES -->
 <section id="services">
@@ -2944,50 +2818,6 @@ function handleSubmit(btn) {
 
 <script>
 
-/* ══ PORTFOLIO SCROLL EXPANSION HERO ══ */
-(function () {
-  var pshOuter = document.getElementById('psh-outer');
-  if (!pshOuter) return;
-
-  function update() {
-    var rect        = pshOuter.getBoundingClientRect();
-    var outerH      = pshOuter.offsetHeight;
-    var scrollRange = outerH - window.innerHeight;
-    if (scrollRange <= 0) return;
-
-    var scrolled = -rect.top;
-    var p        = Math.max(0, Math.min(1, scrolled / scrollRange));
-    var mobile   = window.innerWidth < 768;
-
-    var mw = Math.min(300 + p * (mobile ? 650 : 1150), window.innerWidth  * 0.95);
-    var mh = Math.min(400 + p * (mobile ? 200 :  380), window.innerHeight * 0.85);
-    var tx = p * (mobile ? 180 : 150); /* vw — mirrors the React component */
-
-    var mb = document.getElementById('psh-media-box');
-    if (mb) { mb.style.width = mw + 'px'; mb.style.height = mh + 'px'; }
-
-    var bg = document.getElementById('psh-bg');
-    if (bg) bg.style.opacity = 1 - p;
-
-    var ov = document.getElementById('psh-media-overlay');
-    if (ov) ov.style.opacity = Math.max(0, 0.5 - p * 0.3);
-
-    var tf = document.getElementById('psh-title-first');
-    if (tf) tf.style.transform = 'translateX(-' + tx + 'vw)';
-    var tr = document.getElementById('psh-title-rest');
-    if (tr) tr.style.transform = 'translateX(' + tx + 'vw)';
-
-    var pd = document.getElementById('psh-date');
-    if (pd) pd.style.transform = 'translateX(-' + tx + 'vw)';
-    var ph = document.getElementById('psh-hint');
-    if (ph) ph.style.transform = 'translateX(' + tx + 'vw)';
-  }
-
-  window.addEventListener('scroll', update, { passive: true });
-  window.addEventListener('resize', update);
-  document.addEventListener('DOMContentLoaded', update);
-  update();
-})();
 
 // ══ SERVICES SCROLL EXPANSION ══
 (function () {
