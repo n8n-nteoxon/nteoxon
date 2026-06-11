@@ -822,6 +822,27 @@ input[type="range"].roi-range::-moz-range-thumb {
   color: var(--muted); margin-top: 2rem; letter-spacing: 0.04em;
   font-style: italic;
 }
+.roi-disclaimer {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  margin-top: 1.25rem;
+  padding: 1rem 1.1rem;
+  background: rgba(240,120,48,0.07);
+  border: 1px solid rgba(240,120,48,0.22);
+  border-radius: 10px;
+}
+.roi-disclaimer-icon {
+  font-size: 0.85rem; color: var(--accent2);
+  flex-shrink: 0; margin-top: 1px; line-height: 1.5;
+}
+.roi-disclaimer p {
+  font-family: var(--mono); font-size: 0.61rem;
+  color: var(--muted2); line-height: 1.75;
+  letter-spacing: 0.02em;
+}
+.roi-disclaimer p strong {
+  color: var(--accent2); font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase; font-size: 0.6rem;
+}
 .roi-results { display: flex; flex-direction: column; gap: 1rem; }
 .roi-saved-card {
   background: var(--cyan);
@@ -2404,6 +2425,10 @@ input[type="range"].roi-range::-moz-range-thumb {
             <input type="range" class="roi-range" id="roi-level" min="10" max="95" value="70" step="5" oninput="updateROI()">
           </div>
           <p class="roi-footnote">* Estimates based on typical automation scenarios</p>
+          <div class="roi-disclaimer">
+            <span class="roi-disclaimer-icon">⚠</span>
+            <p><strong>Disclaimer:</strong> The savings estimates provided are illustrative ballpark figures based on typical business processes, industry averages, and an assumed automation rate of 70%. Actual results may vary depending on your team size, workflow complexity, current tools, implementation quality, and operational efficiency. This calculator is intended to provide a general estimate of potential time and cost savings, not a guarantee of specific outcomes.</p>
+          </div>
         </div>
         <!-- Results -->
         <div class="roi-results">
