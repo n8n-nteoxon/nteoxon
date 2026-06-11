@@ -1221,8 +1221,18 @@ input[type="range"].roi-range::-moz-range-thumb {
 .proj-lightbox-close:hover { color: #fff; }
 
 /* ══ SERVICES (ScrollStack) ══ */
-#services { padding: 8rem 0; }
-.sstack-wrapper { position: relative; display: flex; flex-direction: column; }
+#services { padding: 8rem 0; position: relative; overflow: hidden; }
+#services-matrix-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.13;
+}
+#services .container { position: relative; z-index: 1; }
+.sstack-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; }
 .sstack-item:nth-child(1) { z-index: 1; }
 .sstack-item:nth-child(2) { z-index: 2; }
 .sstack-item:nth-child(3) { z-index: 3; }
@@ -1334,6 +1344,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 
 <!-- SERVICES -->
 <section id="services">
+  <canvas id="services-matrix-canvas" aria-hidden="true"></canvas>
   <div class="container">
     <div class="section-header fade-up">
       <div class="section-num">Services</div>
@@ -2964,6 +2975,74 @@ function handleSubmit(btn) {
   window.addEventListener('resize', update);
   document.addEventListener('DOMContentLoaded', update);
   update();
+})();
+
+// ══ SERVICES MATRIX RAIN ══
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var canvas = document.getElementById('services-matrix-canvas');
+  var section = document.getElementById('services');
+  if (!canvas || !section) return;
+
+  var ctx = canvas.getContext('2d');
+  var CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン01アカサ10ABCDEF';
+  var FONT_SIZE = 14;
+  var FPS_MS = 1000 / 20;
+  var drops = [];
+  var rafId = null;
+  var lastTs = 0;
+  var running = false;
+
+  function resize() {
+    canvas.width  = section.offsetWidth;
+    canvas.height = section.offsetHeight;
+    var cols = Math.floor(canvas.width / FONT_SIZE);
+    drops = Array.from({ length: cols }, function () { return Math.floor(Math.random() * -80); });
+  }
+
+  function draw(ts) {
+    rafId = requestAnimationFrame(draw);
+    if (ts - lastTs < FPS_MS) return;
+    lastTs = ts;
+
+    ctx.fillStyle = 'rgba(0,0,0,0.06)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = FONT_SIZE + 'px monospace';
+
+    for (var i = 0; i < drops.length; i++) {
+      var char = CHARS[Math.floor(Math.random() * CHARS.length)];
+      var y = drops[i] * FONT_SIZE;
+      // bright white head, green body
+      ctx.fillStyle = drops[i] >= 0 && drops[i] < 3 ? '#ccffcc' : '#00e535';
+      if (y >= 0 && y < canvas.height) {
+        ctx.fillText(char, i * FONT_SIZE, y);
+      }
+      if (y > canvas.height && Math.random() > 0.975) {
+        drops[i] = Math.floor(Math.random() * -40);
+      }
+      drops[i]++;
+    }
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting && !running) {
+        resize();
+        running = true;
+        lastTs = 0;
+        rafId = requestAnimationFrame(draw);
+      } else if (!entry.isIntersecting && running) {
+        cancelAnimationFrame(rafId);
+        running = false;
+      }
+    });
+  }, { threshold: 0 });
+
+  io.observe(section);
+
+  window.addEventListener('resize', function () {
+    if (running) { cancelAnimationFrame(rafId); resize(); rafId = requestAnimationFrame(draw); }
+  });
 })();
 
 // ══ CLICK SPARK ══
