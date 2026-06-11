@@ -1244,7 +1244,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   border: 1px solid var(--border2);
   border-radius: var(--radius-lg);
   padding: 2rem 2.5rem;
-  margin-bottom: 80px;
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: flex-start;
   gap: 2rem;
@@ -1284,7 +1284,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 @media (max-width: 600px) {
   #services { padding: 5rem 0; }
-  .sstack-item { padding: 1.5rem; gap: 1.25rem; margin-bottom: 60px; }
+  .sstack-item { padding: 1.5rem; gap: 1.25rem; }
   .sstack-icon { width: 42px; height: 42px; font-size: 1.1rem; }
 }
 
@@ -2835,102 +2835,6 @@ function handleSubmit(btn) {
 </script>
 
 <script>
-// ══ SCROLL STACK (Services) ══
-(function () {
-  var ITEM_SCALE      = 0.03;
-  var ITEM_STACK_DIST = 30;
-  var BASE_SCALE      = 0.85;
-  var STACK_POS       = 0.20;
-  var SCALE_END_POS   = 0.10;
-
-  function docOffsetTop(el) {
-    // offsetParent traversal — unaffected by content-visibility or transforms
-    var top = 0;
-    var e   = el;
-    while (e) { top += e.offsetTop || 0; e = e.offsetParent; }
-    return top;
-  }
-
-  function run() {
-    var wrapper = document.querySelector('.sstack-wrapper');
-    if (!wrapper) return;
-
-    var cards  = Array.from(wrapper.querySelectorAll('.sstack-item'));
-    var endEl  = wrapper.querySelector('.sstack-end');
-    var n      = cards.length;
-    var last   = new Array(n).fill(null);
-    var tops   = new Array(n).fill(0);
-    var endTop = 0;
-    var cached = false;
-
-    function cacheTops() {
-      // Reset transforms so positions are measured from natural layout
-      cards.forEach(function (c) { c.style.transform = 'none'; });
-      cards.forEach(function (c, i) { tops[i] = docOffsetTop(c); });
-      endTop = endEl ? docOffsetTop(endEl) : docOffsetTop(cards[n - 1]) + cards[n - 1].offsetHeight;
-      // Restore last known transforms
-      last.fill(null);
-      cached = true;
-    }
-
-    function update() {
-      if (!cached) { cacheTops(); }
-      var st   = window.scrollY;
-      var vh   = window.innerHeight;
-      var spx  = STACK_POS * vh;
-      var sepx = SCALE_END_POS * vh;
-      var pEnd = endTop - vh * 0.5;
-
-      cards.forEach(function (card, i) {
-        var ct = tops[i];
-        var tS = ct - spx - ITEM_STACK_DIST * i;
-        var tE = ct - sepx;
-        var pS = tS;
-
-        var sp = 0;
-        if (st >= tS && st <= tE) sp = (st - tS) / Math.max(1, tE - tS);
-        else if (st > tE) sp = 1;
-
-        var scale = 1 - sp * (1 - (BASE_SCALE + i * ITEM_SCALE));
-        var ty = 0;
-        if (st >= pS && st <= pEnd)  ty = st - ct + spx + ITEM_STACK_DIST * i;
-        else if (st > pEnd)          ty = pEnd - ct + spx + ITEM_STACK_DIST * i;
-
-        var ty2 = Math.round(ty * 10) / 10;
-        var sc2 = Math.round(scale * 1000) / 1000;
-        var l   = last[i];
-        if (!l || Math.abs(l.t - ty2) > 0.1 || Math.abs(l.s - sc2) > 0.001) {
-          card.style.transform = 'translate3d(0,' + ty2 + 'px,0) scale(' + sc2 + ')';
-          last[i] = { t: ty2, s: sc2 };
-        }
-      });
-    }
-
-    // Style cards
-    cards.forEach(function (c) {
-      c.style.transformOrigin    = 'top center';
-      c.style.willChange         = 'transform';
-      c.style.backfaceVisibility = 'hidden';
-    });
-
-    // Cache positions after full page load (fonts, images settled)
-    function init() {
-      cacheTops();
-      update();
-    }
-    if (document.readyState === 'complete') init();
-    else window.addEventListener('load', init);
-
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', function () {
-      cached = false;
-      requestAnimationFrame(function () { cacheTops(); update(); });
-    });
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
-  else run();
-})();
 
 /* ══ PORTFOLIO SCROLL EXPANSION HERO ══ */
 (function () {
