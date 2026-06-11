@@ -350,14 +350,6 @@ section { position: relative; z-index: 2; }
   border-radius: 16px;
   flex: 1;
 }
-.exp-elec-canvas {
-  position: absolute;
-  inset: -8px;
-  width: calc(100% + 16px);
-  height: calc(100% + 16px);
-  pointer-events: none;
-  z-index: 2;
-}
 .exp-date { font-family: var(--mono); font-size: 0.8rem; color: var(--cyan); letter-spacing: 0.1em; text-align: center; margin-bottom: 0.65rem; }
 .exp-role { font-family: var(--logo-font); font-size: 1.25rem; font-weight: 700; color: var(--heading); letter-spacing: -0.01em; margin-bottom: 0.3rem; text-align: center; line-height: 1.4; }
 .exp-company { font-size: 0.92rem; color: var(--muted2); margin-bottom: 1rem; text-align: center; }
@@ -902,7 +894,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   contain-intrinsic-size: 0 600px;
 }
 /* Promote canvas to own compositor layer */
-#galaxyCanvas, .exp-elec-canvas {
+#galaxyCanvas {
   will-change: transform;
   transform: translateZ(0);
 }
@@ -2712,119 +2704,6 @@ function handleSubmit(btn) {
 
   initStars();
   raf = requestAnimationFrame(draw);
-})();
-</script>
-<script>
-/* ── ElectricBorder for experience cards ── */
-(function () {
-  'use strict';
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var isMobileEB = window.innerWidth <= 900 || navigator.maxTouchPoints > 0;
-  if (isMobileEB) return; // skip on mobile/tablet to protect GPU budget
-
-  function electricBorder(canvas, opts) {
-    var color       = opts.color     || '#7df9ff';
-    var speed       = (opts.speed    || 1) * 0.005;
-    var chaos       = opts.chaos     || 0.12;
-    var thickness   = opts.thickness || 2;
-    var PAD         = 8; // canvas overflow on each side
-
-    var ctx = canvas.getContext('2d');
-    var w = 0, h = 0, innerW = 0, innerH = 0, perimeter = 0;
-    var lastW = -1, lastH = -1;
-    var t = Math.random();
-    var trail = [];
-    var TRAIL = 22;
-
-    function measure() {
-      var dpr    = window.devicePixelRatio || 1;
-      var parent = canvas.parentElement;
-      if (!parent) return;
-      var nw = parent.offsetWidth  + PAD * 2;
-      var nh = parent.offsetHeight + PAD * 2;
-      if (nw === lastW && nh === lastH) return;
-      canvas.width  = nw * dpr;
-      canvas.height = nh * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      w = nw; h = nh;
-      innerW = w - PAD * 2;
-      innerH = h - PAD * 2;
-      perimeter = 2 * (innerW + innerH);
-      lastW = nw; lastH = nh;
-      trail = [];
-    }
-
-    function getPoint(progress) {
-      var p   = ((progress % 1) + 1) % 1;
-      var len = p * perimeter;
-      if (len < innerW) return { x: PAD + len,          y: PAD };
-      len -= innerW;
-      if (len < innerH) return { x: PAD + innerW,        y: PAD + len };
-      len -= innerH;
-      if (len < innerW) return { x: PAD + innerW - len,  y: PAD + innerH };
-      len -= innerW;
-      return             { x: PAD,                       y: PAD + innerH - len };
-    }
-
-    var prevTs = 0;
-    var rafEB;
-    function frame(ts) {
-      var dt = Math.min((ts - prevTs) / 16.667, 3);
-      prevTs = ts;
-      measure();
-      if (!w || !h) { rafEB = requestAnimationFrame(frame); return; }
-
-      ctx.clearRect(0, 0, w, h);
-      t += speed * dt;
-
-      var base = getPoint(t);
-      trail.push({
-        x: base.x + (Math.random() - 0.5) * chaos * 28,
-        y: base.y + (Math.random() - 0.5) * chaos * 28
-      });
-      if (trail.length > TRAIL) trail.shift();
-
-      var shadowThreshold = Math.floor(trail.length * 0.65);
-      ctx.shadowBlur  = 0;
-      ctx.lineCap     = 'round';
-      ctx.strokeStyle = color;
-      for (var i = 1; i < trail.length; i++) {
-        var a  = i / trail.length;
-        var a2 = a * a;
-        ctx.globalAlpha = a2;
-        ctx.lineWidth   = thickness * (0.4 + 0.6 * a);
-        if (i >= shadowThreshold) {
-          ctx.shadowColor = color;
-          ctx.shadowBlur  = 8 * a;
-        } else {
-          ctx.shadowBlur  = 0;
-        }
-        ctx.beginPath();
-        ctx.moveTo(trail[i - 1].x, trail[i - 1].y);
-        ctx.lineTo(trail[i].x,     trail[i].y);
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 1;
-      ctx.shadowBlur  = 0;
-
-      rafEB = requestAnimationFrame(frame);
-    }
-
-    measure();
-    rafEB = requestAnimationFrame(frame);
-
-    document.addEventListener('visibilitychange', function () {
-      if (document.hidden) cancelAnimationFrame(rafEB);
-      else rafEB = requestAnimationFrame(frame);
-    });
-  }
-
-  document.querySelectorAll('.timeline-content').forEach(function (el) {
-    var canvas        = document.createElement('canvas');
-    canvas.className  = 'exp-elec-canvas';
-    el.appendChild(canvas);
-    electricBorder(canvas, { color: '#7df9ff', speed: 1, chaos: 0.12, thickness: 2 });
-  });
 })();
 </script>
 
