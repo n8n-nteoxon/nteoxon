@@ -2877,9 +2877,10 @@ function handleSubmit(btn) {
     var idx = clamp(Math.floor(scrolled / per), 0, TOTAL - 1);
     var p   = clamp((scrolled - idx * per) / per, 0, 1);
 
-    // Dimensions
-    var mw = clamp(BASE_W + p * MAX_W, BASE_W, window.innerWidth  * 0.99);
-    var mh = clamp(BASE_H + p * MAX_H, BASE_H, vh * 0.95);
+    // Dimensions – slide 1 (Workflow Automation) expands to true fullscreen
+    var fsSlide = (idx === 1);
+    var mw = clamp(BASE_W + p * (fsSlide ? window.innerWidth : MAX_W), BASE_W, fsSlide ? window.innerWidth : window.innerWidth * 0.99);
+    var mh = clamp(BASE_H + p * (fsSlide ? vh               : MAX_H), BASE_H, fsSlide ? vh               : vh * 0.95);
     var tx = p * (isMobile ? 32 : 50); // vw shift
 
     slides.forEach(function (s, i) {
@@ -2895,6 +2896,7 @@ function handleSubmit(btn) {
       // expanding image frame
       s.frame.style.width  = mw + 'px';
       s.frame.style.height = mh + 'px';
+      if (i === 1) s.frame.style.borderRadius = (16 * (1 - p)) + 'px';
 
       // dark overlay on the image dims slightly
       s.veil.style.opacity = String(clamp(0.65 - p * 0.55, 0.1, 0.65));
