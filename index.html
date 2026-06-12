@@ -15,10 +15,10 @@
 
 /* ══ THEME TOKENS ══ */
 :root {
-  --cyan:      #3B82F6;
-  --cyan-glow: rgba(59,130,246,0.18);
-  --cyan-soft: rgba(59,130,246,0.10);
-  --cyan-dim:  rgba(59,130,246,0.06);
+  --cyan:      #06B6D4;
+  --cyan-glow: rgba(6,182,212,0.20);
+  --cyan-soft: rgba(6,182,212,0.12);
+  --cyan-dim:  rgba(6,182,212,0.07);
   --accent2:   #f07830;
   --logo-font: 'Sora', sans-serif;
   --body-font: 'Inter', sans-serif;
@@ -56,10 +56,10 @@
   --card-bg:    rgba(255,255,255,0.65);
   --card-hover: rgba(255,255,255,0.95);
   --nav-bg:     rgba(245,249,251,0.92);
-  --shadow-lg:  0 24px 64px rgba(59,130,246,0.10);
-  --cyan-glow:  rgba(59,130,246,0.12);
-  --cyan-soft:  rgba(59,130,246,0.09);
-  --cyan-dim:   rgba(59,130,246,0.05);
+  --shadow-lg:  0 24px 64px rgba(6,182,212,0.10);
+  --cyan-glow:  rgba(6,182,212,0.14);
+  --cyan-soft:  rgba(6,182,212,0.10);
+  --cyan-dim:   rgba(6,182,212,0.06);
 }
 
 /* ══ BASE ══ */
@@ -169,15 +169,15 @@ nav {
   background: transparent; border-radius: 8px;
   cursor: pointer; text-decoration: none; transition: var(--trans);
   font-weight: 600;
-  box-shadow: 0 0 12px rgba(59,130,246,0.25);
+  box-shadow: 0 0 12px rgba(6,182,212,0.25);
 }
 [data-theme="dark"] .nav-cta {
-  box-shadow: 0 0 16px rgba(59,130,246,0.40), inset 0 0 12px rgba(59,130,246,0.08);
+  box-shadow: 0 0 16px rgba(6,182,212,0.40), inset 0 0 12px rgba(6,182,212,0.08);
 }
 [data-theme="light"] .nav-cta {
-  box-shadow: 0 0 12px rgba(59,130,246,0.20);
+  box-shadow: 0 0 12px rgba(6,182,212,0.20);
 }
-.nav-cta:hover { background: var(--cyan); color: #ffffff; box-shadow: 0 0 24px rgba(59,130,246,0.55); transform: translateY(-1px); }
+.nav-cta:hover { background: var(--cyan); color: #ffffff; box-shadow: 0 0 28px rgba(6,182,212,0.60); transform: translateY(-1px); }
 
 .nav-toggle {
   display: none; flex-direction: column; gap: 5px;
@@ -193,7 +193,7 @@ section { position: relative; z-index: 2; }
 #hero {
   position: relative; min-height: 100vh; overflow: hidden;
   display: flex; flex-direction: column; justify-content: flex-end;
-  background: linear-gradient(135deg, #0F172A 0%, #1e3a5f 50%, #0F172A 100%);
+  background: linear-gradient(135deg, #0F172A 0%, #0c2a3a 50%, #0F172A 100%);
 }
 #heroVideo {
   position: absolute; inset: 0; width: 100%; height: 100%;
@@ -286,14 +286,14 @@ section { position: relative; z-index: 2; }
 .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
 .btn-primary {
-  padding: 0.95rem 2.2rem; background: linear-gradient(135deg, #3f53ff, #5fb1ff);
+  padding: 0.95rem 2.2rem; background: linear-gradient(135deg, #0284c7 0%, #06B6D4 100%);
   color: #ffffff;
   border: none; border-radius: 8px; font-family: var(--mono); font-size: 0.85rem;
   letter-spacing: 0.05em; cursor: pointer; text-decoration: none;
   transition: var(--trans); display: inline-flex; align-items: center; gap: 0.5rem;
-  box-shadow: 0 10px 30px rgba(63,83,255,0.45);
+  box-shadow: 0 10px 30px rgba(6,182,212,0.45);
 }
-.btn-primary:hover { background: linear-gradient(135deg, #5f70ff, #8cc2ff); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(63,83,255,0.55); }
+.btn-primary:hover { background: linear-gradient(135deg, #0369a1 0%, #22D3EE 100%); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(6,182,212,0.60); }
 
 .btn-ghost {
   padding: 0.95rem 2.2rem; background: rgba(255,255,255,0.14); color: #ffffff;
@@ -337,7 +337,7 @@ section { position: relative; z-index: 2; }
 .timeline { display: flex; flex-direction: row; align-items: stretch; gap: 0; }
 .timeline-item { flex: 1; display: flex; flex-direction: column; align-items: center; }
 .timeline-track { display: flex; flex-direction: row; align-items: center; width: 100%; margin: 0.75rem 0; }
-.timeline-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cyan); border: 2px solid var(--bg); box-shadow: 0 0 14px rgba(59,130,246,0.8); flex-shrink: 0; transition: border-color 0.35s ease; }
+.timeline-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cyan); border: 2px solid var(--bg); box-shadow: 0 0 14px rgba(6,182,212,0.8); flex-shrink: 0; transition: border-color 0.35s ease; }
 .timeline-line { flex: 1; height: 1px; background: var(--border); }
 .timeline-item:first-child .tl-line-left { visibility: hidden; }
 .timeline-item:last-child .tl-line-right { visibility: hidden; }
@@ -402,7 +402,7 @@ section { position: relative; z-index: 2; }
   border-radius: var(--radius-lg); overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; cursor: pointer; text-decoration: none; display: block;
 }
-.work-card:hover { border-color: rgba(59,130,246,0.5); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(59,130,246,0.15), 0 4px 20px rgba(0,0,0,0.2); }
+.work-card:hover { border-color: rgba(6,182,212,0.5); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(6,182,212,0.15), 0 4px 20px rgba(0,0,0,0.2); }
 .work-thumb { height: 220px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .work-thumb-bg { position: absolute; inset: 0; transition: transform 0.5s ease; }
 .work-card:hover .work-thumb-bg { transform: scale(1.05); }
@@ -438,7 +438,7 @@ section { position: relative; z-index: 2; }
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 .testimonial-card:hover {
-  border-color: rgba(59,130,246,0.5); background: var(--bg3);
+  border-color: rgba(6,182,212,0.5); background: var(--bg3);
   box-shadow: 0 16px 50px var(--cyan-glow); transform: scale(1.04);
 }
 .testimonial-quote { font-size: 1rem; color: var(--text); line-height: 1.8; flex: 1; position: relative; padding-top: 0.5rem; }
@@ -544,7 +544,7 @@ footer {
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; background: var(--bg3);
   display: flex; flex-direction: column;
 }
-.cert-card:hover { border-color: rgba(59,130,246,0.5); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(59,130,246,0.18); }
+.cert-card:hover { border-color: rgba(6,182,212,0.5); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(6,182,212,0.18); }
 .cert-card img { width: 100%; display: block; transition: transform 0.4s ease; flex: 1; }
 .cert-card:hover img { transform: scale(1.03); }
 .cert-card-caption {
@@ -845,11 +845,11 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 .roi-results { display: flex; flex-direction: column; gap: 1rem; }
 .roi-saved-card {
-  background: var(--cyan);
+  background: linear-gradient(135deg, #0284c7, var(--cyan));
   border-radius: var(--radius-lg);
   padding: 1.75rem 2rem;
   display: flex; align-items: center; gap: 1.25rem;
-  box-shadow: 0 8px 40px rgba(59,130,246,0.55);
+  box-shadow: 0 8px 40px rgba(6,182,212,0.55);
 }
 .roi-saved-icon {
   width: 46px; height: 46px; border-radius: 12px;
@@ -898,14 +898,14 @@ input[type="range"].roi-range::-moz-range-thumb {
 .roi-cta-btn {
   display: flex; align-items: center; justify-content: center;
   width: 100%; padding: 1.1rem 2rem;
-  background: var(--cyan); color: #fff;
+  background: linear-gradient(135deg, #0284c7, var(--cyan)); color: #fff;
   border: none; border-radius: 10px;
   font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.12em;
   text-transform: uppercase; cursor: pointer;
   text-decoration: none; transition: var(--trans);
-  box-shadow: 0 4px 24px rgba(59,130,246,0.45);
+  box-shadow: 0 4px 24px rgba(6,182,212,0.45);
 }
-.roi-cta-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(59,130,246,0.65); }
+.roi-cta-btn:hover { background: linear-gradient(135deg, #0369a1, #22D3EE); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(6,182,212,0.65); }
 
 /* ══ ROI WORKFLOW DROPDOWN ══ */
 .roi-workflow-card {
@@ -1090,12 +1090,19 @@ input[type="range"].roi-range::-moz-range-thumb {
 /* ══ HERO METRICS GRID ══ */
 .hero-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-top: 1rem; }
 .hero-metric { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 1rem 1.25rem; text-align: center; backdrop-filter: blur(8px); }
-.hero-metric-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; color: #38bdf8; line-height: 1; margin-bottom: 0.3rem; }
+.hero-metric-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; color: #06B6D4; line-height: 1; margin-bottom: 0.3rem; }
+.hero-metrics-grid .hero-metric:nth-child(1) .hero-metric-val { color: #22D3EE; }
+.hero-metrics-grid .hero-metric:nth-child(2) .hero-metric-val { color: #34D399; }
+.hero-metrics-grid .hero-metric:nth-child(3) .hero-metric-val { color: #FBBF24; }
+.hero-metrics-grid .hero-metric:nth-child(4) .hero-metric-val { color: #A78BFA; }
+.hero-metrics-grid .hero-metric:nth-child(2) { border-color: rgba(52,211,153,0.22); }
+.hero-metrics-grid .hero-metric:nth-child(3) { border-color: rgba(251,191,36,0.22); }
+.hero-metrics-grid .hero-metric:nth-child(4) { border-color: rgba(167,139,250,0.22); }
 .hero-metric-label { font-family: var(--mono); font-size: 0.65rem; color: rgba(255,255,255,0.65); letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* ══ HERO NAME CARD ══ */
 .hero-name-card { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; padding: 0.85rem 1.25rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; backdrop-filter: blur(8px); }
-.hero-initials { width: 46px; height: 46px; border-radius: 10px; background: var(--cyan); display: flex; align-items: center; justify-content: center; font-family: var(--logo-font); font-size: 1.1rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.hero-initials { width: 46px; height: 46px; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #06B6D4); display: flex; align-items: center; justify-content: center; font-family: var(--logo-font); font-size: 1.1rem; font-weight: 800; color: #fff; flex-shrink: 0; box-shadow: 0 0 16px rgba(6,182,212,0.45); }
 .hero-full-name { font-family: var(--logo-font); font-size: 1rem; font-weight: 700; color: #fff; }
 .hero-tagline { font-family: var(--mono); font-size: 0.68rem; color: rgba(255,255,255,0.6); margin-top: 0.2rem; line-height: 1.5; }
 
@@ -1135,7 +1142,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   transition: all 0.22s ease; white-space: nowrap;
 }
 .ptab-btn:hover { color: var(--heading); background: var(--card-hover); }
-.ptab-btn.active { background: var(--cyan); color: #fff; box-shadow: 0 4px 20px rgba(59,130,246,0.45); }
+.ptab-btn.active { background: var(--cyan); color: #fff; box-shadow: 0 4px 20px rgba(6,182,212,0.45); }
 .ptab-logo { width: 24px; height: 24px; object-fit: contain; border-radius: 3px; }
 
 .portfolio-pane { display: none; }
@@ -1154,7 +1161,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   border-radius: var(--radius-lg); overflow: hidden;
   transition: all 0.3s ease; display: flex; flex-direction: column;
 }
-.pcard:hover { border-color: rgba(59,130,246,0.5); background: var(--bg3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(59,130,246,0.15); }
+.pcard:hover { border-color: rgba(6,182,212,0.5); background: var(--bg3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(6,182,212,0.15); }
 
 .pcard-thumb {
   position: relative; cursor: zoom-in; overflow: hidden;
@@ -1233,7 +1240,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   display: flex; flex-direction: column; align-items: center;
   justify-content: center; text-align: center;
   padding: 5rem 2rem;
-  border: 1px solid rgba(59,130,246,0.35);
+  border: 1px solid rgba(6,182,212,0.35);
   border-radius: var(--radius-lg);
   background: var(--card-bg);
   overflow: hidden;
@@ -1242,19 +1249,19 @@ input[type="range"].roi-range::-moz-range-thumb {
 .websites-update-notice::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(59,130,246,0.10) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(6,182,212,0.10) 0%, transparent 70%);
   pointer-events: none;
 }
 .wun-pulse-ring {
   position: absolute; width: 320px; height: 320px; border-radius: 50%;
-  border: 1px solid rgba(59,130,246,0.18);
+  border: 1px solid rgba(6,182,212,0.22);
   animation: wun-ring-pulse 3s ease-in-out infinite;
   pointer-events: none;
 }
 .wun-pulse-ring::after {
   content: '';
   position: absolute; inset: 24px; border-radius: 50%;
-  border: 1px solid rgba(59,130,246,0.12);
+  border: 1px solid rgba(6,182,212,0.14);
   animation: wun-ring-pulse 3s ease-in-out infinite 0.6s;
 }
 @keyframes wun-ring-pulse {
@@ -1286,8 +1293,8 @@ input[type="range"].roi-range::-moz-range-thumb {
 .wun-badge {
   display: inline-flex; align-items: center; gap: 0.55rem;
   padding: 0.5rem 1.25rem;
-  border: 1px solid rgba(59,130,246,0.4); border-radius: 999px;
-  background: rgba(59,130,246,0.10);
+  border: 1px solid rgba(6,182,212,0.4); border-radius: 999px;
+  background: rgba(6,182,212,0.10);
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
   color: var(--cyan); position: relative; z-index: 1;
 }
@@ -1600,7 +1607,7 @@ input[type="range"].roi-range::-moz-range-thumb {
     <div class="hero-panel">
       <div class="hero-left">
         <div class="hero-label">← AI Automation Business Solutions Expert · Marikina, PH</div>
-        <h1 class="hero-name">Stop Losing Hours<br>Every Week To<br><span style="color:#38bdf8">Manual Work.</span></h1>
+        <h1 class="hero-name">Stop Losing Hours<br>Every Week To<br><span style="color:#22D3EE;text-shadow:0 0 40px rgba(34,211,238,0.40),0 0 80px rgba(6,182,212,0.20)">Manual Work.</span></h1>
         <p class="hero-desc">I help businesses automate lead management, CRM updates, reporting, and operations using AI-powered systems that run 24/7 — without hiring more staff.</p>
         <div class="hero-trust">
           <span class="hero-trust-item">✓ Remote Worldwide</span>
@@ -1669,303 +1676,6 @@ input[type="range"].roi-range::-moz-range-thumb {
     <div class="pain-cta fade-up">
       <p class="pain-cta-text">AI automation fixes all of this. Let me show you exactly where to start — for free.</p>
       <a class="btn-primary" href="#contact">Book Free Automation Audit →</a>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="services-sticky" id="srv-sticky">
-
-    <!-- Progress indicator dots -->
-    <div class="srv-dots" id="srv-dots">
-      <div class="srv-dot is-active" data-srv="0"></div>
-      <div class="srv-dot" data-srv="1"></div>
-      <div class="srv-dot" data-srv="2"></div>
-      <div class="srv-dot" data-srv="3"></div>
-      <div class="srv-dot" data-srv="4"></div>
-      <div class="srv-dot" data-srv="5"></div>
-    </div>
-
-    <!-- 01 · AI & ML Engineering -->
-    <div class="srv-slide" id="srv-0">
-      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=1920&q=65&auto=format&fit=crop')"></div>
-      <div class="srv-frame" id="srv-frame-0">
-        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80&auto=format&fit=crop" alt="AI & ML Engineering" loading="lazy">
-        <div class="srv-veil"></div>
-      </div>
-      <div class="srv-hl">
-        <div class="srv-kicker">// 01</div>
-        <div class="srv-word-a">AI</div>
-        <div class="srv-word-b">&amp; ML Engineering</div>
-        <div class="srv-cue">Scroll to expand</div>
-      </div>
-      <div class="srv-info">
-        <div class="srv-info-num">// 01 — AI &amp; ML Engineering</div>
-        <div class="srv-info-name">Operational Intelligence,<br>Automated.</div>
-        <p class="srv-info-desc">Designing and deploying AI-driven tools and machine learning pipelines that enhance operational intelligence and automate complex decision-making.</p>
-        <div class="srv-info-tags"><span class="tag">NLP</span><span class="tag">Prompt Engineering</span><span class="tag">AI Integration</span><span class="tag">LLM APIs</span></div>
-      </div>
-    </div>
-
-    <!-- 02 · Workflow Automation -->
-    <div class="srv-slide" id="srv-1">
-      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=65&auto=format&fit=crop')"></div>
-      <div class="srv-frame" id="srv-frame-1">
-        <img src="projects/N8n/workflow-backup.svg" alt="Workflow Automation">
-        <div class="srv-veil"></div>
-      </div>
-      <div class="srv-hl">
-        <div class="srv-kicker">// 02</div>
-        <div class="srv-word-a">Workflow</div>
-        <div class="srv-word-b">Automation</div>
-        <div class="srv-cue">Scroll to expand</div>
-      </div>
-      <div class="srv-info">
-        <div class="srv-info-num">// 02 — Workflow Automation</div>
-        <div class="srv-info-name">Zero Downtime.<br>Maximum Throughput.</div>
-        <p class="srv-info-desc">Building robust, no-downtime automation pipelines using Zapier, Make.com, and custom scripts — reducing manual intervention and boosting throughput.</p>
-        <div class="srv-info-tags"><span class="tag">Zapier</span><span class="tag">Make.com</span><span class="tag">HighLevel</span><span class="tag">n8n</span></div>
-      </div>
-    </div>
-
-    <!-- 03 · API & System Integration -->
-    <div class="srv-slide" id="srv-2">
-      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=65&auto=format&fit=crop')"></div>
-      <div class="srv-frame" id="srv-frame-2">
-        <img src="Image Reference - What I Bring to the Table/API Integration.png" alt="API & System Integration" loading="lazy">
-        <div class="srv-veil"></div>
-      </div>
-      <div class="srv-hl">
-        <div class="srv-kicker">// 03</div>
-        <div class="srv-word-a">API</div>
-        <div class="srv-word-b">&amp; System Integration</div>
-        <div class="srv-cue">Scroll to expand</div>
-      </div>
-      <div class="srv-info">
-        <div class="srv-info-num">// 03 — API &amp; System Integration</div>
-        <div class="srv-info-name">Every System,<br>Connected Seamlessly.</div>
-        <p class="srv-info-desc">Seamlessly connecting disparate systems through RESTful APIs, webhooks, and middleware architectures to create unified data flows and automated triggers.</p>
-        <div class="srv-info-tags"><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">OAuth</span><span class="tag">GraphQL</span></div>
-      </div>
-    </div>
-
-    <!-- 04 · CRM Automation -->
-    <div class="srv-slide" id="srv-3">
-      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1920&q=65&auto=format&fit=crop')"></div>
-      <div class="srv-frame" id="srv-frame-3">
-        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80&auto=format&fit=crop" alt="CRM Automation" loading="lazy">
-        <div class="srv-veil"></div>
-      </div>
-      <div class="srv-hl">
-        <div class="srv-kicker">// 04</div>
-        <div class="srv-word-a">CRM</div>
-        <div class="srv-word-b">Automation</div>
-        <div class="srv-cue">Scroll to expand</div>
-      </div>
-      <div class="srv-info">
-        <div class="srv-info-num">// 04 — CRM Automation</div>
-        <div class="srv-info-name">Hands-Free<br>Revenue Engine.</div>
-        <p class="srv-info-desc">Designing and implementing intelligent CRM workflows that automate lead management, follow-ups, pipeline updates, and customer communications — turning your CRM into a hands-free revenue engine.</p>
-        <div class="srv-info-tags"><span class="tag">HubSpot</span><span class="tag">HighLevel</span><span class="tag">Salesforce</span><span class="tag">Pipedrive</span></div>
-      </div>
-    </div>
-
-    <!-- 05 · Process Optimization -->
-    <div class="srv-slide" id="srv-4">
-      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=65&auto=format&fit=crop')"></div>
-      <div class="srv-frame" id="srv-frame-4">
-        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&auto=format&fit=crop" alt="Process Optimization" loading="lazy">
-        <div class="srv-veil"></div>
-      </div>
-      <div class="srv-hl">
-        <div class="srv-kicker">// 05</div>
-        <div class="srv-word-a">Process</div>
-        <div class="srv-word-b">Optimization</div>
-        <div class="srv-cue">Scroll to expand</div>
-      </div>
-      <div class="srv-info">
-        <div class="srv-info-num">// 05 — Process Optimization</div>
-        <div class="srv-info-name">Leaner Workflows.<br>Measurable ROI.</div>
-        <p class="srv-info-desc">Analyzing existing workflows, identifying bottlenecks, and engineering leaner processes — translating operational improvements into measurable ROI.</p>
-        <div class="srv-info-tags"><span class="tag">Data Analysis</span><span class="tag">Process Mapping</span><span class="tag">Scripting</span><span class="tag">Monitoring</span></div>
-      </div>
-    </div>
-
-    <!-- 06 · Funnels, Websites & Landing Pages -->
-    <div class="srv-slide" id="srv-5">
-      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1920&q=65&auto=format&fit=crop')"></div>
-      <div class="srv-frame" id="srv-frame-5">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop" alt="Funnels, Websites & Landing Pages" loading="lazy">
-        <div class="srv-veil"></div>
-      </div>
-      <div class="srv-hl">
-        <div class="srv-kicker">// 06</div>
-        <div class="srv-word-a">Funnels,</div>
-        <div class="srv-word-b">Websites &amp; Landing Pages</div>
-        <div class="srv-cue">Scroll to expand</div>
-      </div>
-      <div class="srv-info">
-        <div class="srv-info-num">// 06 — Funnels, Websites &amp; Landing Pages</div>
-        <div class="srv-info-name">Built to Convert.<br>Designed to Impress.</div>
-        <p class="srv-info-desc">Crafting high-converting sales funnels, branded websites, and targeted landing pages that capture leads, nurture prospects, and drive measurable results — built for speed, clarity, and conversion.</p>
-        <div class="srv-info-tags"><span class="tag">HighLevel</span><span class="tag">Webflow</span><span class="tag">WordPress</span><span class="tag">Framer</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- TOOLS & PLATFORMS -->
-<section id="tools">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-num">Tools &amp; Platforms</div>
-      <h2 class="section-title">What I Work With</h2>
-      <p class="section-sub">A curated stack of automation tools, AI platforms, CRMs, and productivity apps I use to build and deliver results.</p>
-    </div>
-  </div>
-  <div class="tools-track-wrap">
-    <div class="tools-track">
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/zapier" alt="Zapier" onerror="this.style.display='none'"><span class="tool-name">Zapier</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/make" alt="Make.com" onerror="this.style.display='none'"><span class="tool-name">Make.com</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/n8n" alt="n8n" onerror="this.style.display='none'"><span class="tool-name">n8n</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gohighlevel" alt="GoHighLevel" onerror="this.src='https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=128';this.onerror=null"><span class="tool-name">GoHighLevel</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=chat.openai.com&sz=128" alt="ChatGPT" onerror="this.style.display='none'"><span class="tool-name">ChatGPT</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlegemini" alt="Google Gemini" onerror="this.style.display='none'"><span class="tool-name">Gemini</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/openrouter" alt="OpenRouter" onerror="this.src='https://www.google.com/s2/favicons?domain=openrouter.ai&sz=128';this.onerror=null"><span class="tool-name">OpenRouter</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/hubspot" alt="HubSpot" onerror="this.style.display='none'"><span class="tool-name">HubSpot</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce" onerror="this.style.display='none'"><span class="tool-name">Salesforce</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/zoho" alt="Zoho" onerror="this.style.display='none'"><span class="tool-name">Zoho</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn" onerror="this.style.display='none'"><span class="tool-name">LinkedIn</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/asana" alt="Asana" onerror="this.style.display='none'"><span class="tool-name">Asana</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/trello" alt="Trello" onerror="this.style.display='none'"><span class="tool-name">Trello</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=slack.com&sz=128" alt="Slack" onerror="this.style.display='none'"><span class="tool-name">Slack</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/notion" alt="Notion" onerror="this.style.display='none'"><span class="tool-name">Notion</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/zapier" alt="Zapier" onerror="this.style.display='none'"><span class="tool-name">Zapier</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/make" alt="Make.com" onerror="this.style.display='none'"><span class="tool-name">Make.com</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/n8n" alt="n8n" onerror="this.style.display='none'"><span class="tool-name">n8n</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gohighlevel" alt="GoHighLevel" onerror="this.src='https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=128';this.onerror=null"><span class="tool-name">GoHighLevel</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=chat.openai.com&sz=128" alt="ChatGPT" onerror="this.style.display='none'"><span class="tool-name">ChatGPT</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlegemini" alt="Google Gemini" onerror="this.style.display='none'"><span class="tool-name">Gemini</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/openrouter" alt="OpenRouter" onerror="this.src='https://www.google.com/s2/favicons?domain=openrouter.ai&sz=128';this.onerror=null"><span class="tool-name">OpenRouter</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/hubspot" alt="HubSpot" onerror="this.style.display='none'"><span class="tool-name">HubSpot</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce" onerror="this.style.display='none'"><span class="tool-name">Salesforce</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/zoho" alt="Zoho" onerror="this.style.display='none'"><span class="tool-name">Zoho</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn" onerror="this.style.display='none'"><span class="tool-name">LinkedIn</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/asana" alt="Asana" onerror="this.style.display='none'"><span class="tool-name">Asana</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/trello" alt="Trello" onerror="this.style.display='none'"><span class="tool-name">Trello</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=slack.com&sz=128" alt="Slack" onerror="this.style.display='none'"><span class="tool-name">Slack</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/notion" alt="Notion" onerror="this.style.display='none'"><span class="tool-name">Notion</span></div>
-    </div>
-    <div class="tools-track reverse">
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=workspace.google.com&sz=128" alt="Google Workspace" onerror="this.style.display='none'"><span class="tool-name">Workspace</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=office.com&sz=128" alt="Microsoft Office" onerror="this.style.display='none'"><span class="tool-name">MS Office</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gmail" alt="Gmail" onerror="this.style.display='none'"><span class="tool-name">Gmail</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledrive" alt="Google Drive" onerror="this.style.display='none'"><span class="tool-name">Drive</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledocs" alt="Google Docs" onerror="this.style.display='none'"><span class="tool-name">Docs</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/quickbooks" alt="QuickBooks" onerror="this.src='https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128';this.onerror=null"><span class="tool-name">QuickBooks</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/xero" alt="Xero" onerror="this.style.display='none'"><span class="tool-name">Xero</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlesheets" alt="Google Sheets" onerror="this.style.display='none'"><span class="tool-name">Sheets</span></div>      <div class="tool-chip"><img src="https://cdn.simpleicons.org/airtable" alt="Airtable" onerror="this.style.display='none'"><span class="tool-name">Airtable</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/looker" alt="Looker Studio" onerror="this.src='https://www.google.com/s2/favicons?domain=lookerstudio.google.com&sz=128';this.onerror=null"><span class="tool-name">Looker</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva" onerror="this.style.display='none'"><span class="tool-name">Canva</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/capcut" alt="CapCut" onerror="this.src='https://www.google.com/s2/favicons?domain=capcut.com&sz=128';this.onerror=null"><span class="tool-name">CapCut</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/youtube" alt="YouTube" onerror="this.style.display='none'"><span class="tool-name">YouTube</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=metricool.com&sz=128" alt="Metricool" onerror="this.style.display='none'"><span class="tool-name">Metricool</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=workspace.google.com&sz=128" alt="Google Workspace" onerror="this.style.display='none'"><span class="tool-name">Workspace</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=office.com&sz=128" alt="Microsoft Office" onerror="this.style.display='none'"><span class="tool-name">MS Office</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gmail" alt="Gmail" onerror="this.style.display='none'"><span class="tool-name">Gmail</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledrive" alt="Google Drive" onerror="this.style.display='none'"><span class="tool-name">Drive</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledocs" alt="Google Docs" onerror="this.style.display='none'"><span class="tool-name">Docs</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/quickbooks" alt="QuickBooks" onerror="this.src='https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128';this.onerror=null"><span class="tool-name">QuickBooks</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/xero" alt="Xero" onerror="this.style.display='none'"><span class="tool-name">Xero</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlesheets" alt="Google Sheets" onerror="this.style.display='none'"><span class="tool-name">Sheets</span></div>      <div class="tool-chip"><img src="https://cdn.simpleicons.org/airtable" alt="Airtable" onerror="this.style.display='none'"><span class="tool-name">Airtable</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/looker" alt="Looker Studio" onerror="this.src='https://www.google.com/s2/favicons?domain=lookerstudio.google.com&sz=128';this.onerror=null"><span class="tool-name">Looker</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva" onerror="this.style.display='none'"><span class="tool-name">Canva</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/capcut" alt="CapCut" onerror="this.src='https://www.google.com/s2/favicons?domain=capcut.com&sz=128';this.onerror=null"><span class="tool-name">CapCut</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/youtube" alt="YouTube" onerror="this.style.display='none'"><span class="tool-name">YouTube</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=metricool.com&sz=128" alt="Metricool" onerror="this.style.display='none'"><span class="tool-name">Metricool</span></div>
-      <!-- third copy for seamless triple loop -->
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=workspace.google.com&sz=128" alt="" onerror="this.style.display='none'"><span class="tool-name">Workspace</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=office.com&sz=128" alt="" onerror="this.style.display='none'"><span class="tool-name">MS Office</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gmail" alt="" onerror="this.style.display='none'"><span class="tool-name">Gmail</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledrive" alt="" onerror="this.style.display='none'"><span class="tool-name">Drive</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledocs" alt="" onerror="this.style.display='none'"><span class="tool-name">Docs</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/quickbooks" alt="" onerror="this.src='https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128';this.onerror=null"><span class="tool-name">QuickBooks</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/xero" alt="" onerror="this.style.display='none'"><span class="tool-name">Xero</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlesheets" alt="" onerror="this.style.display='none'"><span class="tool-name">Sheets</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/airtable" alt="" onerror="this.style.display='none'"><span class="tool-name">Airtable</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/looker" alt="" onerror="this.src='https://www.google.com/s2/favicons?domain=lookerstudio.google.com&sz=128';this.onerror=null"><span class="tool-name">Looker</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="" onerror="this.style.display='none'"><span class="tool-name">Canva</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/capcut" alt="" onerror="this.src='https://www.google.com/s2/favicons?domain=capcut.com&sz=128';this.onerror=null"><span class="tool-name">CapCut</span></div>
-      <div class="tool-chip"><img src="https://cdn.simpleicons.org/youtube" alt="" onerror="this.style.display='none'"><span class="tool-name">YouTube</span></div>
-      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=metricool.com&sz=128" alt="" onerror="this.style.display='none'"><span class="tool-name">Metricool</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="container">
-    <div class="section-header fade-up">
-      <div class="section-num">Experience</div>
-      <h2 class="section-title">Professional Journey</h2>
-      <p class="section-sub">A track record of engineering solutions that actually move the needle.</p>
-    </div>
-    <div class="exp-layout">
-<div class="timeline fade-up">
-        <div class="timeline-item">
-          <div class="timeline-track">
-            <div class="timeline-line tl-line-left"></div>
-            <div class="timeline-dot"></div>
-            <div class="timeline-line tl-line-right"></div>
-          </div>
-          <div class="timeline-content">
-            <div class="exp-date">2026 — Present</div>
-            <div class="exp-role">AI Automation Specialist</div>
-            <div class="exp-company">Freelance · Remote</div>
-            <ul class="exp-achievements">
-              <li>Designed and implemented AI-powered workflow automations using APIs and no-code/low-code platforms to reduce manual tasks and optimize business processes.</li>
-              <li>Built AI chatbots, lead generation systems, and automated reporting solutions integrated with CRM and cloud-based applications.</li>
-              <li>Analyzed client workflows to identify automation opportunities, delivering customized strategies that improve efficiency and cut costs.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-track">
-            <div class="timeline-line tl-line-left"></div>
-            <div class="timeline-dot"></div>
-            <div class="timeline-line tl-line-right"></div>
-          </div>
-          <div class="timeline-content">
-            <div class="exp-date">2022 — 2026</div>
-            <div class="exp-role">Structured Cabling / Project Manager</div>
-            <div class="exp-company">Equalynx Network Co.</div>
-            <ul class="exp-achievements">
-              <li>Managed end-to-end structured cabling projects for commercial and enterprise networks, covering data, voice, fiber optic, and CCTV systems.</li>
-              <li>Coordinated clients, contractors, and technical teams to ensure on-time delivery, quality standards, and site safety compliance.</li>
-              <li>Conducted site inspections, troubleshooting, and QA for all network cabling installations with full project documentation.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-track">
-            <div class="timeline-line tl-line-left"></div>
-            <div class="timeline-dot"></div>
-            <div class="timeline-line tl-line-right"></div>
-          </div>
-          <div class="timeline-content">
-            <div class="exp-date">2017 — Present</div>
-            <div class="exp-role">Project Manager</div>
-            <div class="exp-company">GR Teoxon Construction</div>
-            <ul class="exp-achievements">
-              <li>Managed full-cycle HVAC projects from planning and design through installation, testing, commissioning, and turnover.</li>
-              <li>Supervised on-site contractors and technical teams, coordinating with clients and suppliers to meet quality, safety, and specification standards.</li>
-              <li>Performed troubleshooting, preventive maintenance, and system optimization for commercial and industrial HVAC systems.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -2255,6 +1965,303 @@ input[type="range"].roi-range::-moz-range-thumb {
     </div>
   </div>
 </div>
+
+<!-- TOOLS & PLATFORMS -->
+<section id="tools">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-num">Tools &amp; Platforms</div>
+      <h2 class="section-title">What I Work With</h2>
+      <p class="section-sub">A curated stack of automation tools, AI platforms, CRMs, and productivity apps I use to build and deliver results.</p>
+    </div>
+  </div>
+  <div class="tools-track-wrap">
+    <div class="tools-track">
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/zapier" alt="Zapier" onerror="this.style.display='none'"><span class="tool-name">Zapier</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/make" alt="Make.com" onerror="this.style.display='none'"><span class="tool-name">Make.com</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/n8n" alt="n8n" onerror="this.style.display='none'"><span class="tool-name">n8n</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gohighlevel" alt="GoHighLevel" onerror="this.src='https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=128';this.onerror=null"><span class="tool-name">GoHighLevel</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=chat.openai.com&sz=128" alt="ChatGPT" onerror="this.style.display='none'"><span class="tool-name">ChatGPT</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlegemini" alt="Google Gemini" onerror="this.style.display='none'"><span class="tool-name">Gemini</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/openrouter" alt="OpenRouter" onerror="this.src='https://www.google.com/s2/favicons?domain=openrouter.ai&sz=128';this.onerror=null"><span class="tool-name">OpenRouter</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/hubspot" alt="HubSpot" onerror="this.style.display='none'"><span class="tool-name">HubSpot</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce" onerror="this.style.display='none'"><span class="tool-name">Salesforce</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/zoho" alt="Zoho" onerror="this.style.display='none'"><span class="tool-name">Zoho</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn" onerror="this.style.display='none'"><span class="tool-name">LinkedIn</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/asana" alt="Asana" onerror="this.style.display='none'"><span class="tool-name">Asana</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/trello" alt="Trello" onerror="this.style.display='none'"><span class="tool-name">Trello</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=slack.com&sz=128" alt="Slack" onerror="this.style.display='none'"><span class="tool-name">Slack</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/notion" alt="Notion" onerror="this.style.display='none'"><span class="tool-name">Notion</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/zapier" alt="Zapier" onerror="this.style.display='none'"><span class="tool-name">Zapier</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/make" alt="Make.com" onerror="this.style.display='none'"><span class="tool-name">Make.com</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/n8n" alt="n8n" onerror="this.style.display='none'"><span class="tool-name">n8n</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gohighlevel" alt="GoHighLevel" onerror="this.src='https://www.google.com/s2/favicons?domain=gohighlevel.com&sz=128';this.onerror=null"><span class="tool-name">GoHighLevel</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=chat.openai.com&sz=128" alt="ChatGPT" onerror="this.style.display='none'"><span class="tool-name">ChatGPT</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlegemini" alt="Google Gemini" onerror="this.style.display='none'"><span class="tool-name">Gemini</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/openrouter" alt="OpenRouter" onerror="this.src='https://www.google.com/s2/favicons?domain=openrouter.ai&sz=128';this.onerror=null"><span class="tool-name">OpenRouter</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/hubspot" alt="HubSpot" onerror="this.style.display='none'"><span class="tool-name">HubSpot</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce" onerror="this.style.display='none'"><span class="tool-name">Salesforce</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/zoho" alt="Zoho" onerror="this.style.display='none'"><span class="tool-name">Zoho</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="LinkedIn" onerror="this.style.display='none'"><span class="tool-name">LinkedIn</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/asana" alt="Asana" onerror="this.style.display='none'"><span class="tool-name">Asana</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/trello" alt="Trello" onerror="this.style.display='none'"><span class="tool-name">Trello</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=slack.com&sz=128" alt="Slack" onerror="this.style.display='none'"><span class="tool-name">Slack</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/notion" alt="Notion" onerror="this.style.display='none'"><span class="tool-name">Notion</span></div>
+    </div>
+    <div class="tools-track reverse">
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=workspace.google.com&sz=128" alt="Google Workspace" onerror="this.style.display='none'"><span class="tool-name">Workspace</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=office.com&sz=128" alt="Microsoft Office" onerror="this.style.display='none'"><span class="tool-name">MS Office</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gmail" alt="Gmail" onerror="this.style.display='none'"><span class="tool-name">Gmail</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledrive" alt="Google Drive" onerror="this.style.display='none'"><span class="tool-name">Drive</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledocs" alt="Google Docs" onerror="this.style.display='none'"><span class="tool-name">Docs</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/quickbooks" alt="QuickBooks" onerror="this.src='https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128';this.onerror=null"><span class="tool-name">QuickBooks</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/xero" alt="Xero" onerror="this.style.display='none'"><span class="tool-name">Xero</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlesheets" alt="Google Sheets" onerror="this.style.display='none'"><span class="tool-name">Sheets</span></div>      <div class="tool-chip"><img src="https://cdn.simpleicons.org/airtable" alt="Airtable" onerror="this.style.display='none'"><span class="tool-name">Airtable</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/looker" alt="Looker Studio" onerror="this.src='https://www.google.com/s2/favicons?domain=lookerstudio.google.com&sz=128';this.onerror=null"><span class="tool-name">Looker</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva" onerror="this.style.display='none'"><span class="tool-name">Canva</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/capcut" alt="CapCut" onerror="this.src='https://www.google.com/s2/favicons?domain=capcut.com&sz=128';this.onerror=null"><span class="tool-name">CapCut</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/youtube" alt="YouTube" onerror="this.style.display='none'"><span class="tool-name">YouTube</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=metricool.com&sz=128" alt="Metricool" onerror="this.style.display='none'"><span class="tool-name">Metricool</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=workspace.google.com&sz=128" alt="Google Workspace" onerror="this.style.display='none'"><span class="tool-name">Workspace</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=office.com&sz=128" alt="Microsoft Office" onerror="this.style.display='none'"><span class="tool-name">MS Office</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gmail" alt="Gmail" onerror="this.style.display='none'"><span class="tool-name">Gmail</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledrive" alt="Google Drive" onerror="this.style.display='none'"><span class="tool-name">Drive</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledocs" alt="Google Docs" onerror="this.style.display='none'"><span class="tool-name">Docs</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/quickbooks" alt="QuickBooks" onerror="this.src='https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128';this.onerror=null"><span class="tool-name">QuickBooks</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/xero" alt="Xero" onerror="this.style.display='none'"><span class="tool-name">Xero</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlesheets" alt="Google Sheets" onerror="this.style.display='none'"><span class="tool-name">Sheets</span></div>      <div class="tool-chip"><img src="https://cdn.simpleicons.org/airtable" alt="Airtable" onerror="this.style.display='none'"><span class="tool-name">Airtable</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/looker" alt="Looker Studio" onerror="this.src='https://www.google.com/s2/favicons?domain=lookerstudio.google.com&sz=128';this.onerror=null"><span class="tool-name">Looker</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva" onerror="this.style.display='none'"><span class="tool-name">Canva</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/capcut" alt="CapCut" onerror="this.src='https://www.google.com/s2/favicons?domain=capcut.com&sz=128';this.onerror=null"><span class="tool-name">CapCut</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/youtube" alt="YouTube" onerror="this.style.display='none'"><span class="tool-name">YouTube</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=metricool.com&sz=128" alt="Metricool" onerror="this.style.display='none'"><span class="tool-name">Metricool</span></div>
+      <!-- third copy for seamless triple loop -->
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=workspace.google.com&sz=128" alt="" onerror="this.style.display='none'"><span class="tool-name">Workspace</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=office.com&sz=128" alt="" onerror="this.style.display='none'"><span class="tool-name">MS Office</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/gmail" alt="" onerror="this.style.display='none'"><span class="tool-name">Gmail</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledrive" alt="" onerror="this.style.display='none'"><span class="tool-name">Drive</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googledocs" alt="" onerror="this.style.display='none'"><span class="tool-name">Docs</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/quickbooks" alt="" onerror="this.src='https://www.google.com/s2/favicons?domain=quickbooks.intuit.com&sz=128';this.onerror=null"><span class="tool-name">QuickBooks</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/xero" alt="" onerror="this.style.display='none'"><span class="tool-name">Xero</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/googlesheets" alt="" onerror="this.style.display='none'"><span class="tool-name">Sheets</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/airtable" alt="" onerror="this.style.display='none'"><span class="tool-name">Airtable</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/looker" alt="" onerror="this.src='https://www.google.com/s2/favicons?domain=lookerstudio.google.com&sz=128';this.onerror=null"><span class="tool-name">Looker</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="" onerror="this.style.display='none'"><span class="tool-name">Canva</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/capcut" alt="" onerror="this.src='https://www.google.com/s2/favicons?domain=capcut.com&sz=128';this.onerror=null"><span class="tool-name">CapCut</span></div>
+      <div class="tool-chip"><img src="https://cdn.simpleicons.org/youtube" alt="" onerror="this.style.display='none'"><span class="tool-name">YouTube</span></div>
+      <div class="tool-chip"><img src="https://www.google.com/s2/favicons?domain=metricool.com&sz=128" alt="" onerror="this.style.display='none'"><span class="tool-name">Metricool</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-header fade-up">
+      <div class="section-num">Experience</div>
+      <h2 class="section-title">Professional Journey</h2>
+      <p class="section-sub">A track record of engineering solutions that actually move the needle.</p>
+    </div>
+    <div class="exp-layout">
+<div class="timeline fade-up">
+        <div class="timeline-item">
+          <div class="timeline-track">
+            <div class="timeline-line tl-line-left"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-line tl-line-right"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="exp-date">2026 — Present</div>
+            <div class="exp-role">AI Automation Specialist</div>
+            <div class="exp-company">Freelance · Remote</div>
+            <ul class="exp-achievements">
+              <li>Designed and implemented AI-powered workflow automations using APIs and no-code/low-code platforms to reduce manual tasks and optimize business processes.</li>
+              <li>Built AI chatbots, lead generation systems, and automated reporting solutions integrated with CRM and cloud-based applications.</li>
+              <li>Analyzed client workflows to identify automation opportunities, delivering customized strategies that improve efficiency and cut costs.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-track">
+            <div class="timeline-line tl-line-left"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-line tl-line-right"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="exp-date">2022 — 2026</div>
+            <div class="exp-role">Structured Cabling / Project Manager</div>
+            <div class="exp-company">Equalynx Network Co.</div>
+            <ul class="exp-achievements">
+              <li>Managed end-to-end structured cabling projects for commercial and enterprise networks, covering data, voice, fiber optic, and CCTV systems.</li>
+              <li>Coordinated clients, contractors, and technical teams to ensure on-time delivery, quality standards, and site safety compliance.</li>
+              <li>Conducted site inspections, troubleshooting, and QA for all network cabling installations with full project documentation.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-track">
+            <div class="timeline-line tl-line-left"></div>
+            <div class="timeline-dot"></div>
+            <div class="timeline-line tl-line-right"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="exp-date">2017 — Present</div>
+            <div class="exp-role">Project Manager</div>
+            <div class="exp-company">GR Teoxon Construction</div>
+            <ul class="exp-achievements">
+              <li>Managed full-cycle HVAC projects from planning and design through installation, testing, commissioning, and turnover.</li>
+              <li>Supervised on-site contractors and technical teams, coordinating with clients and suppliers to meet quality, safety, and specification standards.</li>
+              <li>Performed troubleshooting, preventive maintenance, and system optimization for commercial and industrial HVAC systems.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-sticky" id="srv-sticky">
+
+    <!-- Progress indicator dots -->
+    <div class="srv-dots" id="srv-dots">
+      <div class="srv-dot is-active" data-srv="0"></div>
+      <div class="srv-dot" data-srv="1"></div>
+      <div class="srv-dot" data-srv="2"></div>
+      <div class="srv-dot" data-srv="3"></div>
+      <div class="srv-dot" data-srv="4"></div>
+      <div class="srv-dot" data-srv="5"></div>
+    </div>
+
+    <!-- 01 · AI & ML Engineering -->
+    <div class="srv-slide" id="srv-0">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-0">
+        <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=80&auto=format&fit=crop" alt="AI & ML Engineering" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 01</div>
+        <div class="srv-word-a">AI</div>
+        <div class="srv-word-b">&amp; ML Engineering</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 01 — AI &amp; ML Engineering</div>
+        <div class="srv-info-name">Operational Intelligence,<br>Automated.</div>
+        <p class="srv-info-desc">Designing and deploying AI-driven tools and machine learning pipelines that enhance operational intelligence and automate complex decision-making.</p>
+        <div class="srv-info-tags"><span class="tag">NLP</span><span class="tag">Prompt Engineering</span><span class="tag">AI Integration</span><span class="tag">LLM APIs</span></div>
+      </div>
+    </div>
+
+    <!-- 02 · Workflow Automation -->
+    <div class="srv-slide" id="srv-1">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-1">
+        <img src="projects/N8n/workflow-backup.svg" alt="Workflow Automation">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 02</div>
+        <div class="srv-word-a">Workflow</div>
+        <div class="srv-word-b">Automation</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 02 — Workflow Automation</div>
+        <div class="srv-info-name">Zero Downtime.<br>Maximum Throughput.</div>
+        <p class="srv-info-desc">Building robust, no-downtime automation pipelines using Zapier, Make.com, and custom scripts — reducing manual intervention and boosting throughput.</p>
+        <div class="srv-info-tags"><span class="tag">Zapier</span><span class="tag">Make.com</span><span class="tag">HighLevel</span><span class="tag">n8n</span></div>
+      </div>
+    </div>
+
+    <!-- 03 · API & System Integration -->
+    <div class="srv-slide" id="srv-2">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-2">
+        <img src="Image Reference - What I Bring to the Table/API Integration.png" alt="API & System Integration" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 03</div>
+        <div class="srv-word-a">API</div>
+        <div class="srv-word-b">&amp; System Integration</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 03 — API &amp; System Integration</div>
+        <div class="srv-info-name">Every System,<br>Connected Seamlessly.</div>
+        <p class="srv-info-desc">Seamlessly connecting disparate systems through RESTful APIs, webhooks, and middleware architectures to create unified data flows and automated triggers.</p>
+        <div class="srv-info-tags"><span class="tag">REST APIs</span><span class="tag">Webhooks</span><span class="tag">OAuth</span><span class="tag">GraphQL</span></div>
+      </div>
+    </div>
+
+    <!-- 04 · CRM Automation -->
+    <div class="srv-slide" id="srv-3">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-3">
+        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80&auto=format&fit=crop" alt="CRM Automation" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 04</div>
+        <div class="srv-word-a">CRM</div>
+        <div class="srv-word-b">Automation</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 04 — CRM Automation</div>
+        <div class="srv-info-name">Hands-Free<br>Revenue Engine.</div>
+        <p class="srv-info-desc">Designing and implementing intelligent CRM workflows that automate lead management, follow-ups, pipeline updates, and customer communications — turning your CRM into a hands-free revenue engine.</p>
+        <div class="srv-info-tags"><span class="tag">HubSpot</span><span class="tag">HighLevel</span><span class="tag">Salesforce</span><span class="tag">Pipedrive</span></div>
+      </div>
+    </div>
+
+    <!-- 05 · Process Optimization -->
+    <div class="srv-slide" id="srv-4">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-4">
+        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&auto=format&fit=crop" alt="Process Optimization" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 05</div>
+        <div class="srv-word-a">Process</div>
+        <div class="srv-word-b">Optimization</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 05 — Process Optimization</div>
+        <div class="srv-info-name">Leaner Workflows.<br>Measurable ROI.</div>
+        <p class="srv-info-desc">Analyzing existing workflows, identifying bottlenecks, and engineering leaner processes — translating operational improvements into measurable ROI.</p>
+        <div class="srv-info-tags"><span class="tag">Data Analysis</span><span class="tag">Process Mapping</span><span class="tag">Scripting</span><span class="tag">Monitoring</span></div>
+      </div>
+    </div>
+
+    <!-- 06 · Funnels, Websites & Landing Pages -->
+    <div class="srv-slide" id="srv-5">
+      <div class="srv-bg" style="background-image:url('https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1920&q=65&auto=format&fit=crop')"></div>
+      <div class="srv-frame" id="srv-frame-5">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop" alt="Funnels, Websites & Landing Pages" loading="lazy">
+        <div class="srv-veil"></div>
+      </div>
+      <div class="srv-hl">
+        <div class="srv-kicker">// 06</div>
+        <div class="srv-word-a">Funnels,</div>
+        <div class="srv-word-b">Websites &amp; Landing Pages</div>
+        <div class="srv-cue">Scroll to expand</div>
+      </div>
+      <div class="srv-info">
+        <div class="srv-info-num">// 06 — Funnels, Websites &amp; Landing Pages</div>
+        <div class="srv-info-name">Built to Convert.<br>Designed to Impress.</div>
+        <p class="srv-info-desc">Crafting high-converting sales funnels, branded websites, and targeted landing pages that capture leads, nurture prospects, and drive measurable results — built for speed, clarity, and conversion.</p>
+        <div class="srv-info-tags"><span class="tag">HighLevel</span><span class="tag">Webflow</span><span class="tag">WordPress</span><span class="tag">Framer</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
 <!-- TESTIMONIALS -->
 <section id="testimonials">
