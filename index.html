@@ -1084,7 +1084,11 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 
 /* Hide Calendly floating badge widget */
-.calendly-badge-widget { display: none !important; }
+.calendly-badge-widget,
+.calendly-badge-content,
+#calendly-badge-container,
+[class*="calendly-badge"],
+[id*="calendly-badge"] { display: none !important; }
 
 /* ══ HERO TRUST BAR ══ */
 .hero-trust { display: flex; flex-wrap: wrap; gap: 0.65rem 1.25rem; margin-bottom: 1.75rem; }
@@ -3670,6 +3674,17 @@ function handleSubmit(btn) {
     services.parentNode.insertBefore(csModal, services);
     services.parentNode.insertBefore(portfolio, services);
   }
+})();
+</script>
+<script>
+(function() {
+  function removeCalendlyBadge() {
+    var els = document.querySelectorAll('[class*="calendly-badge"],[id*="calendly-badge"]');
+    els.forEach(function(el) { el.remove(); });
+  }
+  removeCalendlyBadge();
+  var observer = new MutationObserver(removeCalendlyBadge);
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
 </script>
 </body>
