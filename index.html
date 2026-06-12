@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Genaro C. Teoxon Jr. — Automation Specialist & AI Engineer</title>
+<title>Genaro C. Teoxon Jr. — AI Automation Business Solutions Expert</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://assets.calendly.com">
 <link rel="preconnect" href="https://calendly.com">
 <link rel="dns-prefetch" href="https://assets.calendly.com">
@@ -15,23 +15,23 @@
 
 /* ══ THEME TOKENS ══ */
 :root {
-  --cyan:      #3d45aa;
-  --cyan-glow: rgba(61,69,170,0.18);
-  --cyan-soft: rgba(61,69,170,0.10);
-  --cyan-dim:  rgba(61,69,170,0.06);
+  --cyan:      #3B82F6;
+  --cyan-glow: rgba(59,130,246,0.18);
+  --cyan-soft: rgba(59,130,246,0.10);
+  --cyan-dim:  rgba(59,130,246,0.06);
   --accent2:   #f07830;
-  --logo-font: 'Syne', sans-serif;
-  --body-font: 'DM Sans', sans-serif;
-  --mono:      'DM Mono', monospace;
+  --logo-font: 'Sora', sans-serif;
+  --body-font: 'Inter', sans-serif;
+  --mono:      'Space Grotesk', sans-serif;
   --radius:    12px;
   --radius-lg: 20px;
   --trans:     background 0.28s cubic-bezier(.4,0,.2,1), border-color 0.28s cubic-bezier(.4,0,.2,1), color 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s cubic-bezier(.4,0,.2,1), transform 0.28s cubic-bezier(.4,0,.2,1), opacity 0.28s cubic-bezier(.4,0,.2,1);
 }
 
 [data-theme="dark"] {
-  --bg:         #0f1b27;
-  --bg2:        #131f2e;
-  --bg3:        #182638;
+  --bg:         #0F172A;
+  --bg2:        #111827;
+  --bg3:        #1e2a3a;
   --border:     rgba(255,255,255,0.09);
   --border2:    rgba(255,255,255,0.16);
   --text:       #dde6f0;
@@ -40,7 +40,7 @@
   --heading:    #ffffff;
   --card-bg:    rgba(255,255,255,0.04);
   --card-hover: rgba(255,255,255,0.07);
-  --nav-bg:     rgba(15,27,39,0.90);
+  --nav-bg:     rgba(15,23,42,0.90);
   --shadow-lg:  0 24px 64px rgba(0,0,0,0.5);
 }
 [data-theme="light"] {
@@ -56,10 +56,10 @@
   --card-bg:    rgba(255,255,255,0.65);
   --card-hover: rgba(255,255,255,0.95);
   --nav-bg:     rgba(245,249,251,0.92);
-  --shadow-lg:  0 24px 64px rgba(61,69,170,0.10);
-  --cyan-glow:  rgba(61,69,170,0.12);
-  --cyan-soft:  rgba(61,69,170,0.09);
-  --cyan-dim:   rgba(61,69,170,0.05);
+  --shadow-lg:  0 24px 64px rgba(59,130,246,0.10);
+  --cyan-glow:  rgba(59,130,246,0.12);
+  --cyan-soft:  rgba(59,130,246,0.09);
+  --cyan-dim:   rgba(59,130,246,0.05);
 }
 
 /* ══ BASE ══ */
@@ -169,15 +169,15 @@ nav {
   background: transparent; border-radius: 8px;
   cursor: pointer; text-decoration: none; transition: var(--trans);
   font-weight: 600;
-  box-shadow: 0 0 12px rgba(61,69,170,0.25);
+  box-shadow: 0 0 12px rgba(59,130,246,0.25);
 }
 [data-theme="dark"] .nav-cta {
-  box-shadow: 0 0 16px rgba(61,69,170,0.40), inset 0 0 12px rgba(61,69,170,0.08);
+  box-shadow: 0 0 16px rgba(59,130,246,0.40), inset 0 0 12px rgba(59,130,246,0.08);
 }
 [data-theme="light"] .nav-cta {
-  box-shadow: 0 0 12px rgba(61,69,170,0.20);
+  box-shadow: 0 0 12px rgba(59,130,246,0.20);
 }
-.nav-cta:hover { background: var(--cyan); color: #ffffff; box-shadow: 0 0 24px rgba(61,69,170,0.55); transform: translateY(-1px); }
+.nav-cta:hover { background: var(--cyan); color: #ffffff; box-shadow: 0 0 24px rgba(59,130,246,0.55); transform: translateY(-1px); }
 
 .nav-toggle {
   display: none; flex-direction: column; gap: 5px;
@@ -193,7 +193,7 @@ section { position: relative; z-index: 2; }
 #hero {
   position: relative; min-height: 100vh; overflow: hidden;
   display: flex; flex-direction: column; justify-content: flex-end;
-  background: linear-gradient(135deg, #0f1b27 0%, #162840 50%, #0f1b27 100%);
+  background: linear-gradient(135deg, #0F172A 0%, #1e3a5f 50%, #0F172A 100%);
 }
 #heroVideo {
   position: absolute; inset: 0; width: 100%; height: 100%;
@@ -205,8 +205,8 @@ section { position: relative; z-index: 2; }
 }
 [data-theme="dark"] .hero-overlay {
   background:
-    linear-gradient(to right, rgba(15,27,39,0.22) 0%, rgba(15,27,39,0.06) 55%, transparent 100%),
-    linear-gradient(to top,   rgba(15,27,39,0.28) 0%, transparent 30%);
+    linear-gradient(to right, rgba(15,23,42,0.22) 0%, rgba(15,23,42,0.06) 55%, transparent 100%),
+    linear-gradient(to top,   rgba(15,23,42,0.28) 0%, transparent 30%);
 }
 [data-theme="light"] .hero-overlay {
   background:
@@ -231,7 +231,7 @@ section { position: relative; z-index: 2; }
   padding: 2.25rem 2.5rem;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 28px;
-  background: rgba(15,27,39,0.06);
+  background: rgba(15,23,42,0.06);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   box-shadow: 0 30px 90px rgba(0,0,0,0.15);
@@ -257,7 +257,7 @@ section { position: relative; z-index: 2; }
   text-shadow: 0 1px 6px rgba(0,0,0,0.4);
 }
 .hero-greeting {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Sora', sans-serif;
   font-style: italic;
   font-weight: 700;
   font-size: clamp(2rem, 4.5vw, 3.6rem);
@@ -337,7 +337,7 @@ section { position: relative; z-index: 2; }
 .timeline { display: flex; flex-direction: row; align-items: stretch; gap: 0; }
 .timeline-item { flex: 1; display: flex; flex-direction: column; align-items: center; }
 .timeline-track { display: flex; flex-direction: row; align-items: center; width: 100%; margin: 0.75rem 0; }
-.timeline-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cyan); border: 2px solid var(--bg); box-shadow: 0 0 14px rgba(61,69,170,0.8); flex-shrink: 0; transition: border-color 0.35s ease; }
+.timeline-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--cyan); border: 2px solid var(--bg); box-shadow: 0 0 14px rgba(59,130,246,0.8); flex-shrink: 0; transition: border-color 0.35s ease; }
 .timeline-line { flex: 1; height: 1px; background: var(--border); }
 .timeline-item:first-child .tl-line-left { visibility: hidden; }
 .timeline-item:last-child .tl-line-right { visibility: hidden; }
@@ -359,7 +359,7 @@ section { position: relative; z-index: 2; }
 
 /* Experience card — theme overrides for visibility */
 [data-theme="dark"] .timeline-content {
-  background: rgba(22, 38, 62, 0.96);
+  background: rgba(17, 24, 39, 0.96);
   border-color: rgba(125, 249, 255, 0.18);
   box-shadow: 0 8px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(125,249,255,0.07);
 }
@@ -375,11 +375,11 @@ section { position: relative; z-index: 2; }
 
 [data-theme="light"] .timeline-content {
   background: rgba(255, 255, 255, 0.97);
-  border-color: rgba(61, 69, 170, 0.22);
-  box-shadow: 0 6px 32px rgba(61, 69, 170, 0.12);
+  border-color: rgba(59, 130, 246, 0.22);
+  box-shadow: 0 6px 32px rgba(59, 130, 246, 0.12);
 }
 [data-theme="light"] .timeline-line {
-  background: rgba(61, 69, 170, 0.2);
+  background: rgba(59, 130, 246, 0.2);
 }
 [data-theme="light"] .timeline-dot {
   border-color: var(--bg2);
@@ -391,7 +391,7 @@ section { position: relative; z-index: 2; }
   color: #344f66;
 }
 [data-theme="light"] .exp-achievements li::before {
-  color: rgba(61, 69, 170, 0.9);
+  color: rgba(59, 130, 246, 0.9);
 }
 
 /* ══ WORKS ══ */
@@ -402,7 +402,7 @@ section { position: relative; z-index: 2; }
   border-radius: var(--radius-lg); overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; cursor: pointer; text-decoration: none; display: block;
 }
-.work-card:hover { border-color: rgba(61,69,170,0.5); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(61,69,170,0.15), 0 4px 20px rgba(0,0,0,0.2); }
+.work-card:hover { border-color: rgba(59,130,246,0.5); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(59,130,246,0.15), 0 4px 20px rgba(0,0,0,0.2); }
 .work-thumb { height: 220px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .work-thumb-bg { position: absolute; inset: 0; transition: transform 0.5s ease; }
 .work-card:hover .work-thumb-bg { transform: scale(1.05); }
@@ -438,7 +438,7 @@ section { position: relative; z-index: 2; }
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 .testimonial-card:hover {
-  border-color: rgba(61,69,170,0.5); background: var(--bg3);
+  border-color: rgba(59,130,246,0.5); background: var(--bg3);
   box-shadow: 0 16px 50px var(--cyan-glow); transform: scale(1.04);
 }
 .testimonial-quote { font-size: 1rem; color: var(--text); line-height: 1.8; flex: 1; position: relative; padding-top: 0.5rem; }
@@ -463,10 +463,10 @@ section { position: relative; z-index: 2; }
 .contact-item-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--cyan-soft); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
 
 [data-theme="dark"] .contact-item {
-  background: #16263c;
+  background: #1e293b;
 }
 [data-theme="dark"] .contact-item:hover {
-  background: #1c3050;
+  background: #253347;
 }
 [data-theme="dark"] .contact-item-icon {
   background: #1e3a5f;
@@ -544,7 +544,7 @@ footer {
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; background: var(--bg3);
   display: flex; flex-direction: column;
 }
-.cert-card:hover { border-color: rgba(61,69,170,0.5); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(61,69,170,0.18); }
+.cert-card:hover { border-color: rgba(59,130,246,0.5); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(59,130,246,0.18); }
 .cert-card img { width: 100%; display: block; transition: transform 0.4s ease; flex: 1; }
 .cert-card:hover img { transform: scale(1.03); }
 .cert-card-caption {
@@ -559,7 +559,7 @@ footer {
   font-family: var(--logo-font); font-size: 0.9rem; letter-spacing: -0.01em;
   color: var(--heading); line-height: 1.3; font-weight: 700;
 }
-[data-theme="dark"] .cert-card-caption { background: rgba(22,38,62,0.96); }
+[data-theme="dark"] .cert-card-caption { background: rgba(17,24,39,0.96); }
 [data-theme="light"] .cert-card-caption { background: #ffffff; }
 .cert-card-overlay {
   position: absolute; inset: 0;
@@ -605,7 +605,7 @@ footer {
 .tool-chip { display: inline-flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 0.4rem; width: 82px; padding: 12px 8px 10px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); background: #ffffff; flex-shrink: 0; transition: all 0.25s ease; cursor: default; }
 .tool-chip img { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
 .tool-name { font-family: var(--mono); font-size: 0.58rem; color: #444; text-align: center; line-height: 1.3; letter-spacing: 0.02em; max-width: 100%; }
-.tool-chip:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(61,69,170,0.22); border-color: rgba(61,69,170,0.4); }
+.tool-chip:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(59,130,246,0.22); border-color: rgba(59,130,246,0.4); }
 
 
 /* ══ TRADE OFFER ══ */
@@ -657,7 +657,7 @@ footer {
 }
 .trade-card-item-icon {
   width: 26px; height: 26px; border-radius: 6px;
-  background: var(--cyan-soft); border: 1px solid rgba(61,69,170,0.3);
+  background: var(--cyan-soft); border: 1px solid rgba(59,130,246,0.3);
   display: flex; align-items: center; justify-content: center;
   font-size: 0.8rem; flex-shrink: 0; margin-top: 1px;
 }
@@ -727,7 +727,7 @@ footer {
 .process-card:nth-child(2)::before { background: #e83875; }
 .process-card:nth-child(3)::before { background: #00c9a7; }
 .process-card:nth-child(4)::before { background: #a855f7; }
-.process-card:hover { transform: translateY(-4px); border-color: rgba(61,69,170,0.4); background: var(--card-hover); box-shadow: 0 16px 48px rgba(0,0,0,0.2); }
+.process-card:hover { transform: translateY(-4px); border-color: rgba(59,130,246,0.4); background: var(--card-hover); box-shadow: 0 16px 48px rgba(0,0,0,0.2); }
 .process-card:hover::before { transform: scaleX(1); }
 .process-num-badge {
   width: 34px; height: 34px; border-radius: 50%;
@@ -804,18 +804,18 @@ input[type="range"].roi-range::-webkit-slider-thumb {
   width: 18px; height: 18px; border-radius: 50%;
   background: var(--cyan); cursor: pointer;
   border: 2px solid #fff;
-  box-shadow: 0 0 10px rgba(61,69,170,0.65);
+  box-shadow: 0 0 10px rgba(59,130,246,0.65);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 input[type="range"].roi-range::-webkit-slider-thumb:hover {
   transform: scale(1.25);
-  box-shadow: 0 0 18px rgba(61,69,170,0.85);
+  box-shadow: 0 0 18px rgba(59,130,246,0.85);
 }
 input[type="range"].roi-range::-moz-range-thumb {
   width: 18px; height: 18px; border-radius: 50%;
   background: var(--cyan); cursor: pointer;
   border: 2px solid #fff;
-  box-shadow: 0 0 10px rgba(61,69,170,0.65);
+  box-shadow: 0 0 10px rgba(59,130,246,0.65);
 }
 .roi-footnote {
   font-family: var(--mono); font-size: 0.62rem;
@@ -849,7 +849,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   border-radius: var(--radius-lg);
   padding: 1.75rem 2rem;
   display: flex; align-items: center; gap: 1.25rem;
-  box-shadow: 0 8px 40px rgba(61,69,170,0.55);
+  box-shadow: 0 8px 40px rgba(59,130,246,0.55);
 }
 .roi-saved-icon {
   width: 46px; height: 46px; border-radius: 12px;
@@ -903,9 +903,9 @@ input[type="range"].roi-range::-moz-range-thumb {
   font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.12em;
   text-transform: uppercase; cursor: pointer;
   text-decoration: none; transition: var(--trans);
-  box-shadow: 0 4px 24px rgba(61,69,170,0.45);
+  box-shadow: 0 4px 24px rgba(59,130,246,0.45);
 }
-.roi-cta-btn:hover { background: #5a63d0; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(61,69,170,0.65); }
+.roi-cta-btn:hover { background: #2563eb; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(59,130,246,0.65); }
 
 /* ══ ROI WORKFLOW DROPDOWN ══ */
 .roi-workflow-card {
@@ -976,7 +976,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 /* Strip solid section backgrounds so galaxy shows through */
 #services, #tools, #works, #portfolio, #certifications, #contact,
-#trade-offer, #process, #value-props, #roi-calc, footer {
+#trade-offer, #process, #pain-points, #roi-calc, footer {
   background: transparent !important;
 }
 /* ROI calc inner cards keep solid backgrounds so particles don't bleed through */
@@ -1083,9 +1083,38 @@ input[type="range"].roi-range::-moz-range-thumb {
   footer { padding: 1.75rem 1.1rem; }
 }
 
-/* ══ VALUE PROPS ══ */
-#value-props { padding: 8rem 0; }
-@media (max-width: 600px) { #value-props { padding: 5rem 0; } }
+/* ══ HERO TRUST BAR ══ */
+.hero-trust { display: flex; flex-wrap: wrap; gap: 0.65rem 1.25rem; margin-bottom: 1.75rem; }
+.hero-trust-item { font-family: var(--mono); font-size: 0.74rem; color: rgba(255,255,255,0.82); letter-spacing: 0.04em; }
+
+/* ══ HERO METRICS GRID ══ */
+.hero-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin-top: 1rem; }
+.hero-metric { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 1rem 1.25rem; text-align: center; backdrop-filter: blur(8px); }
+.hero-metric-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.75rem; font-weight: 700; color: #38bdf8; line-height: 1; margin-bottom: 0.3rem; }
+.hero-metric-label { font-family: var(--mono); font-size: 0.65rem; color: rgba(255,255,255,0.65); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ══ HERO NAME CARD ══ */
+.hero-name-card { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; padding: 0.85rem 1.25rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; backdrop-filter: blur(8px); }
+.hero-initials { width: 46px; height: 46px; border-radius: 10px; background: var(--cyan); display: flex; align-items: center; justify-content: center; font-family: var(--logo-font); font-size: 1.1rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.hero-full-name { font-family: var(--logo-font); font-size: 1rem; font-weight: 700; color: #fff; }
+.hero-tagline { font-family: var(--mono); font-size: 0.68rem; color: rgba(255,255,255,0.6); margin-top: 0.2rem; line-height: 1.5; }
+
+/* ══ PAIN POINTS ══ */
+#pain-points { padding: 8rem 0; background: var(--bg2); transition: background 0.35s ease; }
+@media (max-width: 600px) { #pain-points { padding: 5rem 0; } }
+.pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+@media (max-width: 900px) { .pain-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .pain-grid { grid-template-columns: 1fr; } }
+.pain-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color 0.25s, background 0.25s; }
+.pain-item:hover { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.05); }
+.pain-icon { font-size: 1.25rem; flex-shrink: 0; }
+.pain-text { font-size: 0.92rem; color: var(--text); line-height: 1.6; }
+.pain-text strong { color: var(--heading); font-weight: 600; }
+.pain-cta { text-align: center; margin-top: 3.5rem; }
+.pain-cta-text { font-size: 1.05rem; color: var(--muted2); margin-bottom: 1.5rem; max-width: 480px; margin: 0 auto 1.5rem; }
+
+/* ══ VALUE PROPS (legacy — hidden) ══ */
+#value-props { display: none; }
 
 /* ══ PORTFOLIO ══ */
 #portfolio { padding: 0 0 8rem 0; }
@@ -1106,7 +1135,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   transition: all 0.22s ease; white-space: nowrap;
 }
 .ptab-btn:hover { color: var(--heading); background: var(--card-hover); }
-.ptab-btn.active { background: var(--cyan); color: #fff; box-shadow: 0 4px 20px rgba(61,69,170,0.45); }
+.ptab-btn.active { background: var(--cyan); color: #fff; box-shadow: 0 4px 20px rgba(59,130,246,0.45); }
 .ptab-logo { width: 24px; height: 24px; object-fit: contain; border-radius: 3px; }
 
 .portfolio-pane { display: none; }
@@ -1125,7 +1154,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   border-radius: var(--radius-lg); overflow: hidden;
   transition: all 0.3s ease; display: flex; flex-direction: column;
 }
-.pcard:hover { border-color: rgba(61,69,170,0.5); background: var(--bg3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(61,69,170,0.15); }
+.pcard:hover { border-color: rgba(59,130,246,0.5); background: var(--bg3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(59,130,246,0.15); }
 
 .pcard-thumb {
   position: relative; cursor: zoom-in; overflow: hidden;
@@ -1138,7 +1167,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 .pcard:hover .pcard-thumb img { transform: scale(1.04); }
 .pcard-thumb-overlay {
   position: absolute; inset: 0;
-  background: rgba(15,27,39,0.72); backdrop-filter: blur(2px);
+  background: rgba(15,23,42,0.72); backdrop-filter: blur(2px);
   display: flex; align-items: center; justify-content: center;
   opacity: 0; transition: opacity 0.25s ease;
 }
@@ -1146,7 +1175,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 .pcard-zoom-icon {
   font-family: var(--mono); font-size: 0.72rem;
   letter-spacing: 0.07em; color: #fff; padding: 0.45rem 1.1rem;
-  background: rgba(61,69,170,0.72); border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(59,130,246,0.72); border: 1px solid rgba(255,255,255,0.35);
   border-radius: 999px; white-space: nowrap;
 }
 .pcard { cursor: pointer; }
@@ -1174,10 +1203,10 @@ input[type="range"].roi-range::-moz-range-thumb {
 #proj-lightbox-img {
   width: 100%; max-height: 64vh;
   object-fit: contain; display: block;
-  background: #060a0e; pointer-events: none;
+  background: #070c18; pointer-events: none;
 }
 .proj-lightbox-caption {
-  background: #131f2e;
+  background: #111827;
   border-top: 1px solid rgba(125,249,255,0.12);
   padding: 1.25rem 1.5rem 1.5rem;
   flex-shrink: 0;
@@ -1204,7 +1233,7 @@ input[type="range"].roi-range::-moz-range-thumb {
   display: flex; flex-direction: column; align-items: center;
   justify-content: center; text-align: center;
   padding: 5rem 2rem;
-  border: 1px solid rgba(61,69,170,0.35);
+  border: 1px solid rgba(59,130,246,0.35);
   border-radius: var(--radius-lg);
   background: var(--card-bg);
   overflow: hidden;
@@ -1213,19 +1242,19 @@ input[type="range"].roi-range::-moz-range-thumb {
 .websites-update-notice::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(61,69,170,0.10) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(59,130,246,0.10) 0%, transparent 70%);
   pointer-events: none;
 }
 .wun-pulse-ring {
   position: absolute; width: 320px; height: 320px; border-radius: 50%;
-  border: 1px solid rgba(61,69,170,0.18);
+  border: 1px solid rgba(59,130,246,0.18);
   animation: wun-ring-pulse 3s ease-in-out infinite;
   pointer-events: none;
 }
 .wun-pulse-ring::after {
   content: '';
   position: absolute; inset: 24px; border-radius: 50%;
-  border: 1px solid rgba(61,69,170,0.12);
+  border: 1px solid rgba(59,130,246,0.12);
   animation: wun-ring-pulse 3s ease-in-out infinite 0.6s;
 }
 @keyframes wun-ring-pulse {
@@ -1257,8 +1286,8 @@ input[type="range"].roi-range::-moz-range-thumb {
 .wun-badge {
   display: inline-flex; align-items: center; gap: 0.55rem;
   padding: 0.5rem 1.25rem;
-  border: 1px solid rgba(61,69,170,0.4); border-radius: 999px;
-  background: rgba(61,69,170,0.10);
+  border: 1px solid rgba(59,130,246,0.4); border-radius: 999px;
+  background: rgba(59,130,246,0.10);
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
   color: var(--cyan); position: relative; z-index: 1;
 }
@@ -1278,7 +1307,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 .services-sticky {
   position: sticky; top: 0;
   height: 100dvh; overflow: hidden;
-  background: #07101a;
+  background: #060c1a;
 }
 .srv-slide {
   position: absolute; inset: 0;
@@ -1321,8 +1350,8 @@ input[type="range"].roi-range::-moz-range-thumb {
   font-family: var(--mono); font-size: 0.72rem;
   color: rgba(180,190,255,0.8); letter-spacing: 0.2em;
   padding: 0.28rem 0.75rem;
-  background: rgba(61,69,170,0.22);
-  border: 1px solid rgba(61,69,170,0.4); border-radius: 20px;
+  background: rgba(59,130,246,0.22);
+  border: 1px solid rgba(59,130,246,0.4); border-radius: 20px;
   margin-bottom: 0.4rem; will-change: transform, opacity;
 }
 .srv-word-a, .srv-word-b {
@@ -1362,7 +1391,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 .srv-info-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .srv-info-tags .tag {
   display: inline-block; padding: 0.2rem 0.6rem;
-  background: rgba(61,69,170,0.22); border: 1px solid rgba(61,69,170,0.38);
+  background: rgba(59,130,246,0.22); border: 1px solid rgba(59,130,246,0.38);
   border-radius: 20px; font-size: 0.7rem; color: rgba(200,215,255,0.82);
   font-family: var(--mono); letter-spacing: 0.05em;
 }
@@ -1540,22 +1569,22 @@ input[type="range"].roi-range::-moz-range-thumb {
 
 <!-- NAV -->
 <nav id="navbar">
-  <a class="logo" href="#hero">GCT<span class="logo-dot">.</span></a>
+  <a class="logo" href="#hero">GT<span class="logo-dot">.</span></a>
   <div class="pill-nav" id="pillNav">
     <span class="pill-nav__pill" id="navPill"></span>
+    <a href="#portfolio" class="pill-nav__item">Portfolio</a>
     <a href="#services" class="pill-nav__item">Services</a>
     <a href="#tools" class="pill-nav__item">Tools</a>
-    <a href="#experience" class="pill-nav__item">Experience</a>
-    <a href="#portfolio" class="pill-nav__item">Portfolio</a>
+    <a href="#process" class="pill-nav__item">Process</a>
     <a href="#testimonials" class="pill-nav__item">Testimonials</a>
-    <a href="#certifications" class="pill-nav__item">Certifications</a>
+    <a href="#contact" class="pill-nav__item">Contact</a>
   </div>
   <div class="nav-right">
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
       <span class="icon-sun">☀️</span>
       <span class="icon-moon">🌙</span>
     </button>
-    <a class="nav-cta" href="#contact">Let's Talk</a>
+    <a class="nav-cta" href="#contact">Book Free Audit</a>
     <button class="nav-toggle" aria-label="Menu" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
@@ -1565,34 +1594,81 @@ input[type="range"].roi-range::-moz-range-thumb {
 <!-- HERO -->
 <section id="hero">
   <div style="position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;"><iframe allow="fullscreen;autoplay" allowfullscreen src="https://streamable.com/e/yy2dcu?autoplay=1&muted=1&nocontrols=1" style="border:none;position:absolute;top:50%;left:50%;width:177.78vh;height:100vh;min-width:100%;min-height:56.25vw;transform:translate(-50%,-50%);"></iframe></div>
-  <div style="position:absolute;bottom:0;right:0;width:160px;height:60px;background:#0f1b27;z-index:2;pointer-events:none;"></div>
+  <div style="position:absolute;bottom:0;right:0;width:160px;height:60px;background:#0F172A;z-index:2;pointer-events:none;"></div>
   <div class="hero-overlay"></div>
   <div class="hero-bottom">
     <div class="hero-panel">
       <div class="hero-left">
-        <div class="hero-label">← Available for Remote Work · Philippines</div>
-        <p class="hero-greeting">Hi, I'm Genaro 👋</p>
-        <h1 class="hero-name">I help businesses scale<br>through <span style="color:#5df8d8">AI automation.</span></h1>
+        <div class="hero-label">← AI Automation Business Solutions Expert · Marikina, PH</div>
+        <h1 class="hero-name">Stop Losing Hours<br>Every Week To<br><span style="color:#38bdf8">Manual Work.</span></h1>
+        <p class="hero-desc">I help businesses automate lead management, CRM updates, reporting, and operations using AI-powered systems that run 24/7 — without hiring more staff.</p>
+        <div class="hero-trust">
+          <span class="hero-trust-item">✓ Remote Worldwide</span>
+          <span class="hero-trust-item">✓ AI &amp; Workflow Automation</span>
+          <span class="hero-trust-item">✓ CRM &amp; Lead Systems</span>
+          <span class="hero-trust-item">✓ Free 30-Min Strategy Call</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#contact">Book Free Automation Audit →</a>
+          <a class="btn-ghost" href="#portfolio">View Case Studies</a>
+        </div>
       </div>
       <div class="hero-right">
-        <p class="hero-title">Automation Specialist &amp; <span>Project Manager.</span></p>
-        <p class="hero-desc">Results-oriented engineer specializing in AI-driven automation and Project Management.<br>Based in Philippines — working globally.</p>
-        <div class="hero-actions">
-          <a class="btn-primary" href="#portfolio">View My Work →</a>
-          <a class="btn-ghost" href="#contact">Get in Touch</a>
+        <div class="hero-name-card">
+          <div class="hero-initials">GT</div>
+          <div>
+            <div class="hero-full-name">Genaro Teoxon</div>
+            <div class="hero-tagline">AI Automation Expert · Marikina, PH<br>Available for Remote Work Worldwide</div>
+          </div>
+        </div>
+        <div class="hero-metrics-grid">
+          <div class="hero-metric"><div class="hero-metric-val">50+</div><div class="hero-metric-label">Workflows Built</div></div>
+          <div class="hero-metric"><div class="hero-metric-val">20h+</div><div class="hero-metric-label">Saved / Week</div></div>
+          <div class="hero-metric"><div class="hero-metric-val">$0</div><div class="hero-metric-label">Audit Cost</div></div>
+          <div class="hero-metric"><div class="hero-metric-val">24h</div><div class="hero-metric-label">Response Time</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WHAT I BRING TO THE TABLE -->
-<section id="value-props">
+<!-- PAIN POINTS — BRIX LEAD -->
+<section id="pain-points">
   <div class="container">
     <div class="section-header fade-up">
-      <div class="section-num">Value</div>
-      <h2 class="section-title">What I Bring to the Table</h2>
-      <p class="section-sub">Beyond technical skills — measurable outcomes, clear communication, and systems that actually work in production.</p>
+      <div class="section-num">The Problem</div>
+      <h2 class="section-title">Manual Processes Are Costing<br>Your Business Time &amp; Revenue</h2>
+      <p class="section-sub">Sound familiar? These are the exact problems I eliminate for businesses every day.</p>
+    </div>
+    <div class="pain-grid fade-up">
+      <div class="pain-item">
+        <span class="pain-icon">❌</span>
+        <div class="pain-text"><strong>Manual Data Entry</strong><br>Your team spends hours copying information between spreadsheets, CRMs, and tools — with errors along the way.</div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">❌</span>
+        <div class="pain-text"><strong>Slow Lead Response</strong><br>Leads fill out your form and wait hours for a reply — by then they've already moved on to your competitor.</div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">❌</span>
+        <div class="pain-text"><strong>Manual CRM Updates</strong><br>Your sales team wastes selling time updating contact records, deal stages, and notes by hand in your CRM.</div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">❌</span>
+        <div class="pain-text"><strong>Missed Follow-Ups</strong><br>Leads fall through the cracks because there's no automated system to nurture them over days and weeks.</div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">❌</span>
+        <div class="pain-text"><strong>Manual Reports</strong><br>Every Monday someone spends 2 hours pulling numbers from multiple tools to build a report nobody reads.</div>
+      </div>
+      <div class="pain-item">
+        <span class="pain-icon">❌</span>
+        <div class="pain-text"><strong>Staff Buried in Repetitive Tasks</strong><br>Your best people are stuck doing low-value work instead of focusing on growth activities that actually matter.</div>
+      </div>
+    </div>
+    <div class="pain-cta fade-up">
+      <p class="pain-cta-text">AI automation fixes all of this. Let me show you exactly where to start — for free.</p>
+      <a class="btn-primary" href="#contact">Book Free Automation Audit →</a>
     </div>
   </div>
 </section>
@@ -2579,8 +2655,8 @@ input[type="range"].roi-range::-moz-range-thumb {
   <div class="container">
     <div class="contact-intro fade-up">
       <div class="section-num" style="justify-content:flex-start">Contact</div>
-      <h2 class="contact-big-text">Let's build something <span>remarkable.</span></h2>
-      <p class="contact-desc">Open to remote AI/ML engineering, NLP, and automation roles. Also available for project-based consulting. Response within 24 hours.</p>
+      <h2 class="contact-big-text">Book Your Free <span>Automation Audit.</span></h2>
+      <p class="contact-desc">Discover exactly where your business is losing time and money to manual work — and walk away with a custom roadmap to fix it. No commitment. No sales pitch. Just clarity.</p>
     </div>
     <div class="contact-layout">
       <div class="contact-info fade-up">
@@ -2610,7 +2686,7 @@ input[type="range"].roi-range::-moz-range-thumb {
           <div class="calendly-header-title">Book your <span>FREE</span> 30-Min Discovery Call</div>
         </div>
 
-        <div class="calendly-inline-widget" data-url="https://calendly.com/teoxon0207/30min?hide_gdpr_banner=1&hide_event_type_details=1&primary_color=3d45aa" style="min-width:280px;height:570px;"></div>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/teoxon0207/30min?hide_gdpr_banner=1&hide_event_type_details=1&primary_color=3b82f6" style="min-width:280px;height:570px;"></div>
       </div>
     </div>
 
@@ -2619,9 +2695,9 @@ input[type="range"].roi-range::-moz-range-thumb {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">GCT<span>.</span></div>
-  <div class="footer-text">© 2025 Genaro C. Teoxon Jr. — All rights reserved.</div>
-  <div class="footer-text" style="color:var(--cyan);opacity:0.65">Available for remote work</div>
+  <div class="footer-logo">GT<span>.</span> <span style="font-family:var(--body-font);font-weight:400;font-size:0.82rem;opacity:0.8">AI Automation Business Solutions</span></div>
+  <div class="footer-text">© 2026 Genaro C. Teoxon Jr. — All rights reserved.</div>
+  <div class="footer-text" style="color:var(--cyan);opacity:0.65">Marikina, PH · Remote Worldwide</div>
 </footer>
 
 <script>
@@ -3578,6 +3654,19 @@ function handleSubmit(btn) {
     }
     if (!_sparkRunning) { _sparkRunning = true; requestAnimationFrame(animate); }
   });
+})();
+
+/* ── BRIX Reorder: Portfolio before Services ── */
+(function() {
+  var portfolio = document.getElementById('portfolio');
+  var csModal = document.getElementById('cs-modal');
+  var projLightbox = document.getElementById('proj-lightbox');
+  var services = document.getElementById('services');
+  if (portfolio && services && services.parentNode) {
+    services.parentNode.insertBefore(projLightbox, services);
+    services.parentNode.insertBefore(csModal, services);
+    services.parentNode.insertBefore(portfolio, services);
+  }
 })();
 </script>
 </body>
