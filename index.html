@@ -3793,5 +3793,14 @@ function handleSubmit(btn) {
   observer.observe(document.body, { childList: true, subtree: true });
 })();
 </script>
+<script>
+document.querySelectorAll('.pain-item video').forEach(function(v) {
+  v.addEventListener('timeupdate', function() {
+    if (this.duration && this.currentTime > this.duration - 0.15) {
+      this.currentTime = 0;
+    }
+  });
+});
+</script>
 </body>
 </html>
