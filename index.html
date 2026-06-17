@@ -1174,11 +1174,13 @@ input[type="range"].roi-range::-moz-range-thumb {
 .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 @media (max-width: 900px) { .pain-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .pain-grid { grid-template-columns: 1fr; } }
-.pain-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color 0.25s, background 0.25s; }
-.pain-item:hover { border-color: rgba(239,68,68,0.4); background: rgba(239,68,68,0.05); }
-.pain-icon { font-size: 1.25rem; flex-shrink: 0; }
-.pain-text { font-size: 0.92rem; color: var(--text); line-height: 1.6; }
-.pain-text strong { color: var(--heading); font-weight: 600; }
+.pain-item { position: relative; overflow: hidden; border: 1px solid var(--border); border-radius: var(--radius); aspect-ratio: 16/9; background: #0a0a0f; transition: border-color 0.25s, transform 0.25s; }
+.pain-item:hover { border-color: rgba(239,68,68,0.5); transform: translateY(-2px); }
+.pain-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pain-item:hover video { opacity: 0.85; }
+.pain-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 55%, transparent 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1rem 1.25rem; pointer-events: none; }
+.pain-icon { position: absolute; top: 0.75rem; left: 0.75rem; font-size: 1.1rem; line-height: 1; }
+.pain-label { font-size: 0.92rem; font-weight: 700; color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.6); letter-spacing: 0.01em; }
 .pain-cta { text-align: center; margin-top: 3.5rem; }
 .pain-cta-text { font-size: 1.05rem; color: var(--muted2); margin-bottom: 1.5rem; max-width: 480px; margin: 0 auto 1.5rem; }
 
@@ -1711,28 +1713,58 @@ input[type="range"].roi-range::-moz-range-thumb {
     </div>
     <div class="pain-grid fade-up">
       <div class="pain-item">
-        <span class="pain-icon">❌</span>
-        <div class="pain-text"><strong>Manual Data Entry</strong><br>Your team spends hours copying information between spreadsheets, CRMs, and tools — with errors along the way.</div>
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="Video%20Reference%20-%20The%20Problem/Manual%20Data%20Entry%202.mp4" type="video/mp4">
+        </video>
+        <div class="pain-overlay">
+          <span class="pain-icon">❌</span>
+          <div class="pain-label">Manual Data Entry</div>
+        </div>
       </div>
       <div class="pain-item">
-        <span class="pain-icon">❌</span>
-        <div class="pain-text"><strong>Slow Lead Response</strong><br>Leads fill out your form and wait hours for a reply — by then they've already moved on to your competitor.</div>
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="Video%20Reference%20-%20The%20Problem/SLR2.mp4" type="video/mp4">
+        </video>
+        <div class="pain-overlay">
+          <span class="pain-icon">❌</span>
+          <div class="pain-label">Slow Lead Response</div>
+        </div>
       </div>
       <div class="pain-item">
-        <span class="pain-icon">❌</span>
-        <div class="pain-text"><strong>Manual CRM Updates</strong><br>Your sales team wastes selling time updating contact records, deal stages, and notes by hand in your CRM.</div>
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="Video%20Reference%20-%20The%20Problem/Manual%20CRM%20Update%202.mp4" type="video/mp4">
+        </video>
+        <div class="pain-overlay">
+          <span class="pain-icon">❌</span>
+          <div class="pain-label">Manual CRM Updates</div>
+        </div>
       </div>
       <div class="pain-item">
-        <span class="pain-icon">❌</span>
-        <div class="pain-text"><strong>Missed Follow-Ups</strong><br>Leads fall through the cracks because there's no automated system to nurture them over days and weeks.</div>
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="Video%20Reference%20-%20The%20Problem/Missed%20FF%202.mp4" type="video/mp4">
+        </video>
+        <div class="pain-overlay">
+          <span class="pain-icon">❌</span>
+          <div class="pain-label">Missed Follow-Ups</div>
+        </div>
       </div>
       <div class="pain-item">
-        <span class="pain-icon">❌</span>
-        <div class="pain-text"><strong>Manual Reports</strong><br>Every Monday someone spends 2 hours pulling numbers from multiple tools to build a report nobody reads.</div>
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="Video%20Reference%20-%20The%20Problem/Manual%20Reports%202.mp4" type="video/mp4">
+        </video>
+        <div class="pain-overlay">
+          <span class="pain-icon">❌</span>
+          <div class="pain-label">Manual Reports</div>
+        </div>
       </div>
       <div class="pain-item">
-        <span class="pain-icon">❌</span>
-        <div class="pain-text"><strong>Staff Buried in Repetitive Tasks</strong><br>Your best people are stuck doing low-value work instead of focusing on growth activities that actually matter.</div>
+        <video autoplay loop muted playsinline preload="metadata">
+          <source src="Video%20Reference%20-%20The%20Problem/Staff%20Burried%202.mp4" type="video/mp4">
+        </video>
+        <div class="pain-overlay">
+          <span class="pain-icon">❌</span>
+          <div class="pain-label">Staff Buried in Repetitive Tasks</div>
+        </div>
       </div>
     </div>
     <div class="pain-cta fade-up">
