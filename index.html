@@ -1666,6 +1666,82 @@ input[type="range"].roi-range::-moz-range-thumb {
   .cs-panel { border-radius: 0; min-height: 100vh; }
   .cs-close { top: 0.85rem; right: 1rem; }
 }
+
+/* ══ RESPONSIVE OPTIMIZATION ══ */
+
+/* Prevent horizontal overflow on all screens */
+html, body { overflow-x: hidden; max-width: 100%; }
+
+/* Desktop: ensure hero panel is compact and well-spaced */
+@media (min-width: 901px) {
+  .hero-panel { align-items: flex-end; }
+  .hero-right { width: 300px; flex-shrink: 0; }
+}
+
+/* Tablet & mobile: hero panel more opaque so text reads over video */
+@media (max-width: 900px) {
+  .hero-panel { background: rgba(15,23,42,0.82); gap: 1.75rem; }
+  /* Fix hero-label alignment — inline align-self:flex-end fights mobile layout */
+  .hero-right .hero-label { align-self: flex-start !important; margin-bottom: 0.65rem; }
+  /* Touch targets: 44px minimum height for all interactive elements */
+  .btn-primary, .btn-ghost, .nav-cta, .ptab-btn, .theme-toggle { min-height: 44px; }
+  /* Work card thumbnail: shorter on tablet */
+  .work-thumb { height: 180px; }
+  /* Tools rows: tighter gap on tablet */
+  .tools-row { gap: 0.75rem; }
+}
+
+/* Mobile ≤600px */
+@media (max-width: 600px) {
+  /* Hero: fix greeting size (was overriding to a larger value) */
+  .hero-greeting { font-size: clamp(1.3rem, 6.5vw, 2rem); }
+  /* Hero: label wraps on narrow screens */
+  .hero-label { white-space: normal; text-align: left; line-height: 1.4; }
+  /* Hero: metrics grid fills full width */
+  .hero-metrics-grid { grid-template-columns: 1fr 1fr; width: 100%; }
+  /* Hero: name card full width */
+  .hero-name-card { width: 100%; box-sizing: border-box; }
+  /* Work card thumbnail: tighter on mobile */
+  .work-thumb { height: 160px; }
+  /* Work body padding */
+  .work-body { padding: 1.1rem; }
+  /* Services: shorter per-slide height on mobile */
+  #services { height: calc(6 * 200vh); }
+  .srv-word-a, .srv-word-b { font-size: clamp(1.2rem, 5vw, 1.8rem); }
+  .srv-info-name { font-size: clamp(1.1rem, 5vw, 1.5rem); }
+  .srv-info-desc { font-size: 0.85rem; }
+  /* Section header: tighter on mobile */
+  .section-header { margin-bottom: 2.5rem; }
+  /* Testimonial card: full bleed on very small screens */
+  .testimonial-card { width: 85vw; padding: 1.5rem; }
+  /* Close button on mobile modal: larger tap area */
+  .cs-close { width: 48px; height: 48px; top: 0.65rem; right: 0.65rem; font-size: 1.2rem; }
+  /* ROI section: tighter */
+  .roi-inputs { padding: 1.25rem; }
+  /* Footer text: smaller */
+  .footer-copy { font-size: 0.72rem; }
+  /* Portfolio notice: wraps cleanly */
+  .portfolio-notice { border-radius: 14px; text-align: left; }
+}
+
+/* Very small phones ≤420px */
+@media (max-width: 420px) {
+  /* Hero: even tighter font */
+  .hero-greeting { font-size: clamp(1.15rem, 6vw, 1.6rem); }
+  .hero-name { font-size: clamp(1.1rem, 7vw, 1.6rem); }
+  .hero-desc { font-size: 0.78rem; }
+  /* Buttons: full width, taller tap target */
+  .btn-primary, .btn-ghost { width: 100%; justify-content: center; padding: 0.9rem 1.25rem; min-height: 48px; font-size: 0.75rem; }
+  /* Trust bar: single column */
+  .hero-trust { flex-direction: column; gap: 0.4rem; }
+  /* Stats: 2x2 grid stays but values shrink */
+  .hero-metric-val { font-size: 1.15rem; }
+  .hero-metric-label { font-size: 0.52rem; }
+  /* Cert cards: full width */
+  .cert-card { flex: 0 0 88vw; width: 88vw; }
+  /* Portfolio grid: 1 col */
+  .portfolio-grid { grid-template-columns: 1fr; }
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
