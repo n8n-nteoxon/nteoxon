@@ -1590,6 +1590,9 @@ input[type="range"].roi-range::-moz-range-thumb {
 }
 .cs-badge-time { background: var(--cyan-soft); border: 1px solid rgba(61,69,170,0.3); color: var(--cyan); }
 .cs-badge-save { background: rgba(0,201,167,0.1); border: 1px solid rgba(0,201,167,0.3); color: #00c9a7; }
+.cs-video-wrap { display: none; background: #000; border-bottom: 1px solid var(--border); }
+.cs-video-wrap.show { display: block; }
+.cs-video-wrap video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
 .cs-body { padding: 0 2.5rem 2.5rem; }
 .cs-section { padding: 2rem 0; border-bottom: 1px solid var(--border); }
 .cs-section:last-child { border-bottom: none; }
@@ -2285,6 +2288,9 @@ input[type="range"].roi-range::-moz-range-thumb {
       <h2 class="cs-title" id="cs-title"></h2>
       <div class="cs-badges" id="cs-badges"></div>
     </div>
+    <div class="cs-video-wrap" id="cs-video-wrap">
+      <video id="cs-video" controls playsinline preload="none"></video>
+    </div>
     <div class="cs-body">
       <div class="cs-section">
         <div class="cs-section-label">Project Summary</div>
@@ -2969,7 +2975,9 @@ const CASE_STUDIES = {
     ],
     obstacles: ['Handling background noise and speech recognition edge cases in Vapi', 'Preventing double-bookings with concurrent calendar conflict detection', 'CRM deduplication logic for returning callers with existing records', 'Graceful escalation path for complex queries needing human review'],
     outcome: 'Zero missed after-hours leads. Appointments fill the calendar automatically. The client reclaimed 30+ hours per week previously spent on manual call logging and scheduling.',
-    images: ['projects/N8n/AI Receptionist.png']
+    images: ['projects/N8n/AI Receptionist.png'],
+    video: 'projects/videos/ai-receptionist.mp4',
+    poster: 'projects/videos/ai-receptionist-poster.jpg'
   },
   'n8n-ai-facebook-agent': {
     title: 'AI Facebook Agent',
@@ -3216,9 +3224,26 @@ function openCaseStudy(id) {
   modal.classList.add('open');
   modal.scrollTop = 0;
   document.body.style.overflow = 'hidden';
+  const vWrap = document.getElementById('cs-video-wrap');
+  const v = document.getElementById('cs-video');
+  if (d.video) {
+    v.poster = d.poster || '';
+    v.src = d.video;
+    v.muted = false;
+    vWrap.classList.add('show');
+    // Called inside the click, so browsers allow playback with sound;
+    // if a browser still blocks it, fall back to muted autoplay.
+    const p = v.play();
+    if (p && p.catch) p.catch(() => { v.muted = true; v.play().catch(() => {}); });
+  } else {
+    vWrap.classList.remove('show');
+  }
 }
 
 function closeCaseStudy() {
+  const v = document.getElementById('cs-video');
+  if (v && v.getAttribute('src')) { v.pause(); v.removeAttribute('src'); v.load(); }
+  document.getElementById('cs-video-wrap').classList.remove('show');
   document.getElementById('cs-modal').classList.remove('open');
   document.body.style.overflow = '';
 }
