@@ -269,9 +269,9 @@ section { position: relative; z-index: 2; }
   /* Uniform hero on every PC/laptop: both cards scale with the viewport (up AND down),
      so they fill the same share of the screen at any resolution or browser zoom level.
      tan(atan2(a,b)) = a/b as a unitless number; capped by both width and height.
-     Floor 0.75 keeps text readable on very small windows. */
+     Floor 0.9 keeps body text (~12px) and stat labels readable on 1366px laptops. */
   .hero-left, .hero-right {
-    zoom: clamp(0.75, min(tan(atan2(100vw, 1600px)), tan(atan2(100vh, 860px))), 2.4);
+    zoom: clamp(0.9, min(tan(atan2(100vw, 1600px)), tan(atan2(100vh, 860px))), 2.4);
   }
 }
 .hero-right .hero-label { width: 100%; box-sizing: border-box; justify-content: center; text-align: center; text-wrap: balance; line-height: 1.5; }
@@ -1761,6 +1761,39 @@ input[type="range"].roi-range::-moz-range-thumb {
   .portfolio-notice { border-radius: 14px; text-align: left; }
 }
 
+/* Mobile/tablet hero: clear the fixed nav, show the presenter video on top, cards below it */
+@media (max-width: 900px) {
+  #hero { justify-content: flex-start; min-height: 0; }
+  #hero .hero-video-wrap { bottom: auto !important; height: calc(var(--hero-nav-h, 85px) + 52svh); }
+  #hero .hero-video-wrap::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 35%;
+    background: linear-gradient(to bottom, transparent, #0F172A);
+  }
+  /* Smaller video frame pinned under the nav so the presenter's head and shoulders show */
+  #hero .hero-video-wrap iframe {
+    top: var(--hero-nav-h, 85px) !important; transform: translateX(-50%) !important;
+    height: 56svh !important; width: calc(56svh * 16 / 9) !important;
+    min-height: 0 !important; min-width: 0 !important;
+  }
+  #hero .hero-wm-cover { display: none; }
+  .hero-bottom { padding-top: calc(var(--hero-nav-h, 85px) + 40svh); }
+}
+/* Small laptops / landscape tablets: keep the nav on one row so it doesn't cover the hero */
+@media (min-width: 901px) and (max-width: 1200px) {
+  nav { padding: 1rem 1.5rem; }
+  .pill-nav__item { padding: 0.45rem 0.7rem; letter-spacing: 0.04em; }
+  .nav-right { gap: 0.6rem; }
+  .nav-cta { white-space: nowrap; padding: 0.6rem 1.1rem; font-size: 0.78rem; }
+  .hero-bottom { padding: 0 1.25rem 1.25rem; }
+  .hero-panel { gap: 1.25rem; }
+}
+/* Contact: let long links wrap so the column never exceeds the screen */
+@media (max-width: 900px) {
+  .contact-layout { grid-template-columns: minmax(0, 1fr); }
+  .contact-layout > * { min-width: 0; max-width: 100%; }
+  .contact-item-value { overflow-wrap: anywhere; }
+}
+
 /* Very small phones ≤420px */
 @media (max-width: 420px) {
   /* Hero: even tighter font */
@@ -1811,8 +1844,8 @@ input[type="range"].roi-range::-moz-range-thumb {
 
 <!-- HERO -->
 <section id="hero">
-  <div style="position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;"><iframe allow="fullscreen;autoplay" allowfullscreen src="https://streamable.com/e/yy2dcu?autoplay=1&muted=1&nocontrols=1" style="border:none;position:absolute;top:50%;left:50%;width:177.78vh;height:100vh;min-width:100%;min-height:56.25vw;transform:translate(-50%,-50%);"></iframe></div>
-  <div style="position:absolute;bottom:0;right:0;width:160px;height:60px;background:#0F172A;z-index:2;pointer-events:none;"></div>
+  <div class="hero-video-wrap" style="position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;"><iframe allow="fullscreen;autoplay" allowfullscreen src="https://streamable.com/e/yy2dcu?autoplay=1&muted=1&nocontrols=1" style="border:none;position:absolute;top:50%;left:50%;width:177.78vh;height:100vh;min-width:100%;min-height:56.25vw;transform:translate(-50%,-50%);"></iframe></div>
+  <div class="hero-wm-cover" style="position:absolute;bottom:0;right:0;width:160px;height:60px;background:#0F172A;z-index:2;pointer-events:none;"></div>
   <div class="hero-overlay"></div>
   <div class="hero-bottom">
     <div class="hero-panel">
