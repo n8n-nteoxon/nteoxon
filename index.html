@@ -103,7 +103,17 @@ nav {
   letter-spacing: -0.03em; color: var(--heading);
   text-decoration: none; display: flex; align-items: baseline; gap: 1px;
 }
-.logo-dot { color: var(--cyan); font-size: 2.1rem; line-height: 0; margin-bottom: -6px; }
+/* G! Next Solutions wordmark */
+.logo { align-items: center; gap: 0.5rem; line-height: 1; }
+.logo-g { font-size: 2.6rem; letter-spacing: -0.04em; }
+.logo-bang { color: #fbbf24; font-style: italic; margin-left: 1px; }
+.logo-stack { display: flex; flex-direction: column; align-items: stretch; }
+.logo-next { font-size: 1.7rem; letter-spacing: -0.02em; }
+.logo-sub {
+  font-family: var(--logo-font); font-weight: 600; font-size: 0.58rem;
+  letter-spacing: 0.32em; text-transform: uppercase; margin-top: 3px;
+  text-align: justify; text-align-last: justify; margin-right: -0.32em;
+}
 
 .pill-nav {
   position: relative;
@@ -1771,7 +1781,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 
 <!-- NAV -->
 <nav id="navbar">
-  <a class="logo" href="#hero">AI-Naru<span class="logo-dot">.</span></a>
+  <a class="logo" href="#hero" aria-label="G! Next Solutions"><span class="logo-g">G<span class="logo-bang">!</span></span><span class="logo-stack"><span class="logo-next">Next</span><span class="logo-sub">Solutions</span></span></a>
   <div class="pill-nav" id="pillNav">
     <span class="pill-nav__pill" id="navPill"></span>
     <a href="#portfolio" class="pill-nav__item">Portfolio</a>
