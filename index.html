@@ -243,11 +243,12 @@ section { position: relative; z-index: 2; }
   flex: 0 1 500px; max-width: 500px;
 }
 .hero-right {
-  flex: 0 0 340px; display: flex; flex-direction: column; align-items: flex-end;
+  flex: 0 0 440px; padding: 2rem 2rem; display: flex; flex-direction: column; align-items: flex-end;
 }
 .hero-right .hero-title,
 .hero-right .hero-desc { text-align: right; }
 .hero-right .hero-actions { justify-content: flex-end; flex-wrap: nowrap; }
+.hero-right .hero-label { width: 100%; box-sizing: border-box; justify-content: center; text-align: center; text-wrap: balance; line-height: 1.5; }
 .hero-label {
   font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.13em;
   text-transform: uppercase; color: rgba(255,255,255,1);
@@ -1162,16 +1163,16 @@ input[type="range"].roi-range::-moz-range-thumb {
 .hero-trust-item { font-family: var(--mono); font-size: 0.74rem; color: rgba(255,255,255,0.82); letter-spacing: 0.04em; }
 
 /* ══ HERO METRICS GRID ══ */
-.hero-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-top: 0.65rem; }
-.hero-metric { background: rgba(15,23,42,0.92); border: 1px solid rgba(59,130,246,0.25); border-radius: 12px; padding: 0.65rem 0.85rem; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.35); }
+.hero-metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.9rem; width: 100%; }
+.hero-metric { background: rgba(15,23,42,0.92); border: 1px solid rgba(59,130,246,0.25); border-radius: 14px; padding: 1.05rem 0.85rem; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,0.35); }
 .hero-metric-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 700; color: #38bdf8; line-height: 1; margin-bottom: 0.2rem; }
 .hero-metric-label { font-family: var(--mono); font-size: 0.58rem; color: rgba(255,255,255,0.65); letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* ══ HERO NAME CARD ══ */
-.hero-name-card { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.75rem; padding: 0.85rem 1.1rem; background: rgba(15,23,42,0.92); border: 1px solid rgba(59,130,246,0.3); border-radius: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.35); width: 100%; }
-.hero-initials { width: 46px; height: 46px; border-radius: 10px; background: var(--cyan); display: flex; align-items: center; justify-content: center; font-family: var(--logo-font); font-size: 1.1rem; font-weight: 800; color: #fff; flex-shrink: 0; }
-.hero-full-name { font-family: var(--logo-font); font-size: 1rem; font-weight: 700; color: #fff; }
-.hero-tagline { font-family: var(--mono); font-size: 0.68rem; color: rgba(255,255,255,0.6); margin-top: 0.2rem; line-height: 1.45; }
+.hero-name-card { display: flex; align-items: center; gap: 1.15rem; margin-bottom: 0.9rem; padding: 1.25rem 1.4rem; background: rgba(15,23,42,0.92); border: 1px solid rgba(59,130,246,0.3); border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.35); width: 100%; box-sizing: border-box; }
+.hero-initials { width: 64px; height: 64px; border-radius: 14px; background: var(--cyan); display: flex; align-items: center; justify-content: center; font-family: var(--logo-font); font-size: 1.5rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.hero-full-name { font-family: var(--logo-font); font-size: 1.35rem; font-weight: 700; color: #fff; }
+.hero-tagline { font-family: var(--mono); font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-top: 0.3rem; line-height: 1.45; }
 
 /* ══ PAIN POINTS ══ */
 #pain-points { padding: 8rem 0; background: var(--bg2); transition: background 0.35s ease; }
@@ -1678,7 +1679,7 @@ input[type="range"].roi-range::-moz-range-thumb {
 /* Desktop: ensure hero panel is compact and well-spaced */
 @media (min-width: 901px) {
   .hero-panel { align-items: flex-end; }
-  .hero-right { width: 340px; flex-shrink: 0; }
+  .hero-right { width: 440px; flex-shrink: 0; box-sizing: border-box; }
 }
 
 /* Tablet & mobile: hero panel more opaque so text reads over video */
@@ -1704,7 +1705,10 @@ input[type="range"].roi-range::-moz-range-thumb {
   /* Hero: metrics grid fills full width */
   .hero-metrics-grid { grid-template-columns: 1fr 1fr; width: 100%; }
   /* Hero: name card full width */
-  .hero-name-card { width: 100%; box-sizing: border-box; }
+  .hero-name-card { width: 100%; box-sizing: border-box; padding: 1rem 1.1rem; gap: 0.9rem; }
+  .hero-initials { width: 52px; height: 52px; font-size: 1.25rem; }
+  .hero-full-name { font-size: 1.12rem; }
+  .hero-tagline { font-size: 0.72rem; }
   /* Work card thumbnail: tighter on mobile */
   .work-thumb { height: 160px; }
   /* Work body padding */
