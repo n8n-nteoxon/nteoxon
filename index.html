@@ -266,6 +266,11 @@ section { position: relative; z-index: 2; }
   .hero-right .hero-metrics-grid { gap: 0.6rem; margin-top: 0.6rem; }
   .hero-right .hero-metric { padding-top: 0.8rem; padding-bottom: 0.8rem; }
   .hero-right { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+  /* Scale both cards with the viewport so they stay large on big / zoomed-out screens.
+     tan(atan2(a,b)) = a/b as a unitless number; capped by both width and height. */
+  .hero-left, .hero-right {
+    zoom: clamp(1, min(tan(atan2(100vw, 1600px)), tan(atan2(100vh, 860px))), 1.6);
+  }
 }
 .hero-right .hero-label { width: 100%; box-sizing: border-box; justify-content: center; text-align: center; text-wrap: balance; line-height: 1.5; }
 .hero-label {
