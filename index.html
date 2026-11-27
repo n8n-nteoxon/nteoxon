@@ -2237,7 +2237,7 @@ input[type="range"].roi-range::-moz-range-thumb {
           </div>
           <div class="pcard-body">
             <div class="pcard-title">Asana CRM Lead Engagement</div>
-            <p class="pcard-desc">Bridges your CRM and Asana so that new leads automatically create tasks, trigger follow-up sequences, and update deal stages — keeping your pipeline moving without manual input.</p>
+            <p class="pcard-desc">Uses Asana as the CRM: every new lead becomes a filled task routed to the right rep, and each stage change triggers its own follow-up email — keeping your pipeline moving without manual input.</p>
             <div class="pcard-tags"><span class="tag">Zapier</span><span class="tag">Asana</span><span class="tag">CRM</span></div>
           </div>
         </div>
@@ -3165,20 +3165,20 @@ const CASE_STUDIES = {
   'zapier-asana-crm': {
     title: 'Asana CRM Lead Engagement',
     time: '3 days', saved: '12+ hrs/week',
-    summary: 'Bridges the CRM and Asana so that every new lead automatically creates a tracked Asana task, triggers a multi-step follow-up sequence, and updates the deal stage as actions are completed — keeping the pipeline moving without any manual input.',
-    tools: ['Zapier', 'HubSpot CRM', 'Asana API', 'Gmail', 'Slack'],
-    challenge: 'The sales team was manually creating Asana tasks for every new CRM lead, then copy-pasting contact details and setting follow-up reminders by hand. Tasks were missed, deal stages fell out of sync, and nothing was standardized.',
-    approach: 'Zapier watches for new HubSpot contacts. A multi-step Zap creates a formatted Asana task in the correct project, assigns it to the right rep based on lead source, sends an automated intro email, and posts a Slack notification. Subsequent Asana task completions trigger HubSpot deal stage updates.',
-    before: ['CRM contact created — rep manually creates a matching Asana task', 'Copy-paste lead details into the task description', 'Manually set due date and assignee for each task', 'Forget to update HubSpot when Asana tasks are completed'],
-    after: ['New CRM lead instantly creates a fully populated Asana task', 'Correct assignee and due date set automatically based on lead source rules', 'Automated intro email sent within minutes of lead arrival', 'HubSpot deal stage syncs automatically as Asana tasks are marked complete'],
+    summary: 'A lead qualification and follow-up workflow with Asana as the CRM. Every new lead becomes a fully filled Asana task, is routed to the right rep in seconds, and every time it moves to a new stage the right follow-up happens by itself.',
+    tools: ['Zapier', 'Asana (CRM)', 'Gmail', 'Google Drive', 'AI by Zapier'],
+    challenge: 'For every new lead, a sales rep created an Asana task by hand, copy-pasted the contact details, and set follow-up reminders one by one. Tasks were missed, deal stages fell out of date, and nothing was standardized.',
+    approach: 'Zapier creates a filled Asana task for each new lead and stops duplicates. Rules pick the project, rep, and due date by lead source, territory, and rep capacity, and an intro email goes out from the rep’s Gmail. When the rep moves the task to a new stage, a Paths step sends the lead down one of five paths (Ready to Start, No Response, Quoted, Approved, Paid and Closed), each with its own follow-up. The same workflow can run on any CRM the team already uses.',
+    before: ['New lead arrives — rep creates the Asana task by hand', 'Copy-paste lead details into the task description', 'Set due date and assignee manually for each task', 'Forget to follow up or update the deal stage'],
+    after: ['Every new lead instantly becomes a fully filled Asana task', 'The right rep, project, and due date are set by rules', 'Intro email sent from the rep’s Gmail within minutes', 'Every stage change triggers its own follow-up automatically'],
     architecture: [
-      { num: '1', title: 'CRM Lead Trigger', desc: 'New HubSpot contact triggers the Zapier workflow' },
-      { num: '2', title: 'Task Creation', desc: 'Asana task created with lead details, assignee, and due date populated' },
-      { num: '3', title: 'Email Sequence', desc: "Automated intro email sent from the assigned rep's Gmail" },
-      { num: '4', title: 'Slack Notification', desc: 'Rep notified in Slack with lead summary and direct Asana task link' },
-      { num: '5', title: 'Stage Sync', desc: 'Asana task status changes reflected back to HubSpot deal stage via reverse Zap' }
+      { num: '1', title: 'Intake', desc: 'A new lead creates a fully filled Asana task; existing leads are stopped so there are no duplicates' },
+      { num: '2', title: 'Routing', desc: 'Rules assign project, rep, and due date by lead source, territory, and rep capacity; intro email sent from the rep’s Gmail' },
+      { num: '3', title: 'Stage Paths', desc: 'An Asana task update triggers a Paths step that routes the lead down one of five stage paths' },
+      { num: '4', title: 'Ready to Start / No Response / Quoted', desc: 'Google Drive lead folder and first work task; Gmail follow-ups that wait, check the inbox for a reply, and only send again if there is none' },
+      { num: '5', title: 'Approved / Paid and Closed', desc: 'AI writes a personalized welcome email, then a next-service recommendation, both sent from Gmail' }
     ],
-    obstacles: ['Bidirectional sync logic to prevent infinite loops between HubSpot and Asana', 'Lead routing rules based on source, territory, and rep capacity', 'Asana project selection based on lead type and pipeline stage mapping', 'Handling CRM duplicates to avoid creating multiple Asana tasks for the same lead'],
+    obstacles: ['Path conditions that prevent the workflow from looping when a task updates', 'Lead routing rules based on source, territory, and rep capacity', 'Reply checks so follow-ups only go out when the lead has not answered', 'Duplicate detection so the same lead never creates two Asana tasks'],
     outcome: 'Zero manual task creation. Every lead is tracked, assigned, and followed up automatically. The team recovered 12+ hours weekly and deal stage accuracy improved from ~60% to near 100%.',
     images: ['projects/Zapier/Asana CRM Lead Engagement- Zapier.png'],
     video: 'projects/videos/asana-crm-lead-engagement.mp4',
